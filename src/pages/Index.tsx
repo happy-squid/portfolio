@@ -1,8 +1,5 @@
-
 import React, { useState, useEffect } from "react";
 import HorizontalGallery from "@/components/HorizontalGallery";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
 
 const Index = () => {
@@ -28,13 +25,9 @@ const Index = () => {
       
       {/* Main Content */}
       <div className={`transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <Navigation />
-        
         <main className="h-full w-full">
           <HorizontalGallery projects={projects} />
         </main>
-        
-        <Footer />
       </div>
     </div>
   );
