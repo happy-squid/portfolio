@@ -1,9 +1,10 @@
-
 import React, { useRef, useState, useEffect } from "react";
 import { useHorizontalScroll } from "@/hooks/useHorizontalScroll";
 import ProjectCard from "@/components/ProjectCard";
+import Navigation from "@/components/Navigation";
 import { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import illustration from "@/assets/ill-1.png";
 
 interface HorizontalGalleryProps {
   projects: Project[];
@@ -16,8 +17,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
 }) => {
   const scrollRef = useHorizontalScroll();
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [scrollLeft, setScrollLeft] = useState(0);
   
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -25,9 +25,16 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
     const progress = scrollLeft / (scrollWidth - clientWidth);
     setScrollProgress(progress);
-    
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10); // 10px buffer
+    setScrollLeft(scrollLeft);
+  };
+
+  const scrollToStart = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
   };
   
   useEffect(() => {
@@ -38,42 +45,10 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
     }
   }, []);
   
-  const scrollToRight = () => {
-    if (!scrollRef.current) return;
-    // We're still using a smooth transition for button navigation
-    // since that's expected behavior for button clicks
-    scrollRef.current.scrollBy({
-      left: 600,
-      behavior: "smooth"
-    });
-  };
-  
-  const scrollToLeft = () => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
-      left: -600,
-      behavior: "smooth"
-    });
-  };
-  
-  // Add keyboard navigation for horizontal scrolling
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        scrollToRight();
-      } else if (e.key === 'ArrowLeft') {
-        scrollToLeft();
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-  
   return (
-    <div className={cn("relative h-full w-full", className)}>
+    <div className={cn("fixed inset-0", className)}>
       {/* Scroll Progress Bar */}
-      <div className="fixed bottom-0 left-0 w-full h-0.5 bg-gray-200 z-50">
+      <div className="fixed bottom-0 left-0 w-full h-0.5 bg-gray-200 z-40">
         <div 
           className="h-full bg-black transition-all duration-300"
           style={{ width: `${scrollProgress * 100}%` }}
@@ -83,57 +58,47 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
       {/* Gallery */}
       <div 
         ref={scrollRef}
-        className="horizontal-scroll flex items-center overflow-x-auto h-full w-full cursor-explore touch-pan-x"
+        className="horizontal-scroll absolute inset-0 flex items-center overflow-x-auto touch-pan-x"
         onScroll={handleScroll}
         style={{ scrollSnapType: 'x mandatory' }}
       >
-        {/* Initial space */}
-        <div className="h-full w-screen flex-shrink-0"></div>
+        {/* Logo with small left margin */}
+        <div className="pl-8">
+          <Navigation 
+            scrollLeft={scrollLeft} 
+            onScrollToStart={scrollToStart}
+          />
+        </div>
+
+        {/* Illustration Container */}
+        <div className="flex-shrink-0 pl-[200px]">
+          <div className="relative w-[400px] h-[400px]">
+            <img 
+              src={illustration} 
+              alt="Main Illustration" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
         
-        {/* Projects */}
-        <div className="flex items-center gap-16 px-16">
+        {/* Projects with margin from illustration */}
+        <div className="flex items-center gap-16 pl-[1100px] pr-16">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
         
-        {/* End space */}
-        <div className="h-full w-screen flex-shrink-0"></div>
-      </div>
-      
-      {/* Navigation Arrows */}
-      <button 
-        onClick={scrollToLeft}
-        className={cn(
-          "fixed left-8 top-1/2 -translate-y-1/2 z-40 bg-white/80 hover:bg-white w-12 h-12 rounded-full flex items-center justify-center transition-all",
-          !canScrollLeft && "opacity-0 pointer-events-none"
-        )}
-        aria-label="Scroll left"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="transform rotate-180">
-          <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </button>
-      
-      <button 
-        onClick={scrollToRight}
-        className={cn(
-          "fixed right-8 top-1/2 -translate-y-1/2 z-40 bg-white/80 hover:bg-white w-12 h-12 rounded-full flex items-center justify-center transition-all",
-          !canScrollRight && "opacity-0 pointer-events-none"
-        )}
-        aria-label="Scroll right"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </button>
-      
-      {/* Scroll Instructions */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-sm text-gray-500 flex items-center space-x-2 z-40 pointer-events-none">
-        <span>Scroll or drag to explore</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        {/* Social Links */}
+        <div className="flex-shrink-0 flex items-center gap-16 px-16">
+          <div className="flex items-center space-x-6">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">INSTAGRAM</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">LINKEDIN</a>
+            <a href="mailto:contact@example.com" className="hover:opacity-70 transition-opacity">EMAIL</a>
+          </div>
+        </div>
+        
+        {/* Small end space */}
+        <div className="h-full w-16 flex-shrink-0"></div>
       </div>
     </div>
   );
