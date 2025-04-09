@@ -48,7 +48,7 @@ const Navigation: React.FC<NavigationProps> = ({
       <div className="fixed top-0 right-20 z-50">
         <div 
           className={cn(
-            "bg-white rounded-b-lg shadow-lg transition-all duration-300 overflow-hidden",
+            "bg-white rounded-b-lg transition-all duration-300 overflow-hidden",
             isCardMinimized && !isCardHovered ? "h-[80px]" : "h-[280px]",
             "min-w-[300px]"
           )}
