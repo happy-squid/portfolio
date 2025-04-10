@@ -62,7 +62,7 @@ const Navigation: React.FC<NavigationProps> = ({
               isCardMinimized && !isCardHovered ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <div className="text-base font-medium">Where?</div>
+            <div className="text-base font-semibold">Where?</div>
           </div>
 
           {/* Expanded State */}
@@ -74,10 +74,44 @@ const Navigation: React.FC<NavigationProps> = ({
                 : "opacity-100 translate-y-0"
             )}
           >
-            <div className="flex flex-col space-y-6 text-base font-medium">
-              <a href="/" className="hover:opacity-70 transition-opacity">Works</a>
-              <a href="/about" className="hover:opacity-70 transition-opacity">Me</a>
-              <a href="/contact" className="hover:opacity-70 transition-opacity">Resume</a>
+            {/* Works Section */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="text-3xl font-bold">Works</h2>
+                <span className="text-2xl">→</span>
+              </div>
+              <div className="flex gap-2 mt-2">
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">OK</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">友</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">♫</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">☝</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">?</div>
+              </div>
+            </div>
+            
+            <div className="h-[1px] bg-gray-200 my-4"></div>
+            
+            {/* Me Section */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="text-3xl font-bold">Me</h2>
+                <span className="text-2xl">→</span>
+              </div>
+              <div className="flex gap-2 mt-2">
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">in</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">✉</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">𝕏</div>
+              </div>
+            </div>
+            
+            <div className="h-[1px] bg-gray-200 my-4"></div>
+            
+            {/* Resume Section */}
+            <div>
+              <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-bold">Download Resume</h2>
+                <span className="text-2xl">↓</span>
+              </div>
             </div>
           </div>
         </div>

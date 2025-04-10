@@ -91,9 +91,9 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
       >
         {/* Illustration Container with normal scroll speed */}
         <div className="absolute top-[240px] left-[200px] z-20">
-          {/* Shadow illustration layer with slower scroll */}
-          <div className="absolute -top-[50px] left-[110px] z-10 transform-gpu" style={{ transform: `translateX(${scrollLeft * 0.2}px)` }}>
-            <div className="relative w-[800px] h-[800px]">
+          {/* Shadow illustration layer with faster scroll speed (left direction) */}
+          <div className="absolute -top-[48px] left-[115px] z-10 transform-gpu" style={{ transform: `translateX(${-scrollLeft * 0.1}px)` }}>
+            <div className="relative w-[850px] h-[800px]">
               <img 
                 src={shadowIllustration} 
                 alt="Illustration Shadow" 
@@ -102,8 +102,8 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
             </div>
           </div>
           
-          {/* Main illustration layer with normal scroll speed */}
-          <div className="relative w-[440px] h-[440px] z-20">
+          {/* Main illustration layer with faster scroll speed (left direction) */}
+          <div className="relative w-[460px] h-[460px] z-20 transform-gpu" style={{ transform: `translateX(${-scrollLeft * 0.3}px)` }}>
             <img 
               src={illustration} 
               alt="Main Illustration" 
@@ -112,9 +112,9 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           </div>
         </div>
         
-        {/* Arrow Container with slower scroll */}
-        <div className="absolute top-[700px] left-[1350px] z-15 transform-gpu" style={{ transform: `translateX(${scrollLeft * 0.3}px)` }}>
-          <div className="relative w-[100px] h-[100px]">
+        {/* Arrow Container with normal scroll speed */}
+        <div className="absolute top-[700px] left-[1350px] z-15" style={{ transform: `translateX(${scrollLeft * 0.1}px)` }}>
+          <div className="relative w-[80px] h-[80px]">
             <img 
               src={arrow} 
               alt="Arrow" 
@@ -123,8 +123,8 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           </div>
         </div>
         
-        {/* Name text in top left corner with slightly slower scroll */}
-        <div className="absolute top-[60px] left-[60px] z-10 transform-gpu" style={{ transform: `translateX(${scrollLeft * 0.8}px)` }}>
+        {/* Name text in top left corner with normal scroll speed */}
+        <div className="absolute top-[60px] left-[60px] z-10">
           <div className="text-[110px] font-semibold text-gray-800 leading-none flex flex-col">
             <span>Hardik</span>
             <span className="mt-[-18px]">Monga</span>
@@ -139,8 +139,8 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           />
         </div>
 
-        {/* Description Text with slightly slower scroll */}
-        <div className="flex-shrink-0 px-[660px] flex flex-col transform-gpu z-30 mt-[100px]" style={{ transform: `translateX(${scrollLeft * 0.8}px)` }}>
+        {/* Description Text with normal scroll speed */}
+        <div className="flex-shrink-0 px-[660px] flex flex-col z-30 mt-[100px]">
           <p className="text-[20px] font-normal text-[#595959] mt-8 max-w-3xl">
             Hardik Monga is an interaction <br />
             designer based in Bangalore, India.<br />
@@ -149,7 +149,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
         </div>
 
         {/* Projects with margin from illustration */}
-        <div className="flex items-center gap-16 pl-[1100px] pr-16">
+        <div className="flex items-center gap-16 pl-[200px] pr-16">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
