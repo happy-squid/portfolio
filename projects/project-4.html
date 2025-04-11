@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Identity - Hardik Monga</title>
+  <link rel="stylesheet" href="/assets/index.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#F1F1F0]">
+  <!-- Header with back button -->
+  <div class="fixed top-0 left-0 w-full z-50 bg-[#F1F1F0]/80 backdrop-blur-sm">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a 
+        href="/"
+        class="flex items-center text-gray-800 hover:text-black transition-colors"
+        id="backToGallery"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Back to Gallery
+      </a>
+      <div class="text-lg font-semibold">Hardik Monga</div>
+    </div>
+  </div>
+  
+  <!-- Hero Image -->
+  <div class="w-full h-[70vh] relative pt-16">
+    <img 
+      src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+      alt="Digital Identity"
+      class="w-full h-full object-cover"
+    />
+  </div>
+  
+  <!-- Content -->
+  <div class="container mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-12">
+        <div class="md:w-2/3">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Digital Identity</h1>
+          <p class="text-xl text-gray-700 mb-6">An interactive installation exploring the concept of self in the digital age.</p>
+        </div>
+        
+        <div class="md:w-1/3 mt-8 md:mt-0">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="mb-4">
+              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Year</h3>
+              <p class="font-medium">2021</p>
+            </div>
+            
+            <div class="mb-4">
+              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Categories</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Interactive</span>
+                <span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Installation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project content -->
+      <div class="prose prose-lg max-w-none">
+        <p>
+          Digital Identity is an interactive installation that examines how our sense of self is shaped by 
+          digital technologies and online platforms. The work invites participants to engage with a series 
+          of interactive elements that reflect and distort their physical presence, creating a dialogue 
+          between the physical and virtual self.
+        </p>
+        
+        <p>
+          The installation uses a combination of cameras, sensors, and projection mapping to create 
+          responsive environments that react to the movements and actions of participants. As visitors 
+          move through the space, they encounter different interpretations of their digital presence, 
+          from data visualizations to algorithmic representations.
+        </p>
+        
+        <p>
+          This project explores questions of privacy, surveillance, and self-representation in the digital age. 
+          By making visible the processes through which our identities are captured, analyzed, and reproduced 
+          in digital spaces, Digital Identity encourages critical reflection on our relationship with technology 
+          and the ways in which it shapes our understanding of ourselves and others.
+        </p>
+      </div>
+      
+      <!-- Additional images -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="aspect-video bg-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+            alt="Digital Identity - Detail 1"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="aspect-video bg-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+            alt="Digital Identity - Detail 2"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll to top when page loads
+      window.scrollTo(0, 0);
+      
+      // Handle back button click to ensure smooth transition
+      const backButton = document.getElementById('backToGallery');
+      if (backButton) {
+        backButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // The scroll position is already saved in localStorage when the user clicked on the project card
+          // We don't need to modify it, just navigate back to the home page
+          window.location.href = '/';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
