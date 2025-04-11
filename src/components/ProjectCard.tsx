@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -11,6 +10,17 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  const handleClick = () => {
+    // Save the current scroll position to localStorage
+    const scrollContainer = document.querySelector('.horizontal-scroll');
+    if (scrollContainer) {
+      localStorage.setItem('scrollPosition', scrollContainer.scrollLeft.toString());
+    }
+    
+    // Navigate to the static HTML page for this project
+    window.location.href = `/projects/${project.id}.html`;
+  };
+  
   return (
     <div 
       className={cn(
@@ -19,6 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       <div className="overflow-hidden relative h-[70vh] w-[500px]">
         <img 

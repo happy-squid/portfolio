@@ -45,12 +45,12 @@ const Navigation: React.FC<NavigationProps> = ({
       </div>
       
       {/* Navigation Card */}
-      <div className="fixed top-0 right-20 z-50">
+      <div className="fixed top-0 right-40 z-50">
         <div 
           className={cn(
             "bg-white rounded-b-lg transition-all duration-300 overflow-hidden",
-            isCardMinimized && !isCardHovered ? "h-[80px]" : "h-[280px]",
-            "min-w-[300px]"
+            isCardMinimized && !isCardHovered ? "h-[90px]" : "h-[330px]",
+            "min-w-[400px]"
           )}
           onMouseEnter={() => setIsCardHovered(true)}
           onMouseLeave={() => setIsCardHovered(false)}
@@ -62,7 +62,7 @@ const Navigation: React.FC<NavigationProps> = ({
               isCardMinimized && !isCardHovered ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <div className="text-base font-semibold">Where?</div>
+            <div className="text-2xl font-semibold">Where?</div>
           </div>
 
           {/* Expanded State */}
@@ -77,15 +77,15 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Works Section */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <h2 className="text-3xl font-bold">Works</h2>
+                <h2 className="text-2xl font-semibold">Works</h2>
                 <span className="text-2xl">→</span>
               </div>
               <div className="flex gap-2 mt-2">
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">OK</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">友</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">♫</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">☝</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">?</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">OK</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">友</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">♫</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">☝</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">?</div>
               </div>
             </div>
             
@@ -94,13 +94,13 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Me Section */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <h2 className="text-3xl font-bold">Me</h2>
+                <h2 className="text-2xl font-semibold">Me</h2>
                 <span className="text-2xl">→</span>
               </div>
               <div className="flex gap-2 mt-2">
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">in</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">✉</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center">𝕏</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">in</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">✉</div>
+                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">𝕏</div>
               </div>
             </div>
             
@@ -109,7 +109,7 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Resume Section */}
             <div>
               <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold">Download Resume</h2>
+                <h2 className="text-2xl font-semibold">Download Resume</h2>
                 <span className="text-2xl">↓</span>
               </div>
             </div>

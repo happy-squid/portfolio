@@ -20,6 +20,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [initialRender, setInitialRender] = useState(true);
   
   const handleScroll = () => {
     const scrollEl = scrollRef.current;
@@ -59,6 +60,27 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
     }
   };
   
+  // Apply saved scroll position before the component renders visibly
+  useEffect(() => {
+    // Get saved scroll position from localStorage
+    const savedScrollPosition = localStorage.getItem('scrollPosition');
+    
+    if (savedScrollPosition && scrollRef.current && initialRender) {
+      // Apply the saved scroll position immediately, before the component is visible
+      const scrollPos = parseInt(savedScrollPosition, 10);
+      scrollRef.current.scrollLeft = scrollPos;
+      
+      // Update state to match the restored scroll position
+      setScrollLeft(scrollPos);
+      const { scrollWidth, clientWidth } = scrollRef.current;
+      setScrollProgress(scrollPos / (scrollWidth - clientWidth));
+      
+      // Mark initial render as complete
+      setInitialRender(false);
+    }
+  }, [initialRender]);
+  
+  // Set up event listeners
   useEffect(() => {
     const scrollEl = scrollRef.current;
     if (scrollEl) {
