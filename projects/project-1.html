@@ -6,19 +6,26 @@
   <title>Harmony in Motion - Hardik Monga</title>
   <link rel="stylesheet" href="/assets/index.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add Google Fonts for Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Add Swiper CSS for carousels -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
+      background-color: white;
     }
     
     .project-header {
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
     }
     
     .section-header {
@@ -26,6 +33,8 @@
       font-weight: 600;
       margin-top: 4rem;
       margin-bottom: 1.5rem;
+      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      font-family: 'Montserrat', sans-serif;
     }
     
     .subsection-header {
@@ -33,6 +42,8 @@
       font-weight: 600;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
+      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      font-family: 'Montserrat', sans-serif;
     }
     
     .problem-card {
@@ -46,6 +57,7 @@
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
     }
     
     .swiper {
@@ -76,6 +88,7 @@
       color: #666;
       text-align: center;
       margin-top: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
     }
     
     .highlight-box {
@@ -93,53 +106,193 @@
       font-size: 0.875rem;
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Header styles */
+    .header-container {
+      height: 60px; /* Increased height for better vertical centering */
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-container {
+      position: fixed;
+      top: 1rem; /* Converted from top-8 in tailwind (8 * 0.25rem = 2rem) */
+      left: 4rem; /* Converted from left-8 in tailwind (8 * 0.25rem = 2rem) */
+      z-index: 50;
+    }
+    
+    .logo-image {
+      height: 32px; /* Matches the h-8 from Navigation.tsx */
+      width: auto;
+    }
+    
+    /* Article navigation styles */
+    .article-nav {
+      padding: 1rem 0;
+      z-index: 60; /* Increased to be higher than the top header */
+      background-color: transparent; /* Removed background color */
+      border-bottom: 1px solid #000; /* Added thin black border at bottom */
+    }
+    
+    .article-nav.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60; /* Increased to be higher than the top header */
+      box-shadow: none; /* Removed shadow */
+      transition: none; /* Remove transition when sticky */
+      border-bottom: 1px solid #000; /* Maintain border when sticky */
+    }
+    
+    .article-nav.in-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 0;
+      z-index: 60; /* Increased to be higher than the top header */
+      transition: none; /* Remove transition when in header */
+      border-bottom: 1px solid #000; /* Maintain border when in header */
+    }
+    
+    .article-nav-container {
+      display: flex;
+      align-items: center;
+      padding-left: 0; /* Remove default padding */
+    }
+    
+    .article-nav.in-header .article-nav-container {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding-left: 8rem; /* Space for logo plus margin */
+      background-color: transparent; /* Ensure transparency */
+    }
+    
+    .article-nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start; /* Left align the navigation links */
+      width: 100%;
+      padding-left: 0; /* Remove default padding */
+    }
+    
+    .article-nav-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      color: #d6d6d6; /* Changed to light grey */
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; /* Changed to semibold by default */
+      transition: color 0.1s ease;
+    }
+    
+    /* Use a pseudo-element to prevent layout shifts when font-weight changes */
+    .article-nav-link::after {
+      display: block;
+      content: attr(data-text);
+      font-weight: 600; /* Already semibold, so no change needed */
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    
+    .article-nav-link:hover {
+      color: #000;
+      font-weight: 600; /* Already semibold, so no change needed */
+    }
+    
+    .article-nav-link.active {
+      color: #000;
+      font-weight: 600; /* Already semibold, so no change needed */
+      background-color: transparent;
+    }
+    
+    /* Hide scrollbar for the navigation */
+    .hide-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
+    /* Hero image styles */
+    .hero-image {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      background-color: black;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    /* Apply Montserrat to all text elements */
+    p, h1, h2, h3, h4, h5, h6, span, a, div, button {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Content container with aligned margins */
+    .content-container {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding-left: 4rem; /* Aligns with the logo */
+      padding-right: 4rem; /* Same padding on the right */
+    }
+    
+    @media (max-width: 768px) {
+      .content-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-[#F1F1F0]">
+<body class="min-h-screen bg-white">
   <!-- Header with back button -->
-  <div class="fixed top-0 left-0 w-full z-50 bg-[#F1F1F0]/80 backdrop-blur-sm">
-    <div class="px-4 py-4 flex items-center">
-      <a 
-        href="/"
-        class="flex items-center text-gray-800 hover:text-black transition-colors ml-4"
-        id="backToGallery"
-      >
-        <img 
-          src="/assets/logo.png" 
-          alt="Logo" 
-          class="h-8 w-8"
-        />
-      </a>
+  <div class="fixed top-0 left-0 w-full z-50 bg-white" id="topHeader">
+    <div class="content-container header-container">
+      <div class="logo-container">
+        <a 
+          href="/"
+          class="hover:opacity-70 transition-all duration-300 block"
+          id="backToGallery"
+        >
+          <img 
+            src="/assets/logo.png" 
+            alt="Logo" 
+            class="logo-image"
+          />
+        </a>
+      </div>
     </div>
   </div>
   
-  <!-- Hero Image -->
-  <div class="w-full h-[70vh] relative pt-16">
-    <img 
-      src="/assets/project-1/Delivery-MindMap.png" 
-      alt="Harmony in Motion"
-      class="w-full h-full object-contain bg-black"
-    />
-  </div>
-  
   <!-- Project Introduction -->
-  <div class="px-6 md:px-24 py-16 w-full max-w-7xl mx-auto">
+  <div class="content-container py-16 pt-[250px]">
     <div class="w-full mx-auto">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-12">
-        <div class="md:w-2/3">
-          <h1 class="project-header">Harmony in Motion</h1>
-          <p class="text-xl text-gray-700 mb-6">A research-based design intervention for food delivery workers in India.</p>
-        </div>
+      <div class="mb-12">
+        <h1 class="project-header">Harmony in Motion</h1>
+        <p class="text-xl text-gray-700 mb-8">A research-based design intervention for food delivery workers in India.</p>
         
-        <div class="md:w-1/3 mt-8 md:mt-0">
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="mb-4">
+        <!-- Context Card (moved below title and description) -->
+        <div class="bg-white p-6 rounded-lg shadow-sm max-w-xl">
+          <div class="grid grid-cols-3 gap-6">
+            <div>
               <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Year</h3>
               <p class="font-medium">2022</p>
             </div>
             
-            <div class="mb-4">
+            <div>
               <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Categories</h3>
               <div class="flex flex-wrap gap-2">
                 <span class="tag">UX Research</span>
@@ -148,7 +301,7 @@
               </div>
             </div>
             
-            <div class="mb-4">
+            <div>
               <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Tools</h3>
               <div class="flex flex-wrap gap-2">
                 <span class="tag">Figma</span>
@@ -160,9 +313,30 @@
         </div>
       </div>
       
+      <!-- Hero Image (moved here) -->
+      <div class="w-full mb-12">
+        <img 
+          src="/assets/project-1/Delivery-MindMap.png" 
+          alt="Harmony in Motion"
+          class="hero-image w-full rounded-lg"
+        />
+      </div>
+      
+      <!-- Article Navigation -->
+      <div id="articleNav" class="article-nav w-full py-4 mb-8">
+        <div class="article-nav-container content-container pl-0">
+          <div class="article-nav-links hide-scrollbar">
+            <a href="#research" class="article-nav-link" data-text="Research">RESEARCH</a>
+            <a href="#testimonials" class="article-nav-link" data-text="Testimonials">TESTIMONIALS</a>
+            <a href="#analysis" class="article-nav-link" data-text="Analysis">ANALYSIS</a>
+            <a href="#intervention" class="article-nav-link" data-text="Design Intervention">DESIGN INTERVENTION</a>
+          </div>
+        </div>
+      </div>
+      
       <!-- Project Overview -->
       <div class="prose prose-lg max-w-none">
-        <h2 class="section-header">Project Overview</h2>
+        <h2 id="overview" class="section-header">Project Overview</h2>
         <p>
           This project explores the challenges faced by food delivery workers in India and proposes 
           design interventions to improve their working conditions. Through extensive research, including 
@@ -180,9 +354,9 @@
       </div>
       
       <!-- Research Section -->
-      <h2 class="section-header">Research</h2>
+      <h2 id="research" class="section-header">Research</h2>
       
-      <h3 class="subsection-header">What challenges do food delivery workers face?</h3>
+      <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
       <p class="mb-8">
         With this question in mind, I conducted research into the experiences of food delivery workers 
         in India, analyzing news reports, academic studies, and conducting interviews to understand 
@@ -216,7 +390,7 @@
       </div>
       
       <!-- Research Findings Carousel -->
-      <h3 class="subsection-header">Research Findings</h3>
+      <h3 id="findings" class="subsection-header">Research Findings</h3>
       <p class="mb-4">
         My research included analysis of news articles, academic papers, and interviews with delivery workers.
         Here are some key findings from various sources:
@@ -251,7 +425,7 @@
       <p class="caption">News articles and research findings about food delivery workers in India</p>
       
       <!-- Video Testimonials -->
-      <h3 class="subsection-header">Video Testimonials</h3>
+      <h3 id="testimonials" class="subsection-header">Video Testimonials</h3>
       <p class="mb-8">
         I analyzed video testimonials from delivery workers to understand their daily experiences and challenges.
       </p>
@@ -274,7 +448,7 @@
       </div>
       
       <!-- Mind Map -->
-      <h3 class="subsection-header">Problem Analysis</h3>
+      <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
       <p class="mb-8">
         Based on my research, I created a mind map to visualize the interconnected challenges 
         faced by food delivery workers and identify potential areas for intervention.
@@ -290,7 +464,7 @@
       </div>
       
       <!-- Design Intervention -->
-      <h2 class="section-header">Design Intervention</h2>
+      <h2 id="intervention" class="section-header">Design Intervention</h2>
       <p class="mb-8">
         Based on my research findings, I developed a design intervention focused on creating 
         rest stops and support facilities for delivery workers, integrated with the existing 
@@ -298,7 +472,7 @@
       </p>
       
       <!-- App Interface Carousel -->
-      <h3 class="subsection-header">App Interface</h3>
+      <h3 id="app" class="subsection-header">App Interface</h3>
       <p class="mb-4">
         The intervention includes an enhanced app interface that helps delivery workers locate 
         nearby rest facilities, track their earnings, and access support services.
@@ -336,7 +510,7 @@
       <p class="caption">App interface design for the delivery worker support system</p>
       
       <!-- Rest Stop Facilities -->
-      <h3 class="subsection-header">Rest Stop Facilities</h3>
+      <h3 id="facilities" class="subsection-header">Rest Stop Facilities</h3>
       <p class="mb-8">
         The design includes dedicated rest stops for delivery workers with essential facilities 
         like seating, restrooms, phone charging stations, and refreshments.
@@ -370,7 +544,7 @@
       </div>
       
       <!-- Conclusion -->
-      <h2 class="section-header">Conclusion</h2>
+      <h2 id="conclusion" class="section-header">Conclusion</h2>
       <p class="mb-4">
         This project highlights the importance of considering the human aspects of the gig economy, 
         particularly for food delivery workers who form the backbone of the rapidly growing food 
@@ -454,6 +628,176 @@
       document.getElementById('backToGallery').addEventListener('click', function(e) {
         e.preventDefault();
         window.location.href = '/';
+      });
+      
+      // Article navigation functionality
+      const articleNav = document.getElementById('articleNav');
+      const articleNavLinks = document.querySelectorAll('.article-nav-link');
+      const topHeader = document.getElementById('topHeader');
+      const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
+      const navHeight = articleNav.offsetHeight;
+      const navOffset = articleNav.offsetTop;
+      let userClickedSection = null; // Track which section the user clicked
+      let scrollTimeout = null; // For tracking when scrolling stops
+      
+      // Make the navigation sticky when scrolling past it
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset >= navOffset) {
+          // Immediately add both classes without transition
+          articleNav.classList.add('sticky');
+          
+          // When scrolled far enough, move nav into header
+          if (window.pageYOffset >= navOffset + 50) {
+            articleNav.classList.add('in-header');
+            topHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            
+            // Add slight movement to the right when in header
+            const navContainer = articleNav.querySelector('.article-nav-container');
+            navContainer.style.paddingLeft = '9rem'; // Slightly more than the original 8rem
+          } else {
+            articleNav.classList.remove('in-header');
+            topHeader.style.boxShadow = '';
+            
+            // Reset padding when not in header
+            const navContainer = articleNav.querySelector('.article-nav-container');
+            navContainer.style.paddingLeft = '0'; // Set to 0 instead of empty string
+          }
+          
+          // When sticky, maintain the same padding as the content container
+          if (!articleNav.classList.contains('in-header')) {
+            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingRight = '4rem';
+            
+            if (window.innerWidth <= 768) {
+              articleNav.style.paddingLeft = '0';
+              articleNav.style.paddingRight = '1.5rem';
+            }
+          } else {
+            articleNav.style.paddingLeft = '';
+            articleNav.style.paddingRight = '';
+          }
+        } else {
+          articleNav.classList.remove('sticky');
+          articleNav.classList.remove('in-header');
+          articleNav.style.paddingLeft = '';
+          articleNav.style.paddingRight = '';
+          topHeader.style.boxShadow = '';
+        }
+        
+        // Only update active section if user isn't actively clicking and scrolling
+        if (!userClickedSection) {
+          updateActiveSection();
+        } else {
+          // Reset after scrolling stops
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            userClickedSection = null;
+          }, 1000); // Reset 1 second after scrolling stops
+        }
+      });
+      
+      // Function to update active section based on scroll position
+      function updateActiveSection() {
+        const scrollPosition = window.scrollY + navHeight + topHeaderHeight + 20;
+        
+        // Find which section is currently in view
+        articleNavLinks.forEach(link => {
+          const sectionId = link.getAttribute('href').substring(1);
+          const section = document.getElementById(sectionId);
+          
+          if (section) {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+              // Remove active class from all links
+              articleNavLinks.forEach(l => l.classList.remove('active'));
+              // Add active class to current link
+              link.classList.add('active');
+            }
+          }
+        });
+      }
+      
+      // Smooth scroll to section when clicking on navigation links
+      articleNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Remove active class from all links
+          articleNavLinks.forEach(l => l.classList.remove('active'));
+          // Add active class to clicked link
+          this.classList.add('active');
+          
+          // Set the clicked section
+          userClickedSection = this.getAttribute('href').substring(1);
+          
+          const sectionId = this.getAttribute('href');
+          const section = document.querySelector(sectionId);
+          
+          if (section) {
+            // Calculate position to scroll to (accounting for both nav bars)
+            const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
+            
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+            
+            // Update URL hash without jumping
+            history.pushState(null, null, sectionId);
+            
+            // Update active state
+            articleNavLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // Set initial active state based on URL hash or first section
+      const setInitialActiveState = () => {
+        const hash = window.location.hash;
+        let activeLink;
+        
+        if (hash) {
+          activeLink = document.querySelector(`.article-nav-link[href="${hash}"]`);
+        }
+        
+        if (!activeLink) {
+          activeLink = articleNavLinks[0];
+        }
+        
+        if (activeLink) {
+          activeLink.classList.add('active');
+          
+          // Scroll to the section if there's a hash in the URL
+          if (hash) {
+            const section = document.querySelector(hash);
+            if (section) {
+              const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      };
+      
+      // Set initial active state after a small delay to ensure the DOM is fully loaded
+      setTimeout(setInitialActiveState, 100);
+      
+      // Handle window resize for responsive padding
+      window.addEventListener('resize', function() {
+        if (articleNav.classList.contains('sticky')) {
+          if (window.innerWidth <= 768) {
+            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingRight = '1.5rem';
+          } else {
+            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingRight = '4rem';
+          }
+        }
       });
     });
   </script>
