@@ -1,4 +1,3 @@
-
 export interface Project {
   id: string;
   title: string;
@@ -13,10 +12,10 @@ export const projects: Project[] = [
   {
     id: "project-1",
     title: "Harmony in Motion",
-    description: "An exploration of form and movement through digital medium.",
-    imageUrl: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    year: "2023",
-    tags: ["Digital Art", "Animation"]
+    description: "A research-based design intervention for Food Delivery workers in India.",
+    imageUrl: "/assets/project-1/cover2.png",
+    year: "2022",
+    tags: ["UX Research", "Service Design", "Social Impact"]
   },
   {
     id: "project-2",

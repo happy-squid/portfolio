@@ -100,13 +100,13 @@
     
     .tag {
       display: inline-block;
-      background-color: #eee;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      background-color: transparent;
+      padding: 0.25rem 0;
+      margin-right: 1rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
       font-family: 'Montserrat', sans-serif;
+      color: #6b7280;
     }
     
     /* Header styles */
@@ -120,7 +120,8 @@
       position: fixed;
       top: 1rem; /* Converted from top-8 in tailwind (8 * 0.25rem = 2rem) */
       left: 4rem; /* Converted from left-8 in tailwind (8 * 0.25rem = 2rem) */
-      z-index: 50;
+      z-index: 999; /* Set to highest possible z-index */
+      pointer-events: auto; /* Ensure pointer events work */
     }
     
     .logo-image {
@@ -128,12 +129,20 @@
       width: auto;
     }
     
+    /* Ensure the logo link is always on top and clickable */
+    #backToGallery {
+      position: relative;
+      z-index: 999;
+      pointer-events: auto !important;
+    }
+    
     /* Article navigation styles */
     .article-nav {
-      padding: 1rem 0;
+      padding: 0; /* Removed padding to control height with container */
       z-index: 60; /* Increased to be higher than the top header */
       background-color: transparent; /* Removed background color */
-      border-bottom: 1px solid #000; /* Added thin black border at bottom */
+      border-bottom: 1.5px solid #d6d6d6; /* Added thin border at bottom */
+      pointer-events: auto; /* Ensure pointer events work */
     }
     
     .article-nav.sticky {
@@ -143,8 +152,35 @@
       right: 0;
       z-index: 60; /* Increased to be higher than the top header */
       box-shadow: none; /* Removed shadow */
-      transition: none; /* Remove transition when sticky */
-      border-bottom: 1px solid #000; /* Maintain border when sticky */
+      border-bottom: none; /* Remove default border */
+      padding-left: 8rem; /* Add left padding in sticky mode to match content container */
+    }
+    
+    /* Custom border for sticky nav with left-to-right transition */
+    .article-nav.sticky::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 8rem; /* Start at first button (match padding-left) */
+      width: 0; /* Start with zero width for left-to-right animation */
+      height: 1.5px;
+      background-color: #d6d6d6;
+      transition: width 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When sticky is applied, animate the border to full width */
+    .article-nav.sticky.border-visible::after {
+      width: calc(100% - 12rem); /* Full width minus left and right margins */
+    }
+    
+    @media (max-width: 768px) {
+      .article-nav.sticky::after {
+        left: 1.5rem;
+      }
+      
+      .article-nav.sticky.border-visible::after {
+        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+      }
     }
     
     .article-nav.in-header {
@@ -154,22 +190,58 @@
       right: 0;
       padding: 0;
       z-index: 60; /* Increased to be higher than the top header */
-      transition: none; /* Remove transition when in header */
-      border-bottom: 1px solid #000; /* Maintain border when in header */
-    }
-    
-    .article-nav-container {
-      display: flex;
-      align-items: center;
-      padding-left: 0; /* Remove default padding */
+      border-bottom: none; /* Remove the full-width border */
+      pointer-events: auto; /* Ensure pointer events work */
     }
     
     .article-nav.in-header .article-nav-container {
-      height: 60px;
+      height: 60px; /* Match the top bar height when in header */
       display: flex;
       align-items: center;
-      padding-left: 8rem; /* Space for logo plus margin */
+      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
       background-color: transparent; /* Ensure transparency */
+      position: relative; /* For positioning the custom border */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    /* Create a cutout in the navigation bar for the logo */
+    .article-nav.in-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8rem; /* Width of the cutout area */
+      height: 100%;
+      background-color: transparent;
+      z-index: 75; /* Higher than both nav and logo */
+      pointer-events: none; /* Make this area pass through clicks */
+    }
+    
+    /* Custom border for in-header nav with left-to-right transition */
+    .article-nav.in-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 8rem; /* Start at first button (match padding-left) */
+      width: 0; /* Start with zero width for left-to-right animation */
+      height: 1.5px;
+      background-color: #d6d6d6;
+      transition: width 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When in-header is applied, animate the border to full width */
+    .article-nav.in-header.border-visible::after {
+      width: calc(100% - 12rem); /* Full width minus left and right margins */
+    }
+    
+    @media (max-width: 768px) {
+      .article-nav.in-header::after {
+        left: 1.5rem;
+      }
+      
+      .article-nav.in-header.border-visible::after {
+        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+      }
     }
     
     .article-nav-links {
@@ -255,6 +327,41 @@
         padding-right: 1.5rem;
       }
     }
+    
+    /* Add a placeholder to prevent content jump */
+    .nav-placeholder {
+      display: none;
+      height: 0;
+      transition: height 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When nav becomes sticky, show the placeholder with the same height */
+    .nav-placeholder.active {
+      display: block;
+      height: 40px; /* Match the original nav height */
+    }
+    
+    .article-nav-container {
+      display: flex;
+      align-items: center;
+      padding-left: 0; /* Remove default padding */
+      height: 40px; /* Reduced height while in the article */
+      transition: padding-left 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    .article-nav.sticky .article-nav-container {
+      height: 30px; /* Adjusted height when sticky but not yet in header */
+    }
+    
+    .article-nav.in-header .article-nav-container {
+      height: 60px; /* Match the top bar height when in header */
+      display: flex;
+      align-items: center;
+      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
+      background-color: transparent; /* Ensure transparency */
+      position: relative; /* For positioning the custom border */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
   </style>
 </head>
 <body class="min-h-screen bg-white">
@@ -266,6 +373,7 @@
           href="/"
           class="hover:opacity-70 transition-all duration-300 block"
           id="backToGallery"
+          style="position: relative; z-index: 999;"
         >
           <img 
             src="/assets/logo.png" 
@@ -273,6 +381,10 @@
             class="logo-image"
           />
         </a>
+        <div 
+          style="position: fixed; top: 1rem; left: 4rem; width: 32px; height: 32px; z-index: 1000; cursor: pointer;" 
+          onclick="window.location.href = '/';"
+        ></div>
       </div>
     </div>
   </div>
@@ -281,20 +393,22 @@
   <div class="content-container py-16 pt-[250px]">
     <div class="w-full mx-auto">
       <div class="mb-12">
-        <h1 class="project-header">Harmony in Motion</h1>
-        <p class="text-xl text-gray-700 mb-8">A research-based design intervention for food delivery workers in India.</p>
+        <p class="text-3xl text-gray-700 mb-56">
+          A research-based design intervention for<br>
+          <span class="font-semibold">Food Delivery</span> workers in India.
+        </p>
         
-        <!-- Context Card (moved below title and description) -->
-        <div class="bg-white p-6 rounded-lg shadow-sm max-w-xl">
-          <div class="grid grid-cols-3 gap-6">
+        <!-- Context Card (more minimal styling) -->
+        <div class="max-w-xl mb-16">
+          <div class="grid grid-cols-3 gap-1">
             <div>
-              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Year</h3>
-              <p class="font-medium">2022</p>
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Year</h3>
+              <p class="text-sm text-gray-500">2022</p>
             </div>
             
             <div>
-              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Categories</h3>
-              <div class="flex flex-wrap gap-2">
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Categories</h3>
+              <div class="flex flex-wrap">
                 <span class="tag">UX Research</span>
                 <span class="tag">Service Design</span>
                 <span class="tag">Social Impact</span>
@@ -302,8 +416,8 @@
             </div>
             
             <div>
-              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Tools</h3>
-              <div class="flex flex-wrap gap-2">
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Tools</h3>
+              <div class="flex flex-wrap">
                 <span class="tag">Figma</span>
                 <span class="tag">Adobe Illustrator</span>
                 <span class="tag">After Effects</span>
@@ -311,260 +425,264 @@
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Hero Image (moved here) -->
-      <div class="w-full mb-12">
-        <img 
-          src="/assets/project-1/Delivery-MindMap.png" 
-          alt="Harmony in Motion"
-          class="hero-image w-full rounded-lg"
-        />
-      </div>
-      
-      <!-- Article Navigation -->
-      <div id="articleNav" class="article-nav w-full py-4 mb-8">
-        <div class="article-nav-container content-container pl-0">
-          <div class="article-nav-links hide-scrollbar">
-            <a href="#research" class="article-nav-link" data-text="Research">RESEARCH</a>
-            <a href="#testimonials" class="article-nav-link" data-text="Testimonials">TESTIMONIALS</a>
-            <a href="#analysis" class="article-nav-link" data-text="Analysis">ANALYSIS</a>
-            <a href="#intervention" class="article-nav-link" data-text="Design Intervention">DESIGN INTERVENTION</a>
+        
+        <!-- Hero Image (moved here) -->
+        <div class="w-full mb-12">
+          <img 
+            src="/assets/project-1/cover2.png" 
+            alt="Harmony in Motion"
+            class="hero-image w-full rounded-lg"
+            style="max-height: 80vh; object-fit: cover; object-position: center;"
+          />
+        </div>
+        
+        <!-- Article Navigation -->
+        <div id="articleNav" class="article-nav w-full py-4 mb-8">
+          <div class="article-nav-container content-container pl-0">
+            <div class="article-nav-links hide-scrollbar">
+              <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
+              <a href="#testimonials" class="article-nav-link" data-text="Testimonials">TESTIMONIALS</a>
+              <a href="#analysis" class="article-nav-link" data-text="Analysis">ANALYSIS</a>
+              <a href="#intervention" class="article-nav-link" data-text="Design Intervention">DESIGN INTERVENTION</a>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Project Overview -->
-      <div class="prose prose-lg max-w-none">
-        <h2 id="overview" class="section-header">Project Overview</h2>
-        <p>
-          This project explores the challenges faced by food delivery workers in India and proposes 
-          design interventions to improve their working conditions. Through extensive research, including 
-          interviews, data analysis, and literature review, I identified key issues affecting delivery 
-          partners and developed solutions to address them.
+        
+        <!-- Placeholder to prevent content jump when nav becomes sticky -->
+        <div id="navPlaceholder" class="nav-placeholder"></div>
+        
+        <!-- Project Overview -->
+        <div class="prose prose-lg max-w-none">
+          <h2 id="overview" class="section-header">Project Overview</h2>
+          <p>
+            This project explores the challenges faced by food delivery workers in India and proposes 
+            design interventions to improve their working conditions. Through extensive research, including 
+            interviews, data analysis, and literature review, I identified key issues affecting delivery 
+            partners and developed solutions to address them.
+          </p>
+          
+          <div class="highlight-box">
+            <p class="font-semibold">
+              Food delivery workers in India face numerous challenges including lack of proper facilities, 
+              long working hours, and limited support systems. This project aims to create interventions 
+              that can improve their daily work experience while maintaining the efficiency of the delivery ecosystem.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Research Section -->
+        <h2 id="research" class="section-header">Research</h2>
+        
+        <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
+        <p class="mb-8">
+          With this question in mind, I conducted research into the experiences of food delivery workers 
+          in India, analyzing news reports, academic studies, and conducting interviews to understand 
+          the key challenges they face.
         </p>
         
-        <div class="highlight-box">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="problem-card">
+            <h3>Working Conditions</h3>
+            <p>
+              Delivery workers often work 10-12 hours per day in extreme weather conditions with 
+              limited access to basic facilities like restrooms and rest areas.
+            </p>
+          </div>
+          
+          <div class="problem-card">
+            <h3>Income Instability</h3>
+            <p>
+              Workers face unpredictable earnings due to fluctuating order volumes, incentive 
+              structures, and increasing fuel costs that eat into their profits.
+            </p>
+          </div>
+          
+          <div class="problem-card">
+            <h3>Support Systems</h3>
+            <p>
+              Limited access to healthcare, insurance, and other social security benefits, 
+              despite the physically demanding and sometimes dangerous nature of their work.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Research Findings Carousel -->
+        <h3 id="findings" class="subsection-header">Research Findings</h3>
+        <p class="mb-4">
+          My research included analysis of news articles, academic papers, and interviews with delivery workers.
+          Here are some key findings from various sources:
+        </p>
+        
+        <!-- Swiper Carousel -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/project-1/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/the hindu.png" alt="The Hindu - Delivery Workers" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/FairworkProjectRating(qz.com).png" alt="Fairwork Project Rating" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/ZOMATO-termination-t&c.png" alt="Zomato Termination Terms" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <p class="caption">News articles and research findings about food delivery workers in India</p>
+        
+        <!-- Video Testimonials -->
+        <h3 id="testimonials" class="subsection-header">Video Testimonials</h3>
+        <p class="mb-8">
+          I analyzed video testimonials from delivery workers to understand their daily experiences and challenges.
+        </p>
+        
+        <div class="mb-16">
+          <div class="aspect-video w-full">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/6MWDPjJFPIY" 
+              title="Food Delivery Workers in India" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              class="rounded-lg"
+              style="aspect-ratio: 16/9;"
+            ></iframe>
+          </div>
+          <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
+        </div>
+        
+        <!-- Mind Map -->
+        <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
+        <p class="mb-8">
+          Based on my research, I created a mind map to visualize the interconnected challenges 
+          faced by food delivery workers and identify potential areas for intervention.
+        </p>
+        
+        <div class="mb-16">
+          <img 
+            src="/assets/project-1/Delivery-MindMap.png" 
+            alt="Delivery Workers Mind Map"
+            class="w-full h-auto rounded-lg"
+          />
+          <p class="caption">Mind map of challenges faced by food delivery workers</p>
+        </div>
+        
+        <!-- Design Intervention -->
+        <h2 id="intervention" class="section-header">Design Intervention</h2>
+        <p class="mb-8">
+          Based on my research findings, I developed a design intervention focused on creating 
+          rest stops and support facilities for delivery workers, integrated with the existing 
+          food delivery app ecosystem.
+        </p>
+        
+        <!-- App Interface Carousel -->
+        <h3 id="app" class="subsection-header">App Interface</h3>
+        <p class="mb-4">
+          The intervention includes an enhanced app interface that helps delivery workers locate 
+          nearby rest facilities, track their earnings, and access support services.
+        </p>
+        
+        <!-- Swiper Carousel for App Screenshots -->
+        <div class="swiper appSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin1.png" alt="App Interface 1" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin2.png" alt="App Interface 2" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin3.png" alt="App Interface 3" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin4.png" alt="App Interface 4" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin5.png" alt="App Interface 5" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/scrollin6.png" alt="App Interface 6" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/App/Rating.png" alt="App Rating Interface" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <p class="caption">App interface design for the delivery worker support system</p>
+        
+        <!-- Rest Stop Facilities -->
+        <h3 id="facilities" class="subsection-header">Rest Stop Facilities</h3>
+        <p class="mb-8">
+          The design includes dedicated rest stops for delivery workers with essential facilities 
+          like seating, restrooms, phone charging stations, and refreshments.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div>
+            <img 
+              src="/assets/project-1/seat.png" 
+              alt="Seating Area"
+              class="w-full h-auto rounded-lg"
+            />
+            <p class="caption">Comfortable seating areas for rest between deliveries</p>
+          </div>
+          <div>
+            <img 
+              src="/assets/project-1/toilet.png" 
+              alt="Restroom Facilities"
+              class="w-full h-auto rounded-lg"
+            />
+            <p class="caption">Clean restroom facilities accessible to delivery workers</p>
+          </div>
+          <div>
+            <img 
+              src="/assets/project-1/basket-edited.jpg" 
+              alt="Refreshment Area"
+              class="w-full h-auto rounded-lg"
+            />
+            <p class="caption">Refreshment area with affordable food and drinks</p>
+          </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <h2 id="conclusion" class="section-header">Conclusion</h2>
+        <p class="mb-4">
+          This project highlights the importance of considering the human aspects of the gig economy, 
+          particularly for food delivery workers who form the backbone of the rapidly growing food 
+          delivery industry in India. By creating supportive infrastructure and services, we can 
+          improve working conditions while maintaining the efficiency of the delivery ecosystem.
+        </p>
+        
+        <div class="highlight-box mb-16">
           <p class="font-semibold">
-            Food delivery workers in India face numerous challenges including lack of proper facilities, 
-            long working hours, and limited support systems. This project aims to create interventions 
-            that can improve their daily work experience while maintaining the efficiency of the delivery ecosystem.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Research Section -->
-      <h2 id="research" class="section-header">Research</h2>
-      
-      <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
-      <p class="mb-8">
-        With this question in mind, I conducted research into the experiences of food delivery workers 
-        in India, analyzing news reports, academic studies, and conducting interviews to understand 
-        the key challenges they face.
-      </p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="problem-card">
-          <h3>Working Conditions</h3>
-          <p>
-            Delivery workers often work 10-12 hours per day in extreme weather conditions with 
-            limited access to basic facilities like restrooms and rest areas.
+            The design intervention aims to create a more sustainable and humane work environment 
+            for delivery workers, addressing their basic needs while recognizing their essential 
+            role in urban food delivery systems.
           </p>
         </div>
         
-        <div class="problem-card">
-          <h3>Income Instability</h3>
-          <p>
-            Workers face unpredictable earnings due to fluctuating order volumes, incentive 
-            structures, and increasing fuel costs that eat into their profits.
-          </p>
+        <!-- Next Project Link -->
+        <div class="mt-24 text-center">
+          <a href="/projects/project-2.html" class="inline-block px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+            Next Project →
+          </a>
         </div>
-        
-        <div class="problem-card">
-          <h3>Support Systems</h3>
-          <p>
-            Limited access to healthcare, insurance, and other social security benefits, 
-            despite the physically demanding and sometimes dangerous nature of their work.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Research Findings Carousel -->
-      <h3 id="findings" class="subsection-header">Research Findings</h3>
-      <p class="mb-4">
-        My research included analysis of news articles, academic papers, and interviews with delivery workers.
-        Here are some key findings from various sources:
-      </p>
-      
-      <!-- Swiper Carousel -->
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="/assets/project-1/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/the hindu.png" alt="The Hindu - Delivery Workers" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/FairworkProjectRating(qz.com).png" alt="Fairwork Project Rating" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/ZOMATO-termination-t&c.png" alt="Zomato Termination Terms" />
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-      <p class="caption">News articles and research findings about food delivery workers in India</p>
-      
-      <!-- Video Testimonials -->
-      <h3 id="testimonials" class="subsection-header">Video Testimonials</h3>
-      <p class="mb-8">
-        I analyzed video testimonials from delivery workers to understand their daily experiences and challenges.
-      </p>
-      
-      <div class="mb-16">
-        <div class="aspect-video w-full">
-          <iframe 
-            width="100%" 
-            height="100%" 
-            src="https://www.youtube.com/embed/6MWDPjJFPIY" 
-            title="Food Delivery Workers in India" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            class="rounded-lg"
-            style="aspect-ratio: 16/9;"
-          ></iframe>
-        </div>
-        <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
-      </div>
-      
-      <!-- Mind Map -->
-      <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
-      <p class="mb-8">
-        Based on my research, I created a mind map to visualize the interconnected challenges 
-        faced by food delivery workers and identify potential areas for intervention.
-      </p>
-      
-      <div class="mb-16">
-        <img 
-          src="/assets/project-1/Delivery-MindMap.png" 
-          alt="Delivery Workers Mind Map"
-          class="w-full h-auto rounded-lg"
-        />
-        <p class="caption">Mind map of challenges faced by food delivery workers</p>
-      </div>
-      
-      <!-- Design Intervention -->
-      <h2 id="intervention" class="section-header">Design Intervention</h2>
-      <p class="mb-8">
-        Based on my research findings, I developed a design intervention focused on creating 
-        rest stops and support facilities for delivery workers, integrated with the existing 
-        food delivery app ecosystem.
-      </p>
-      
-      <!-- App Interface Carousel -->
-      <h3 id="app" class="subsection-header">App Interface</h3>
-      <p class="mb-4">
-        The intervention includes an enhanced app interface that helps delivery workers locate 
-        nearby rest facilities, track their earnings, and access support services.
-      </p>
-      
-      <!-- Swiper Carousel for App Screenshots -->
-      <div class="swiper appSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin1.png" alt="App Interface 1" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin2.png" alt="App Interface 2" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin3.png" alt="App Interface 3" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin4.png" alt="App Interface 4" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin5.png" alt="App Interface 5" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/scrollin6.png" alt="App Interface 6" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/project-1/App/Rating.png" alt="App Rating Interface" />
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-      <p class="caption">App interface design for the delivery worker support system</p>
-      
-      <!-- Rest Stop Facilities -->
-      <h3 id="facilities" class="subsection-header">Rest Stop Facilities</h3>
-      <p class="mb-8">
-        The design includes dedicated rest stops for delivery workers with essential facilities 
-        like seating, restrooms, phone charging stations, and refreshments.
-      </p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div>
-          <img 
-            src="/assets/project-1/seat.png" 
-            alt="Seating Area"
-            class="w-full h-auto rounded-lg"
-          />
-          <p class="caption">Comfortable seating areas for rest between deliveries</p>
-        </div>
-        <div>
-          <img 
-            src="/assets/project-1/toilet.png" 
-            alt="Restroom Facilities"
-            class="w-full h-auto rounded-lg"
-          />
-          <p class="caption">Clean restroom facilities accessible to delivery workers</p>
-        </div>
-        <div>
-          <img 
-            src="/assets/project-1/basket-edited.jpg" 
-            alt="Refreshment Area"
-            class="w-full h-auto rounded-lg"
-          />
-          <p class="caption">Refreshment area with affordable food and drinks</p>
-        </div>
-      </div>
-      
-      <!-- Conclusion -->
-      <h2 id="conclusion" class="section-header">Conclusion</h2>
-      <p class="mb-4">
-        This project highlights the importance of considering the human aspects of the gig economy, 
-        particularly for food delivery workers who form the backbone of the rapidly growing food 
-        delivery industry in India. By creating supportive infrastructure and services, we can 
-        improve working conditions while maintaining the efficiency of the delivery ecosystem.
-      </p>
-      
-      <div class="highlight-box mb-16">
-        <p class="font-semibold">
-          The design intervention aims to create a more sustainable and humane work environment 
-          for delivery workers, addressing their basic needs while recognizing their essential 
-          role in urban food delivery systems.
-        </p>
-      </div>
-      
-      <!-- Next Project Link -->
-      <div class="mt-24 text-center">
-        <a href="/projects/project-2.html" class="inline-block px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-          Next Project →
-        </a>
       </div>
     </div>
   </div>
@@ -573,6 +691,28 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Make sure the logo is always clickable
+      const logoLink = document.getElementById('backToGallery');
+      logoLink.style.zIndex = "999";
+      
+      // Create an invisible overlay for the logo that will always be on top
+      const logoOverlay = document.createElement('div');
+      logoOverlay.style.position = 'fixed';
+      logoOverlay.style.top = '1rem';
+      logoOverlay.style.left = '4rem';
+      logoOverlay.style.width = '32px';
+      logoOverlay.style.height = '32px';
+      logoOverlay.style.zIndex = '1000';
+      logoOverlay.style.cursor = 'pointer';
+      
+      // Make the overlay clickable and redirect to home
+      logoOverlay.addEventListener('click', function() {
+        window.location.href = '/';
+      });
+      
+      // Add the overlay to the body
+      document.body.appendChild(logoOverlay);
+      
       // Initialize Swiper
       const swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
@@ -639,37 +779,73 @@
       const navOffset = articleNav.offsetTop;
       let userClickedSection = null; // Track which section the user clicked
       let scrollTimeout = null; // For tracking when scrolling stops
+      const navPlaceholder = document.getElementById('navPlaceholder');
+      
+      // Calculate a custom position for when the transition should happen
+      // You can adjust the offset value (currently 100px) to control when the transition occurs
+      let transitionOffset = 20; // Pixels after navOffset when transition should happen
+      let navBottomPosition = navOffset + transitionOffset; 
       
       // Make the navigation sticky when scrolling past it
       window.addEventListener('scroll', function() {
         if (window.pageYOffset >= navOffset) {
-          // Immediately add both classes without transition
+          // Immediately add sticky class
           articleNav.classList.add('sticky');
           
-          // When scrolled far enough, move nav into header
-          if (window.pageYOffset >= navOffset + 50) {
-            articleNav.classList.add('in-header');
-            topHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            
-            // Add slight movement to the right when in header
-            const navContainer = articleNav.querySelector('.article-nav-container');
-            navContainer.style.paddingLeft = '9rem'; // Slightly more than the original 8rem
+          // Show placeholder to prevent content jump
+          navPlaceholder.classList.add('active');
+          
+          // Add border-visible class after a small delay to trigger the animation
+          setTimeout(() => {
+            articleNav.classList.add('border-visible');
+          }, 10);
+          
+          // When scrolled past the custom transition point, move nav into header with animation
+          if (window.pageYOffset >= navBottomPosition) {
+            // Add in-header class if not already present
+            if (!articleNav.classList.contains('in-header')) {
+              // Ensure the logo is clickable by setting a higher z-index
+              document.getElementById('backToGallery').style.zIndex = "999";
+              
+              // Make sure the logo container is also at highest z-index
+              document.querySelector('.logo-container').style.zIndex = "999";
+              
+              articleNav.classList.add('in-header');
+              
+              // Get the navigation container
+              const navContainer = articleNav.querySelector('.article-nav-container');
+              
+              // No need to set initial padding since it's already at 8rem in sticky position
+              
+              // Force a reflow to ensure the initial state is rendered
+              void navContainer.offsetWidth;
+              
+              // Then set the target padding (the transition will animate this change)
+              navContainer.style.paddingLeft = '9rem';
+            }
           } else {
-            articleNav.classList.remove('in-header');
-            topHeader.style.boxShadow = '';
-            
-            // Reset padding when not in header
-            const navContainer = articleNav.querySelector('.article-nav-container');
-            navContainer.style.paddingLeft = '0'; // Set to 0 instead of empty string
+            // Remove in-header class if present
+            if (articleNav.classList.contains('in-header')) {
+              // Get the navigation container
+              const navContainer = articleNav.querySelector('.article-nav-container');
+              
+              // Animate back to initial position
+              navContainer.style.paddingLeft = '8rem';
+              
+              // Remove the in-header class after the animation completes
+              setTimeout(() => {
+                articleNav.classList.remove('in-header');
+              }, 300); // Changed back to 300ms
+            }
           }
           
           // When sticky, maintain the same padding as the content container
           if (!articleNav.classList.contains('in-header')) {
-            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingLeft = '4rem';
             articleNav.style.paddingRight = '4rem';
             
             if (window.innerWidth <= 768) {
-              articleNav.style.paddingLeft = '0';
+              articleNav.style.paddingLeft = '1.5rem';
               articleNav.style.paddingRight = '1.5rem';
             }
           } else {
@@ -679,9 +855,19 @@
         } else {
           articleNav.classList.remove('sticky');
           articleNav.classList.remove('in-header');
+          articleNav.classList.remove('border-visible'); // Remove border-visible class
+          
+          // Hide placeholder when nav is no longer sticky
+          navPlaceholder.classList.remove('active');
+          
           articleNav.style.paddingLeft = '';
           articleNav.style.paddingRight = '';
-          topHeader.style.boxShadow = '';
+          
+          // Reset the padding on the container
+          const navContainer = articleNav.querySelector('.article-nav-container');
+          if (navContainer) {
+            navContainer.style.paddingLeft = '1rem';
+          }
         }
         
         // Only update active section if user isn't actively clicking and scrolling
@@ -791,10 +977,10 @@
       window.addEventListener('resize', function() {
         if (articleNav.classList.contains('sticky')) {
           if (window.innerWidth <= 768) {
-            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingLeft = '1.5rem';
             articleNav.style.paddingRight = '1.5rem';
           } else {
-            articleNav.style.paddingLeft = '0';
+            articleNav.style.paddingLeft = '4rem';
             articleNav.style.paddingRight = '4rem';
           }
         }
