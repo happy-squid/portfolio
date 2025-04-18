@@ -62,25 +62,81 @@
     
     .swiper {
       width: 100%;
-      height: 100%;
-      margin-top: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 1rem;
+      background-color: #f5f5f5; /* Light grey background */
+      border-radius: 8px;
+      padding: 2rem 4rem; /* Add padding for the arrows */
     }
     
     .swiper-slide {
-      background-position: center;
-      background-size: cover;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      height: 450px; /* Increased height to accommodate caption */
+      padding: 1rem;
     }
     
     .swiper-slide img {
+      max-width: 100%;
+      max-height: 85%; /* Reduced to make room for caption */
+      object-fit: contain; /* Maintain aspect ratio and fit within container */
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .slide-caption {
+      font-size: 0.875rem;
+      color: #555;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 0.5rem;
+    }
+    
+    /* Custom navigation buttons */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 50px;
+      height: 50px;
+      background-color: #555; /* Darker grey for buttons */
+      border-radius: 50%; /* Circular buttons */
+      color: white; /* White arrow color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: #444; /* Even darker on hover */
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 1.5rem; /* Smaller arrow size */
+      font-weight: bold;
+      color: white; /* Ensure the arrow itself is white */
+    }
+    
+    /* Position the buttons further away from the content */
+    .swiper-button-next {
+      right: 10px;
+    }
+    
+    .swiper-button-prev {
+      left: 10px;
+    }
+    
+    /* Pagination styling */
+    .swiper-pagination-bullet {
+      background-color: #999;
+      opacity: 0.5;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background-color: #333;
+      opacity: 1;
     }
     
     .caption {
@@ -133,7 +189,7 @@
     #backToGallery {
       position: relative;
       z-index: 999;
-      pointer-events: auto !important;
+      pointer-events: auto;
     }
     
     /* Article navigation styles */
@@ -362,6 +418,213 @@
       position: relative; /* For positioning the custom border */
       pointer-events: auto; /* Ensure pointer events work */
     }
+    
+    /* Mind map container styling */
+    .mind-map-container {
+      background-color: #f5f5f5; /* Light grey background to match carousel */
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .mind-map-container img {
+      width: 75%; /* Reduced from 100% to make the image smaller */
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin-top: 1.5rem;
+    }
+    
+    .content-wrapper {
+      width: 75%; /* Match the image width */
+      align-self: center;
+    }
+    
+    .mind-map-container h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    
+    .mind-map-container p {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Side-by-side images container */
+    .side-by-side-container {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .images-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 1.5rem;
+      gap: 2rem;
+    }
+    
+    .image-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .image-caption {
+      font-size: 0.875rem;
+      color: #555;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    
+    /* Cards Section */
+    .cards-section {
+      background-color: #f5f5f5;
+      padding: 8rem 0 0;
+      margin: 4rem 0 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      min-height: 80vh;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    .cards-container {
+      display: flex;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .card {
+      flex: 0 0 350px;
+      background-color: white;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      margin-bottom: 0;
+    }
+    
+    .project-card {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+    
+    .project-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .project-card-image {
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    .project-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-card-year {
+      font-size: 0.875rem;
+      color: #666;
+    }
+    
+    /* Contact card styling */
+    .contact-card {
+      background-color: white;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .card-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .card-arrow {
+      font-size: 1.5rem;
+    }
+    
+    .icon-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .icon-circle:hover {
+      background-color: black;
+      color: white;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: #eaeaea;
+      margin: 1rem 0;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-white">
@@ -441,9 +704,10 @@
           <div class="article-nav-container content-container pl-0">
             <div class="article-nav-links hide-scrollbar">
               <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
-              <a href="#testimonials" class="article-nav-link" data-text="Testimonials">TESTIMONIALS</a>
-              <a href="#analysis" class="article-nav-link" data-text="Analysis">ANALYSIS</a>
-              <a href="#intervention" class="article-nav-link" data-text="Design Intervention">DESIGN INTERVENTION</a>
+              <a href="#secondary-research" class="article-nav-link" data-text="Secondary Research">SECONDARY RESEARCH</a>
+              <a href="#primary-research" class="article-nav-link" data-text="Primary Research">PRIMARY RESEARCH</a>
+              <a href="#ideation" class="article-nav-link" data-text="Ideation">IDEATION</a>
+              <a href="#final-solution" class="article-nav-link" data-text="Final Solution">FINAL SOLUTION</a>
             </div>
           </div>
         </div>
@@ -517,29 +781,170 @@
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="/assets/project-1/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
+              <img src="/assets/project-1/findings/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
+              <p class="slide-caption">Shortage of delivery partners affecting service quality(Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
+              <img src="/assets/project-1/findings/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
+              <p class="slide-caption">Surge in food delivery orders creating higher demand(Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
+              <img src="/assets/project-1/findings/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
+              <p class="slide-caption">Swiggy's fuel policy impacts delivery partner earnings(Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/the hindu.png" alt="The Hindu - Delivery Workers" />
+              <img src="/assets/project-1/findings/economicTimes - EVs.png" alt="Economic Times - EVs for Delivery" />
+              <p class="slide-caption">Electric vehicles proposed as sustainable delivery solution(Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/FairworkProjectRating(qz.com).png" alt="Fairwork Project Rating" />
+              <img src="/assets/project-1/findings/economicTimes - ExploringOtherOptions.png" alt="Economic Times - Exploring Other Options" />
+              <p class="slide-caption">Companies exploring alternative delivery methods(Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/ZOMATO-termination-t&c.png" alt="Zomato Termination Terms" />
+              <img src="/assets/project-1/findings/economicTimes - Restraunts Impacted.png" alt="Economic Times - Restaurants Impacted" />
+              <p class="slide-caption">Restaurants affected by delivery workforce challenges(Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - Grab.in.png" alt="Economic Times - Grab.in" />
+              <p class="slide-caption">Grab.in's approach to delivery partner management(Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu.png" alt="The Hindu - Delivery Workers" />
+              <p class="slide-caption">Delivery workers facing challenging working conditions(The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 2.png" alt="The Hindu - Article 2" />
+              <p class="slide-caption">Income instability among food delivery workers(The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 3.png" alt="The Hindu - Article 3" />
+              <p class="slide-caption">Health and safety concerns in the delivery sector(The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 4.png" alt="The Hindu - Article 4" />
+              <p class="slide-caption">Lack of social security benefits for gig workers(The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 5.png" alt="The Hindu - Article 5" />
+              <p class="slide-caption">Delivery workers seeking better representation(The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/FairworkProjectRating(qz.com).png" alt="Fairwork Project Rating" />
+              <p class="slide-caption">Fairwork Project rating of food delivery platforms</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/ZOMATO-termination-t&c.png" alt="Zomato Termination Terms" />
+              <p class="slide-caption">Zomato's termination policies for delivery partners</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/thenewsminute.png" alt="The News Minute - Article" />
+              <p class="slide-caption">Working hours and compensation analysis(The News Minute)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/thenewsminute2.png" alt="The News Minute - Article 2" />
+              <p class="slide-caption">Delivery workers' experiences during extreme weather(The News Minute)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/thenewsminute(govt.law).png" alt="The News Minute - Government Law" />
+              <p class="slide-caption">Government regulations affecting gig economy workers(The News Minute)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/toi-article.png" alt="Times of India Article" />
+              <p class="slide-caption">Public perception of food delivery workers(Times of India)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/training provided(the wire).png" alt="Training Provided - The Wire" />
+              <p class="slide-caption">Training programs available to delivery partners(The Wire)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/defindia-pg5-about.png" alt="DEF India - About Page" />
+              <p class="slide-caption">Digital Empowerment Foundation's initiatives for gig workers(DEF India)</p>
             </div>
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        <p class="caption">News articles and research findings about food delivery workers in India</p>
+        
+        <!-- Survey Results -->
+        <h3 id="survey" class="subsection-header">Survey Results</h3>
+        <p class="mb-8">
+          I conducted a survey with 50 food delivery workers to understand their needs and pain points.
+          The results highlighted key challenges including lack of rest areas, inadequate facilities,
+          and limited support during long working hours.
+        </p>
+        
+        <div class="mb-16">
+          <div class="mind-map-container">
+            <img 
+              src="/assets/project-1/survey.png" 
+              alt="Survey Results"
+              class="rounded-lg"
+              style="width: 60%;" /* Make this specific image smaller */
+            />
+          </div>
+        </div>
+        
+        <!-- Mind Map -->
+        <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
+        <p class="mb-8">
+          Based on my research, I created a mind map to visualize the interconnected challenges 
+          faced by food delivery workers and identify potential areas for intervention.
+        </p>
+        
+        <div class="mb-16">
+          <div class="mind-map-container">
+            <img 
+              src="/assets/project-1/Delivery-MindMap.png" 
+              alt="Delivery Workers Mind Map"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
+        
+        <!-- Design Intervention -->
+        <h2 id="intervention" class="section-header">Design Intervention</h2>
+        <p class="mb-8">
+          Based on my research findings, I developed a design intervention focused on creating 
+          rest stops and support facilities for delivery workers, integrated with the existing 
+          food delivery app ecosystem.
+        </p>
+        
+        <!-- App Interface -->
+        <div class="mb-16">
+          <div class="mind-map-container"> 
+            <div class="content-wrapper">
+              <h3 class="subsection-header">App Interface</h3>
+              <p>
+                The intervention includes an enhanced app interface that helps delivery workers locate 
+                nearby rest facilities, track their earnings, and access support services.
+              </p>
+            </div>
+            <img 
+              src="/assets/project-1/idea1.png" 
+              alt="App Interface Design"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
+        
+        <!-- Rest Stop Facilities -->
+        <div class="mb-16">
+          <div class="mind-map-container"> 
+            <div class="content-wrapper">
+              <h3 class="subsection-header">Rest Stop Facilities</h3>
+              <p>
+                The design includes dedicated rest stops for delivery workers with essential facilities 
+                like seating, restrooms, phone charging stations, and refreshments.
+              </p>
+            </div>
+            <img 
+              src="/assets/project-1/idea2.png" 
+              alt="Rest Stop Facilities Design"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
         
         <!-- Video Testimonials -->
         <h3 id="testimonials" class="subsection-header">Video Testimonials</h3>
@@ -564,99 +969,32 @@
           <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
         </div>
         
-        <!-- Mind Map -->
-        <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
+        <!-- Final Solution -->
+        <h2 id="final-solution" class="section-header">Final Solution</h2>
         <p class="mb-8">
-          Based on my research, I created a mind map to visualize the interconnected challenges 
-          faced by food delivery workers and identify potential areas for intervention.
+          After multiple iterations and user testing, I finalized the design solution for improving 
+          the working conditions of food delivery workers. The solution combines a mobile app interface 
+          with physical rest stops strategically located throughout urban areas.
         </p>
         
         <div class="mb-16">
-          <img 
-            src="/assets/project-1/Delivery-MindMap.png" 
-            alt="Delivery Workers Mind Map"
-            class="w-full h-auto rounded-lg"
-          />
-          <p class="caption">Mind map of challenges faced by food delivery workers</p>
-        </div>
-        
-        <!-- Design Intervention -->
-        <h2 id="intervention" class="section-header">Design Intervention</h2>
-        <p class="mb-8">
-          Based on my research findings, I developed a design intervention focused on creating 
-          rest stops and support facilities for delivery workers, integrated with the existing 
-          food delivery app ecosystem.
-        </p>
-        
-        <!-- App Interface Carousel -->
-        <h3 id="app" class="subsection-header">App Interface</h3>
-        <p class="mb-4">
-          The intervention includes an enhanced app interface that helps delivery workers locate 
-          nearby rest facilities, track their earnings, and access support services.
-        </p>
-        
-        <!-- Swiper Carousel for App Screenshots -->
-        <div class="swiper appSwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin1.png" alt="App Interface 1" />
+          <div class="side-by-side-container">
+            <div class="images-row">
+              <div class="image-column">
+                <img 
+                  src="/assets/project-1/sketch.png" 
+                  alt="Initial Sketches"
+                />
+                <p class="image-caption">Initial concept sketches exploring different rest stop layouts</p>
+              </div>
+              <div class="image-column">
+                <img 
+                  src="/assets/project-1/prototype.png" 
+                  alt="Final Prototype"
+                />
+                <p class="image-caption">High-fidelity prototype of the final solution</p>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin2.png" alt="App Interface 2" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin3.png" alt="App Interface 3" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin4.png" alt="App Interface 4" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin5.png" alt="App Interface 5" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/scrollin6.png" alt="App Interface 6" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/App/Rating.png" alt="App Rating Interface" />
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-        <p class="caption">App interface design for the delivery worker support system</p>
-        
-        <!-- Rest Stop Facilities -->
-        <h3 id="facilities" class="subsection-header">Rest Stop Facilities</h3>
-        <p class="mb-8">
-          The design includes dedicated rest stops for delivery workers with essential facilities 
-          like seating, restrooms, phone charging stations, and refreshments.
-        </p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div>
-            <img 
-              src="/assets/project-1/seat.png" 
-              alt="Seating Area"
-              class="w-full h-auto rounded-lg"
-            />
-            <p class="caption">Comfortable seating areas for rest between deliveries</p>
-          </div>
-          <div>
-            <img 
-              src="/assets/project-1/toilet.png" 
-              alt="Restroom Facilities"
-              class="w-full h-auto rounded-lg"
-            />
-            <p class="caption">Clean restroom facilities accessible to delivery workers</p>
-          </div>
-          <div>
-            <img 
-              src="/assets/project-1/basket-edited.jpg" 
-              alt="Refreshment Area"
-              class="w-full h-auto rounded-lg"
-            />
-            <p class="caption">Refreshment area with affordable food and drinks</p>
           </div>
         </div>
         
@@ -676,12 +1014,77 @@
             role in urban food delivery systems.
           </p>
         </div>
-        
-        <!-- Next Project Link -->
-        <div class="mt-24 text-center">
-          <a href="/projects/project-2.html" class="inline-block px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-            Next Project →
-          </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Cards Section with Grey Background -->
+  <div class="cards-section">
+    <div class="cards-container">
+      <!-- Contact Card -->
+      <div class="card contact-card">
+        <div class="card-content">
+          <!-- Works Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Works</h2>
+              <span class="card-arrow">→</span>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle">OK</div>
+              <div class="icon-circle">友</div>
+              <div class="icon-circle">♫</div>
+              <div class="icon-circle">☝</div>
+              <div class="icon-circle">?</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Me Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Me</h2>
+              <span class="card-arrow">→</span>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle">in</div>
+              <div class="icon-circle">✉</div>
+              <div class="icon-circle">𝕏</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Resume Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Download Resume</h2>
+              <span class="card-arrow">↓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project Card 1 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+        <div class="project-card-image">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Urban Perspectives">
+        </div>
+        <div class="card-content">
+          <h3 class="project-card-title">Urban Perspectives</h3>
+          <p class="project-card-year">2022</p>
+        </div>
+      </div>
+      
+      <!-- Project Card 2 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-3.html'">
+        <div class="project-card-image">
+          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Chromatic Reverie">
+        </div>
+        <div class="card-content">
+          <h3 class="project-card-title">Chromatic Reverie</h3>
+          <p class="project-card-year">2022</p>
         </div>
       </div>
     </div>
