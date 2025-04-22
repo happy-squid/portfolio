@@ -21,7 +21,7 @@ export const projects: Project[] = [
     id: "project-2",
     title: "Urban Perspectives",
     description: "A photographic study of architectural elements in urban environments.",
-    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/project-2/cover-tile.png",
     year: "2022",
     tags: ["Photography", "Architecture"]
   },
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     id: "project-3",
     title: "Chromatic Reverie",
     description: "Abstract expressions through color and texture.",
-    imageUrl: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/project-3/cover-dominos.png",
     year: "2022",
     tags: ["Painting", "Abstract"]
   },
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     id: "project-4",
     title: "Digital Identity",
     description: "An interactive installation exploring the concept of self in the digital age.",
-    imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/project-4/cover-steam.png",
     year: "2021",
     tags: ["Interactive", "Installation"]
   },

@@ -3,121 +3,1264 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Perspectives - Hardik Monga</title>
+  <title>Harmony in Motion - Hardik Monga</title>
   <link rel="stylesheet" href="/assets/index.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add Google Fonts for Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Add Swiper CSS for carousels -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background-color: white;
+    }
+    
+    .project-header {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .section-header {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .subsection-header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .problem-card {
+      background-color: #f8f8f8;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .problem-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .swiper {
+      width: 100%;
+      margin-bottom: 1rem;
+      background-color: #f5f5f5; /* Light grey background */
+      border-radius: 8px;
+      padding: 2rem 4rem; /* Add padding for the arrows */
+    }
+    
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 450px; /* Increased height to accommodate caption */
+      padding: 1rem;
+    }
+    
+    .swiper-slide img {
+      max-width: 100%;
+      max-height: 85%; /* Reduced to make room for caption */
+      object-fit: contain; /* Maintain aspect ratio and fit within container */
+      display: block;
+      margin-bottom: 1rem;
+    }
+    
+    .slide-caption {
+      font-size: 0.875rem;
+      color: #555;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 0.5rem;
+    }
+    
+    /* Custom navigation buttons */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 50px;
+      height: 50px;
+      background-color: #555; /* Darker grey for buttons */
+      border-radius: 50%; /* Circular buttons */
+      color: white; /* White arrow color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: #444; /* Even darker on hover */
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 1.5rem; /* Smaller arrow size */
+      font-weight: bold;
+      color: white; /* Ensure the arrow itself is white */
+    }
+    
+    /* Position the buttons further away from the content */
+    .swiper-button-next {
+      right: 10px;
+    }
+    
+    .swiper-button-prev {
+      left: 10px;
+    }
+    
+    /* Pagination styling */
+    .swiper-pagination-bullet {
+      background-color: #999;
+      opacity: 0.5;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background-color: #333;
+      opacity: 1;
+    }
+    
+    .caption {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .highlight-box {
+      background-color: #f0f0f0;
+      border-left: 4px solid #333;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .tag {
+      display: inline-block;
+      background-color: transparent;
+      padding: 0.25rem 0;
+      margin-right: 1rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #6b7280;
+    }
+    
+    /* Header styles */
+    .header-container {
+      height: 60px; /* Increased height for better vertical centering */
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-container {
+      position: fixed;
+      top: 1rem; /* Converted from top-8 in tailwind (8 * 0.25rem = 2rem) */
+      left: 4rem; /* Converted from left-8 in tailwind (8 * 0.25rem = 2rem) */
+      z-index: 999; /* Set to highest possible z-index */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    .logo-image {
+      height: 32px; /* Matches the h-8 from Navigation.tsx */
+      width: auto;
+    }
+    
+    /* Ensure the logo link is always on top and clickable */
+    #backToGallery {
+      position: relative;
+      z-index: 999;
+      pointer-events: auto;
+    }
+    
+    /* Article navigation styles */
+    .article-nav {
+      padding: 0; /* Removed padding to control height with container */
+      z-index: 60; /* Increased to be higher than the top header */
+      background-color: transparent; /* Removed background color */
+      border-bottom: 1.5px solid #d6d6d6; /* Added thin border at bottom */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    .article-nav.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60; /* Increased to be higher than the top header */
+      box-shadow: none; /* Removed shadow */
+      border-bottom: none; /* Remove default border */
+      padding-left: 8rem; /* Add left padding in sticky mode to match content container */
+    }
+    
+    /* Custom border for sticky nav with left-to-right transition */
+    .article-nav.sticky::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 8rem; /* Start at first button (match padding-left) */
+      width: 0; /* Start with zero width for left-to-right animation */
+      height: 1.5px;
+      background-color: #d6d6d6;
+      transition: width 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When sticky is applied, animate the border to full width */
+    .article-nav.sticky.border-visible::after {
+      width: calc(100% - 12rem); /* Full width minus left and right margins */
+    }
+    
+    @media (max-width: 768px) {
+      .article-nav.sticky::after {
+        left: 1.5rem;
+      }
+      
+      .article-nav.sticky.border-visible::after {
+        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+      }
+    }
+    
+    .article-nav.in-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 0;
+      z-index: 60; /* Increased to be higher than the top header */
+      border-bottom: none; /* Remove the full-width border */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    .article-nav.in-header .article-nav-container {
+      height: 60px; /* Match the top bar height when in header */
+      display: flex;
+      align-items: center;
+      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
+      background-color: transparent; /* Ensure transparency */
+      position: relative; /* For positioning the custom border */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    /* Create a cutout in the navigation bar for the logo */
+    .article-nav.in-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8rem; /* Width of the cutout area */
+      height: 100%;
+      background-color: transparent;
+      z-index: 75; /* Higher than both nav and logo */
+      pointer-events: none; /* Make this area pass through clicks */
+    }
+    
+    /* Custom border for in-header nav with left-to-right transition */
+    .article-nav.in-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 8rem; /* Start at first button (match padding-left) */
+      width: 0; /* Start with zero width for left-to-right animation */
+      height: 1.5px;
+      background-color: #d6d6d6;
+      transition: width 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When in-header is applied, animate the border to full width */
+    .article-nav.in-header.border-visible::after {
+      width: calc(100% - 12rem); /* Full width minus left and right margins */
+    }
+    
+    @media (max-width: 768px) {
+      .article-nav.in-header::after {
+        left: 1.5rem;
+      }
+      
+      .article-nav.in-header.border-visible::after {
+        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+      }
+    }
+    
+    .article-nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start; /* Left align the navigation links */
+      width: 100%;
+      padding-left: 0; /* Remove default padding */
+    }
+    
+    .article-nav-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      color: #d6d6d6; /* Changed to light grey */
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; /* Changed to semibold by default */
+      transition: color 0.1s ease;
+    }
+    
+    /* Use a pseudo-element to prevent layout shifts when font-weight changes */
+    .article-nav-link::after {
+      display: block;
+      content: attr(data-text);
+      font-weight: 600; /* Already semibold, so no change needed */
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    
+    .article-nav-link:hover {
+      color: #000;
+      font-weight: 600; /* Already semibold, so no change needed */
+    }
+    
+    .article-nav-link.active {
+      color: #000;
+      font-weight: 600; /* Already semibold, so no change needed */
+      background-color: transparent;
+    }
+    
+    /* Hide scrollbar for the navigation */
+    .hide-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
+    /* Hero image styles */
+    .hero-image {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      background-color: black;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    /* Apply Montserrat to all text elements */
+    p, h1, h2, h3, h4, h5, h6, span, a, div, button {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Content container with aligned margins */
+    .content-container {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding-left: 4rem; /* Aligns with the logo */
+      padding-right: 4rem; /* Same padding on the right */
+    }
+    
+    @media (max-width: 768px) {
+      .content-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+    
+    /* Add a placeholder to prevent content jump */
+    .nav-placeholder {
+      display: none;
+      height: 0;
+      transition: height 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    /* When nav becomes sticky, show the placeholder with the same height */
+    .nav-placeholder.active {
+      display: block;
+      height: 40px; /* Match the original nav height */
+    }
+    
+    .article-nav-container {
+      display: flex;
+      align-items: center;
+      padding-left: 0; /* Remove default padding */
+      height: 40px; /* Reduced height while in the article */
+      transition: padding-left 0.3s ease; /* Changed back to 0.3s */
+    }
+    
+    .article-nav.sticky .article-nav-container {
+      height: 30px; /* Adjusted height when sticky but not yet in header */
+    }
+    
+    .article-nav.in-header .article-nav-container {
+      height: 60px; /* Match the top bar height when in header */
+      display: flex;
+      align-items: center;
+      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
+      background-color: transparent; /* Ensure transparency */
+      position: relative; /* For positioning the custom border */
+      pointer-events: auto; /* Ensure pointer events work */
+    }
+    
+    /* Mind map container styling */
+    .mind-map-container {
+      background-color: #f5f5f5; /* Light grey background to match carousel */
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .mind-map-container img {
+      width: 75%; /* Reduced from 100% to make the image smaller */
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin-top: 1.5rem;
+    }
+    
+    .content-wrapper {
+      width: 75%; /* Match the image width */
+      align-self: center;
+    }
+    
+    .mind-map-container h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    
+    .mind-map-container p {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Side-by-side images container */
+    .side-by-side-container {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .images-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 1.5rem;
+      gap: 2rem;
+    }
+    
+    .image-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .image-caption {
+      font-size: 0.875rem;
+      color: #555;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    
+    /* Cards Section */
+    .cards-section {
+      background-color: #f5f5f5;
+      padding: 8rem 0 0;
+      margin: 4rem 0 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      min-height: 80vh;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    .cards-container {
+      display: flex;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .card {
+      flex: 0 0 350px;
+      background-color: white;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      margin-bottom: 0;
+    }
+    
+    .project-card {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+    
+    .project-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .project-card-image {
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    .project-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-card-year {
+      font-size: 0.875rem;
+      color: #666;
+    }
+    
+    /* Contact card styling */
+    .contact-card {
+      background-color: white;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .card-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .card-arrow {
+      font-size: 1.5rem;
+    }
+    
+    .icon-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .icon-circle:hover {
+      background-color: black;
+      color: white;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: #eaeaea;
+      margin: 1rem 0;
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-[#F1F1F0]">
+<body class="min-h-screen bg-white">
   <!-- Header with back button -->
-  <div class="fixed top-0 left-0 w-full z-50 bg-[#F1F1F0]/80 backdrop-blur-sm">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a 
-        href="/"
-        class="flex items-center text-gray-800 hover:text-black transition-colors"
-        id="backToGallery"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-        </svg>
-        Back to Gallery
-      </a>
-      <div class="text-lg font-semibold">Hardik Monga</div>
+  <div class="fixed top-0 left-0 w-full z-50 bg-white" id="topHeader">
+    <div class="content-container header-container">
+      <div class="logo-container">
+        <a 
+          href="/"
+          class="hover:opacity-70 transition-all duration-300 block"
+          id="backToGallery"
+          style="position: relative; z-index: 999;"
+        >
+          <img 
+            src="/assets/logo.png" 
+            alt="Logo" 
+            class="logo-image"
+          />
+        </a>
+        <div 
+          style="position: fixed; top: 1rem; left: 4rem; width: 32px; height: 32px; z-index: 1000; cursor: pointer;" 
+          onclick="window.location.href = '/';"
+        ></div>
+      </div>
     </div>
   </div>
   
-  <!-- Hero Image -->
-  <div class="w-full h-[70vh] relative pt-16">
-    <img 
-      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
-      alt="Urban Perspectives"
-      class="w-full h-full object-cover"
-    />
-  </div>
-  
-  <!-- Content -->
-  <div class="container mx-auto px-6 py-16">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-12">
-        <div class="md:w-2/3">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Urban Perspectives</h1>
-          <p class="text-xl text-gray-700 mb-6">A photographic study of architectural elements in urban environments.</p>
-        </div>
+  <!-- Project Introduction -->
+  <div class="content-container py-16 pt-[250px]">
+    <div class="w-full mx-auto">
+      <div class="mb-12">
+        <p class="text-3xl text-gray-700 mb-56">
+          A research-based design intervention for<br>
+          <span class="font-semibold">Food Delivery</span> workers in India.
+        </p>
         
-        <div class="md:w-1/3 mt-8 md:mt-0">
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="mb-4">
-              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Year</h3>
-              <p class="font-medium">2022</p>
+        <!-- Context Card (more minimal styling) -->
+        <div class="max-w-xl mb-16">
+          <div class="grid grid-cols-3 gap-1">
+            <div>
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Year</h3>
+              <p class="text-sm text-gray-500">2022</p>
             </div>
             
-            <div class="mb-4">
-              <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-2">Categories</h3>
-              <div class="flex flex-wrap gap-2">
-                <span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Photography</span>
-                <span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Architecture</span>
+            <div>
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Categories</h3>
+              <div class="flex flex-wrap">
+                <span class="tag">UX Research</span>
+                <span class="tag">Service Design</span>
+                <span class="tag">Social Impact</span>
               </div>
+            </div>
+            
+            <div>
+              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Tools</h3>
+              <div class="flex flex-wrap">
+                <span class="tag">Figma</span>
+                <span class="tag">Adobe Illustrator</span>
+                <span class="tag">After Effects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hero Image (moved here) -->
+        <div class="w-full mb-12">
+          <img 
+            src="/assets/project-2/cover.png" 
+            alt="Harmony in Motion"
+            class="hero-image w-full rounded-lg"
+            style="max-height: 80vh; object-fit: cover; object-position: center;"
+          />
+        </div>
+        
+        <!-- Article Navigation -->
+        <div id="articleNav" class="article-nav w-full py-4 mb-8">
+          <div class="article-nav-container content-container pl-0">
+            <div class="article-nav-links hide-scrollbar">
+              <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
+              <a href="#secondary-research" class="article-nav-link" data-text="Secondary Research">SECONDARY RESEARCH</a>
+              <a href="#primary-research" class="article-nav-link" data-text="Primary Research">PRIMARY RESEARCH</a>
+              <a href="#ideation" class="article-nav-link" data-text="Ideation">IDEATION</a>
+              <a href="#final-solution" class="article-nav-link" data-text="Final Solution">FINAL SOLUTION</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Placeholder to prevent content jump when nav becomes sticky -->
+        <div id="navPlaceholder" class="nav-placeholder"></div>
+        
+        <!-- Project Overview -->
+        <div class="prose prose-lg max-w-none">
+          <h2 id="overview" class="section-header">Project Overview</h2>
+          <p>
+            This project explores the challenges faced by food delivery workers in India and proposes 
+            design interventions to improve their working conditions. Through extensive research, including 
+            interviews, data analysis, and literature review, I identified key issues affecting delivery 
+            partners and developed solutions to address them.
+          </p>
+          
+          <div class="highlight-box">
+            <p class="font-semibold">
+              Food delivery workers in India face numerous challenges including lack of proper facilities, 
+              long working hours, and limited support systems. This project aims to create interventions 
+              that can improve their daily work experience while maintaining the efficiency of the delivery ecosystem.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Research Section -->
+        <h2 id="research" class="section-header">Research</h2>
+        
+        <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
+        <p class="mb-8">
+          With this question in mind, I conducted research into the experiences of food delivery workers 
+          in India, analyzing news reports, academic studies, and conducting interviews to understand 
+          the key challenges they face.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="problem-card">
+            <h3>Working Conditions</h3>
+            <p>
+              Delivery workers often work 10-12 hours per day in extreme weather conditions with 
+              limited access to basic facilities like restrooms and rest areas.
+            </p>
+          </div>
+          
+          <div class="problem-card">
+            <h3>Income Instability</h3>
+            <p>
+              Workers face unpredictable earnings due to fluctuating order volumes, incentive 
+              structures, and increasing fuel costs that eat into their profits.
+            </p>
+          </div>
+          
+          <div class="problem-card">
+            <h3>Support Systems</h3>
+            <p>
+              Limited access to healthcare, insurance, and other social security benefits, 
+              despite the physically demanding and sometimes dangerous nature of their work.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Competitor Analysis Image -->
+        <h3 id="findings" class="subsection-header">Competitor Analysis</h3>
+        <p class="mb-4">
+          My research included a thorough analysis of major food delivery platforms in India, focusing on their treatment of delivery workers, compensation models, and support infrastructure. The comparative analysis revealed significant gaps in worker welfare across platforms, with most companies prioritizing operational efficiency over worker wellbeing. Zomato and Swiggy, the market leaders, showed similar patterns in their approach to delivery partner management, while smaller platforms demonstrated more varied policies.
+        </p>
+        
+        <!-- Single Competitor Analysis Image -->
+        <div class="mb-8">
+          <img src="/assets/project-2/competitor-analysis.png" alt="Competitor Analysis" class="w-full rounded-lg" />
+        </div>
+        
+        <!-- Feature Analysis -->
+        <h3 id="feature-analysis" class="subsection-header">Feature Analysis</h3>
+        <p class="mb-8">
+          I conducted a survey with 50 food delivery workers to understand their needs and pain points.
+          The results highlighted key challenges including lack of rest areas, inadequate facilities,
+          and limited support during long working hours.
+        </p>
+        
+        <div class="mb-8">
+          <img src="/assets/project-2/feature-analysis.png" alt="Feature Analysis" class="w-full rounded-lg" />
+        </div>
+        
+        <!-- Figma Embed -->
+        <div class="mb-16 text-center">
+          <div class="w-full relative" style="padding-top: 56.25%;">
+            <iframe 
+              style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+              src="https://embed.figma.com/board/382oUB2kVIpIQjc3JB6r4j/Elocien?node-id=0-1&embed-host=share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        
+        <!-- Design Intervention -->
+        <h2 id="intervention" class="section-header">Ideation</h2>
+        <p class="mb-8">
+          Based on my research findings, I developed a design intervention focused on creating 
+          rest stops and support facilities for delivery workers, integrated with the existing 
+          food delivery app ecosystem.
+        </p>
+        
+        <!-- App Interface -->
+        <div class="mb-8">
+          <img src="/assets/project-2/comparison.png" alt="Comparison" class="w-full rounded-lg" />
+        </div>
+        
+        <!-- Figma UI Design Embed -->
+        <div class="mb-16">
+          <div class="w-full relative" style="padding-top: 56.25%;">
+            <iframe 
+              style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+              src="https://embed.figma.com/design/Zy0eXJA7u5w9v5jQE63ShJ/EloUI?node-id=0-1&embed-host=share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+       
+        
+        <!-- Branding -->
+        <h3 id="branding" class="subsection-header">Branding</h3>
+        <p class="mb-8">
+          I analyzed video testimonials from delivery workers to understand their daily experiences and challenges.
+        </p>
+        
+        <div class="mb-16">
+          <div class="aspect-video w-full">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/tbQ7u1eHnp0?si=va0lZY4RT7Ubfk0v" 
+              title="Food Delivery Workers in India" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              class="rounded-lg"
+              style="aspect-ratio: 16/9;"
+            ></iframe>
+          </div>
+          <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
+        </div>
+        
+        <!-- Final Solution -->
+        <h2 id="final-solution" class="section-header">Final Solution</h2>
+        <p class="mb-8">
+          After multiple iterations and user testing, I finalized the design solution for improving 
+          the working conditions of food delivery workers. The solution combines a mobile app interface 
+          with physical rest stops strategically located throughout urban areas.
+        </p>
+        
+        <!-- Figma Prototype Embed -->
+        <div class="mb-16">
+          <div class="w-full relative" style="padding-top: 56.25%;">
+            <iframe 
+              style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+              src="https://embed.figma.com/proto/Zy0eXJA7u5w9v5jQE63ShJ/EloUI?page-id=0%3A1&node-id=345-44&viewport=-633%2C150%2C0.2&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=94%3A146&embed-host=share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <h2 id="conclusion" class="section-header">Conclusion</h2>
+        <p class="mb-4">
+          This project highlights the importance of considering the human aspects of the gig economy, 
+          particularly for food delivery workers who form the backbone of the rapidly growing food 
+          delivery industry in India. By creating supportive infrastructure and services, we can 
+          improve working conditions while maintaining the efficiency of the delivery ecosystem.
+        </p>
+        
+        <div class="highlight-box mb-16">
+          <p class="font-semibold">
+            The design intervention aims to create a more sustainable and humane work environment 
+            for delivery workers, addressing their basic needs while recognizing their essential 
+            role in urban food delivery systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Cards Section with Grey Background -->
+  <div class="cards-section">
+    <div class="cards-container">
+      <!-- Contact Card -->
+      <div class="card contact-card">
+        <div class="card-content">
+          <!-- Works Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Works</h2>
+              <span class="card-arrow">→</span>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle">OK</div>
+              <div class="icon-circle">友</div>
+              <div class="icon-circle">♫</div>
+              <div class="icon-circle">☝</div>
+              <div class="icon-circle">?</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Me Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Me</h2>
+              <span class="card-arrow">→</span>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle">in</div>
+              <div class="icon-circle">✉</div>
+              <div class="icon-circle">𝕏</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Resume Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title">Download Resume</h2>
+              <span class="card-arrow">↓</span>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Project content -->
-      <div class="prose prose-lg max-w-none">
-        <p>
-          Urban Perspectives is a photographic exploration of architectural forms and urban spaces.
-          This series examines the relationship between built environments and the people who inhabit them,
-          capturing moments where light, structure, and human presence intersect.
-        </p>
-        
-        <p>
-          The project began as an investigation into how architectural elements shape our experience of cities.
-          Through careful composition and attention to detail, these photographs reveal the hidden geometries
-          and patterns that define urban landscapes, inviting viewers to see familiar spaces in new ways.
-        </p>
-        
-        <p>
-          Each image in this series represents a unique perspective on urban architecture, highlighting
-          the contrast between historic and contemporary structures, the interplay of light and shadow,
-          and the dynamic relationship between buildings and the surrounding environment.
-        </p>
+      <!-- Project Card 1 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+        <div class="project-card-image">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Urban Perspectives">
+        </div>
+        <div class="card-content">
+          <h3 class="project-card-title">Urban Perspectives</h3>
+          <p class="project-card-year">2022</p>
+        </div>
       </div>
       
-      <!-- Additional images -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
-            alt="Urban Perspectives - Detail 1"
-            class="w-full h-full object-cover"
-          />
+      <!-- Project Card 2 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-3.html'">
+        <div class="project-card-image">
+          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Chromatic Reverie">
         </div>
-        <div class="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
-            alt="Urban Perspectives - Detail 2"
-            class="w-full h-full object-cover"
-          />
+        <div class="card-content">
+          <h3 class="project-card-title">Chromatic Reverie</h3>
+          <p class="project-card-year">2022</p>
         </div>
       </div>
     </div>
   </div>
-
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Scroll to top when page loads
-      window.scrollTo(0, 0);
+      // Make sure the logo is always clickable
+      const logoLink = document.getElementById('backToGallery');
+      logoLink.style.zIndex = "999";
       
-      // Handle back button click to ensure smooth transition
-      const backButton = document.getElementById('backToGallery');
-      if (backButton) {
-        backButton.addEventListener('click', function(e) {
-          e.preventDefault();
+      // Create an invisible overlay for the logo that will always be on top
+      const logoOverlay = document.createElement('div');
+      logoOverlay.style.position = 'fixed';
+      logoOverlay.style.top = '1rem';
+      logoOverlay.style.left = '4rem';
+      logoOverlay.style.width = '32px';
+      logoOverlay.style.height = '32px';
+      logoOverlay.style.zIndex = '1000';
+      logoOverlay.style.cursor = 'pointer';
+      
+      // Make the overlay clickable and redirect to home
+      logoOverlay.addEventListener('click', function() {
+        window.location.href = '/';
+      });
+      
+      // Add the overlay to the body
+      document.body.appendChild(logoOverlay);
+      
+      // Initialize Swiper
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 2,
+          },
+        },
+      });
+      
+      const appSwiper = new Swiper(".appSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
+      
+      // Back button functionality
+      document.getElementById('backToGallery').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = '/';
+      });
+      
+      // Article navigation functionality
+      const articleNav = document.getElementById('articleNav');
+      const articleNavLinks = document.querySelectorAll('.article-nav-link');
+      const topHeader = document.getElementById('topHeader');
+      const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
+      const navHeight = articleNav.offsetHeight;
+      const navOffset = articleNav.offsetTop;
+      let userClickedSection = null; // Track which section the user clicked
+      let scrollTimeout = null; // For tracking when scrolling stops
+      const navPlaceholder = document.getElementById('navPlaceholder');
+      
+      // Calculate a custom position for when the transition should happen
+      // You can adjust the offset value (currently 100px) to control when the transition occurs
+      let transitionOffset = 20; // Pixels after navOffset when transition should happen
+      let navBottomPosition = navOffset + transitionOffset; 
+      
+      // Make the navigation sticky when scrolling past it
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset >= navOffset) {
+          // Immediately add sticky class
+          articleNav.classList.add('sticky');
           
-          // The scroll position is already saved in localStorage when the user clicked on the project card
-          // We don't need to modify it, just navigate back to the home page
-          window.location.href = '/';
+          // Show placeholder to prevent content jump
+          navPlaceholder.classList.add('active');
+          
+          // Add border-visible class after a small delay to trigger the animation
+          setTimeout(() => {
+            articleNav.classList.add('border-visible');
+          }, 10);
+          
+          // When scrolled past the custom transition point, move nav into header with animation
+          if (window.pageYOffset >= navBottomPosition) {
+            // Add in-header class if not already present
+            if (!articleNav.classList.contains('in-header')) {
+              // Ensure the logo is clickable by setting a higher z-index
+              document.getElementById('backToGallery').style.zIndex = "999";
+              
+              // Make sure the logo container is also at highest z-index
+              document.querySelector('.logo-container').style.zIndex = "999";
+              
+              articleNav.classList.add('in-header');
+              
+              // Get the navigation container
+              const navContainer = articleNav.querySelector('.article-nav-container');
+              
+              // No need to set initial padding since it's already at 8rem in sticky position
+              
+              // Force a reflow to ensure the initial state is rendered
+              void navContainer.offsetWidth;
+              
+              // Then set the target padding (the transition will animate this change)
+              navContainer.style.paddingLeft = '9rem';
+            }
+          } else {
+            // Remove in-header class if present
+            if (articleNav.classList.contains('in-header')) {
+              // Get the navigation container
+              const navContainer = articleNav.querySelector('.article-nav-container');
+              
+              // Animate back to initial position
+              navContainer.style.paddingLeft = '8rem';
+              
+              // Remove the in-header class after the animation completes
+              setTimeout(() => {
+                articleNav.classList.remove('in-header');
+              }, 300); // Changed back to 300ms
+            }
+          }
+          
+          // When sticky, maintain the same padding as the content container
+          if (!articleNav.classList.contains('in-header')) {
+            articleNav.style.paddingLeft = '4rem';
+            articleNav.style.paddingRight = '4rem';
+            
+            if (window.innerWidth <= 768) {
+              articleNav.style.paddingLeft = '1.5rem';
+              articleNav.style.paddingRight = '1.5rem';
+            }
+          } else {
+            articleNav.style.paddingLeft = '';
+            articleNav.style.paddingRight = '';
+          }
+        } else {
+          articleNav.classList.remove('sticky');
+          articleNav.classList.remove('in-header');
+          articleNav.classList.remove('border-visible'); // Remove border-visible class
+          
+          // Hide placeholder when nav is no longer sticky
+          navPlaceholder.classList.remove('active');
+          
+          articleNav.style.paddingLeft = '';
+          articleNav.style.paddingRight = '';
+          
+          // Reset the padding on the container
+          const navContainer = articleNav.querySelector('.article-nav-container');
+          if (navContainer) {
+            navContainer.style.paddingLeft = '1rem';
+          }
+        }
+        
+        // Only update active section if user isn't actively clicking and scrolling
+        if (!userClickedSection) {
+          updateActiveSection();
+        } else {
+          // Reset after scrolling stops
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            userClickedSection = null;
+          }, 1000); // Reset 1 second after scrolling stops
+        }
+      });
+      
+      // Function to update active section based on scroll position
+      function updateActiveSection() {
+        const scrollPosition = window.scrollY + navHeight + topHeaderHeight + 20;
+        
+        // Find which section is currently in view
+        articleNavLinks.forEach(link => {
+          const sectionId = link.getAttribute('href').substring(1);
+          const section = document.getElementById(sectionId);
+          
+          if (section) {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+              // Remove active class from all links
+              articleNavLinks.forEach(l => l.classList.remove('active'));
+              // Add active class to current link
+              link.classList.add('active');
+            }
+          }
         });
       }
+      
+      // Smooth scroll to section when clicking on navigation links
+      articleNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Remove active class from all links
+          articleNavLinks.forEach(l => l.classList.remove('active'));
+          // Add active class to clicked link
+          this.classList.add('active');
+          
+          // Set the clicked section
+          userClickedSection = this.getAttribute('href').substring(1);
+          
+          const sectionId = this.getAttribute('href');
+          const section = document.querySelector(sectionId);
+          
+          if (section) {
+            // Calculate position to scroll to (accounting for both nav bars)
+            const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
+            
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+            
+            // Update URL hash without jumping
+            history.pushState(null, null, sectionId);
+            
+            // Update active state
+            articleNavLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // Set initial active state based on URL hash or first section
+      const setInitialActiveState = () => {
+        const hash = window.location.hash;
+        let activeLink;
+        
+        if (hash) {
+          activeLink = document.querySelector(`.article-nav-link[href="${hash}"]`);
+        }
+        
+        if (!activeLink) {
+          activeLink = articleNavLinks[0];
+        }
+        
+        if (activeLink) {
+          activeLink.classList.add('active');
+          
+          // Scroll to the section if there's a hash in the URL
+          if (hash) {
+            const section = document.querySelector(hash);
+            if (section) {
+              const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      };
+      
+      // Set initial active state after a small delay to ensure the DOM is fully loaded
+      setTimeout(setInitialActiveState, 100);
+      
+      // Handle window resize for responsive padding
+      window.addEventListener('resize', function() {
+        if (articleNav.classList.contains('sticky')) {
+          if (window.innerWidth <= 768) {
+            articleNav.style.paddingLeft = '1.5rem';
+            articleNav.style.paddingRight = '1.5rem';
+          } else {
+            articleNav.style.paddingLeft = '4rem';
+            articleNav.style.paddingRight = '4rem';
+          }
+        }
+      });
     });
   </script>
 </body>
