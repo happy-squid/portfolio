@@ -18,6 +18,9 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
   className 
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef2 = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [initialRender, setInitialRender] = useState(true);
@@ -38,6 +41,27 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
         left: 0,
         behavior: 'smooth'
       });
+    }
+  };
+  
+  const scrollToProject = (index: number) => {
+    if (scrollRef.current && projectRefs.current[index]) {
+      const projectElement = projectRefs.current[index];
+      if (projectElement) {
+        // Get the project's position relative to the scroll container
+        const containerRect = scrollRef.current.getBoundingClientRect();
+        const projectRect = projectElement.getBoundingClientRect();
+        const relativeLeft = projectRect.left - containerRect.left + scrollRef.current.scrollLeft;
+        
+        // Add an offset to center the project in the viewport
+        const offset = (containerRect.width - projectRect.width) / 2;
+        const scrollPosition = relativeLeft - offset;
+        
+        scrollRef.current.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
   
@@ -158,6 +182,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           <Navigation 
             scrollLeft={scrollLeft} 
             onScrollToStart={scrollToStart}
+            onScrollToProject={scrollToProject}
           />
         </div>
 
@@ -171,10 +196,123 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
         </div>
 
         {/* Projects with margin from illustration */}
-        <div className="flex items-center gap-16 pl-[200px] pr-16">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        <div className="flex items-center pl-[200px] pr-16 py-16">
+          {/* First project card with no right margin */}
+          <div 
+            ref={el => projectRefs.current[0] = el}
+            className="flex-shrink-0 mr-0"
+          >
+            <ProjectCard 
+              project={projects[0]} 
+              variant="landscape"
+              className=""
+            />
+          </div>
+          
+          {/* Video animation with no margins */}
+          <div 
+            className="h-[500px] w-[500px] flex-shrink-0 overflow-hidden mx-0 mt-48 cursor-pointer"
+            onMouseEnter={() => {
+              if (videoRef.current) {
+                videoRef.current.pause();
+              }
+            }}
+            onMouseLeave={() => {
+              if (videoRef.current) {
+                videoRef.current.play();
+              }
+            }}
+          >
+            <video 
+              ref={videoRef}
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="h-full w-full object-cover"
+            >
+              <source src="/am1-bg.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          
+          {/* Remaining project cards with normal spacing */}
+          {projects.slice(1).map((project, index) => {
+            // Adjust index to account for the sliced array (index+1 is the actual index in the original array)
+            const actualIndex = index + 1;
+            
+            // Insert second video after the fourth project card (actualIndex === 3)
+            if (actualIndex === 3) {
+              return (
+                <React.Fragment key={`${project.id}-group`}>
+                  <div 
+                    key={project.id}
+                    ref={el => projectRefs.current[actualIndex] = el}
+                    className="flex-shrink-0 ml-48"
+                  >
+                    <ProjectCard 
+                      project={project} 
+                      variant="landscape"
+                      className="fourth-card"
+                    />
+                  </div>
+                  
+                  {/* Second video animation with no margins */}
+                  <div 
+                    className="h-[400px] w-[400px] flex-shrink-0 overflow-hidden mx-0 mt-48 cursor-pointer"
+                    onMouseEnter={() => {
+                      if (videoRef2.current) {
+                        videoRef2.current.pause();
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (videoRef2.current) {
+                        videoRef2.current.play();
+                      }
+                    }}
+                  >
+                    <video 
+                      ref={videoRef2}
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="h-full w-full object-cover"
+                    >
+                      <source src="/am3-bg.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </React.Fragment>
+              );
+            }
+            
+            return (
+              <div 
+                key={project.id}
+                ref={el => projectRefs.current[actualIndex] = el}
+                className={`flex-shrink-0 ${
+                  actualIndex === 2 ? 'ml-48' : 
+                  actualIndex > 1 && actualIndex !== 4 ? 'ml-96' : 
+                  'ml-0'
+                }`}
+              >
+                <ProjectCard 
+                  project={project} 
+                  variant={
+                    actualIndex === 1 || actualIndex === 2 ? 'square' : 
+                    actualIndex === 3 ? 'landscape' : 
+                    'portrait'
+                  }
+                  className={
+                    actualIndex === 1 ? 'second-card' : 
+                    actualIndex === 3 ? 'fourth-card' : 
+                    ''
+                  }
+                />
+              </div>
+            );
+          })}
         </div>
         
         

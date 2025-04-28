@@ -6,12 +6,14 @@ interface NavigationProps {
   className?: string;
   scrollLeft: number;
   onScrollToStart: () => void;
+  onScrollToProject: (index: number) => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ 
   className, 
   scrollLeft,
-  onScrollToStart 
+  onScrollToStart,
+  onScrollToProject
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const isLogoVisible = scrollLeft > 1500;
@@ -20,6 +22,14 @@ const Navigation: React.FC<NavigationProps> = ({
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onScrollToStart();
+  };
+
+  const handleWorksClick = () => {
+    onScrollToProject(0);
+  };
+
+  const handleResumeClick = () => {
+    window.open("https://drive.google.com/file/d/1mVGxx04RSGPkDTD7_lTCwMTRppocA3rC/view?usp=drive_link", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -62,7 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({
               isCardMinimized && !isCardHovered ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <div className="text-2xl font-semibold">Where?</div>
+            <div className="text-2xl font-medium">Where?</div>
           </div>
 
           {/* Expanded State */}
@@ -77,14 +87,32 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Works Section */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <h2 className="text-2xl font-semibold">Works</h2>
+                <button 
+                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
+                  onClick={handleWorksClick}
+                >
+                  Works
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
                 <span className="text-2xl">→</span>
               </div>
               <div className="flex gap-2 mt-2">
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">OK</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">友</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">♫</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">☝</div>
+                <div 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  onClick={() => onScrollToProject(0)}
+                >z</div>
+                <div 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  onClick={() => onScrollToProject(1)}
+                >✨</div>
+                <div 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  onClick={() => onScrollToProject(2)}
+                >🍕</div>
+                <div 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  onClick={() => onScrollToProject(3)}
+                >🎮</div>
                 <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">?</div>
               </div>
             </div>
@@ -94,13 +122,32 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Me Section */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <h2 className="text-2xl font-semibold">Me</h2>
+                <button 
+                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
+                  onClick={() => {}}
+                >
+                  Me
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </button>
                 <span className="text-2xl">→</span>
               </div>
               <div className="flex gap-2 mt-2">
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">in</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">✉</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">𝕏</div>
+                <a 
+                  href="https://www.linkedin.com/in/hardik-monga/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                >in</a>
+                <a 
+                  href="mailto:hardikmonga311@gmail.com" 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                >✉️</a>
+                <a 
+                  href="https://x.com/HardikMonga3" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                >𝕏</a>
               </div>
             </div>
             
@@ -109,7 +156,10 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Resume Section */}
             <div>
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-semibold">Download Resume</h2>
+                <button 
+                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left"
+                  onClick={handleResumeClick}
+                >Download Resume</button>
                 <span className="text-2xl">↓</span>
               </div>
             </div>
