@@ -19,11 +19,13 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef1 = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoRef3 = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [initialRender, setInitialRender] = useState(true);
+  const [videoHasPlayed3, setVideoHasPlayed3] = useState(false);
   
   const handleScroll = () => {
     const scrollEl = scrollRef.current;
@@ -213,20 +215,20 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           <div 
             className="h-[500px] w-[500px] flex-shrink-0 overflow-hidden mx-0 mt-48 cursor-pointer"
             onMouseEnter={() => {
-              if (videoRef.current) {
-                videoRef.current.pause();
+              if (videoRef1.current) {
+                videoRef1.current.pause();
               }
             }}
             onMouseLeave={() => {
-              if (videoRef.current) {
-                videoRef.current.play();
+              if (videoRef1.current) {
+                videoRef1.current.play();
               }
             }}
           >
             <video 
-              ref={videoRef}
+              ref={videoRef1}
               autoPlay 
-              loop 
+              loop
               muted 
               playsInline
               className="h-full w-full object-cover"
@@ -274,7 +276,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
                     <video 
                       ref={videoRef2}
                       autoPlay 
-                      loop 
+                      loop
                       muted 
                       playsInline
                       className="h-full w-full object-cover"
@@ -315,9 +317,138 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
           })}
         </div>
         
+        {/* Extra space before dark grey section */}
+        <div className="h-full w-[200px] flex-shrink-0"></div>
         
-        {/* Small end space */}
-        <div className="h-full w-[1600px] flex-shrink-0"></div>
+        {/* Darker grey section with video */}
+        <div className="h-full flex-1 min-w-[3000px] bg-[#DEDEDC] flex-shrink-0 flex flex-row items-center pl-[200px]">
+          {/* Video on the left */}
+          <div 
+            className="h-[500px] w-[300px] flex-shrink-0 overflow-hidden mr-32 -mt-16 cursor-pointer"
+            onClick={() => {
+              if (videoRef3.current) {
+                // Reset to beginning and play full animation again
+                videoRef3.current.currentTime = 0;
+                setVideoHasPlayed3(false);
+                videoRef3.current.play();
+              }
+            }}
+          >
+            <video 
+              ref={videoRef3}
+              autoPlay 
+              muted 
+              playsInline
+              className="h-full w-full object-cover"
+              onTimeUpdate={(e) => {
+                const video = e.currentTarget;
+                if (!videoHasPlayed3 && video.currentTime >= video.duration - 0.1) {
+                  // First time reaching the end
+                  setVideoHasPlayed3(true);
+                  // Set the current time to 1 second before the end
+                  video.currentTime = video.duration - 1;
+                  video.play(); // Ensure it keeps playing
+                }
+              }}
+              onEnded={() => {
+                // When video ends after first full play, loop from 1 second before the end
+                if (videoHasPlayed3 && videoRef3.current) {
+                  videoRef3.current.currentTime = videoRef3.current.duration - 1;
+                  videoRef3.current.play();
+                } else if (videoRef3.current) {
+                  // If it somehow ends without the flag being set, make sure it plays
+                  videoRef3.current.play();
+                }
+              }}
+            >
+              <source src="/am2-bg.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          
+          {/* Content on the right */}
+          <div className="flex flex-col">
+            {/* Text content */}
+            <div className="text-6xl font-semibold text-gray-600 mb-12 -mt-4">Hardik Monga is a designer. <br />
+He does <span className="text-black">interaction</span>, <span className="text-black">graphics</span>, <br />and <span className="text-black">photography</span> to bring joy. 
+            </div>
+            
+            {/* Cards row and arrow */}
+            <div className="flex flex-row items-center gap-8">
+              {/* Introduction card */}
+              <div className="bg-white p-8 rounded-md border border-gray-300 max-w-[400px] h-[220px] flex flex-col">
+                {/* SMI Logo */}
+                <div className="mb-4 flex justify-start">
+                  <img 
+                    src="/smi-logo.png" 
+                    alt="Srishti Manipal Institute Logo" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                <p className="text-base text-gray-800 font-base">
+                  Hello people, this is Hardik.<br />
+                  I am currently studying in <br />Srishti Manipal Institute of Art, Design and Technology, Bengaluru.
+                </p>
+              </div>
+              
+              {/* Second card - Why this */}
+              <div className="bg-white p-8 rounded-md border border-gray-300 max-w-[400px] h-[220px] flex flex-col">
+                <h3 className="text-lg font-medium text-gray-800 mb-3">Why this?</h3>
+                <p className="text-base text-gray-800">
+                  I really like making experiences visually pleasing and easy to interpret. Been practicing it in graphics and now wish to do the same in interaction design.
+                </p>
+              </div>
+              
+              {/* Third card - Contact me */}
+              <div className="bg-white p-8 rounded-md border border-gray-300 w-[500px] h-[220px] flex flex-col">
+                <h3 className="text-lg font-medium text-gray-800 mb-3">Contact me</h3>
+                <div className="flex gap-2 mt-4">
+                  <a 
+                    href="https://www.linkedin.com/in/hardik-monga/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  >in</a>
+                  <a 
+                    href="mailto:hardikmonga311@gmail.com" 
+                    className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  >✉️</a>
+                  <a 
+                    href="https://x.com/HardikMonga3" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  >𝕏</a>
+                </div>
+                
+                {/* Divider line */}
+                <div className="h-[1px] bg-gray-200 my-4"></div>
+                
+                {/* Resume button */}
+                <div className="flex items-center justify-between">
+                  <button 
+                    className="text-base font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
+                    onClick={() => window.open("https://drive.google.com/file/d/1mVGxx04RSGPkDTD7_lTCwMTRppocA3rC/view?usp=drive_link", "_blank", "noopener,noreferrer")}
+                  >
+                    Download Resume
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                </div>
+              </div>
+              
+              {/* Arrow to scroll back to start */}
+              <div className="flex items-center justify-center ml-[900px] -mt-64">
+                <div className="p-8 cursor-pointer hover:opacity-80 transition-all duration-300 hover:-translate-x-4" onClick={scrollToStart}>
+                  <img 
+                    src={arrow} 
+                    alt="Back to start" 
+                    className="w-15 h-15 transform rotate-180"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
