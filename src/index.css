@@ -5,6 +5,19 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  @media (min-width: 768px) {
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
@@ -42,16 +55,13 @@
   }
   
   html {
-    @apply scroll-smooth overflow-hidden;
-    height: 100%;
+    @apply scroll-smooth;
     overscroll-behavior: none;
   }
   
   body {
-    @apply bg-background text-foreground font-sans overflow-hidden;
+    @apply bg-background text-foreground font-sans;
     font-family: 'Montserrat', sans-serif;
-    height: 100%;
-    width: 100%;
     overscroll-behavior: none;
   }
   

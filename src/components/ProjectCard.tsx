@@ -6,12 +6,14 @@ interface ProjectCardProps {
   project: Project;
   className?: string;
   variant?: 'landscape' | 'square' | 'portrait';
+  isMobile?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   project, 
-  className,
-  variant = 'portrait'
+  className = '',
+  variant = 'portrait',
+  isMobile = false
 }) => {
   const handleClick = () => {
     // For project-5, redirect to Instagram
@@ -36,16 +38,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     window.location.href = `/projects/${project.id}.html`;
   };
   
-  // Determine dimensions based on variant
+  // Determine dimensions based on variant and device
   const getDimensions = () => {
-    switch(variant) {
-      case 'landscape':
-        return 'h-[440px] w-[660px]';
-      case 'square':
-        return 'h-[440px] w-[440px]';
-      case 'portrait':
-      default:
-        return 'h-[66vh] w-[440px]';
+    if (isMobile) {
+      switch(variant) {
+        case 'landscape':
+          return 'h-[220px] w-full';
+        case 'square':
+          return 'h-[300px] w-full';
+        case 'portrait':
+        default:
+          return 'h-[400px] w-full';
+      }
+    } else {
+      switch(variant) {
+        case 'landscape':
+          return 'h-[440px] w-[660px]';
+        case 'square':
+          return 'h-[440px] w-[440px]';
+        case 'portrait':
+        default:
+          return 'h-[66vh] w-[440px]';
+      }
     }
   };
   
@@ -71,7 +85,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         />
       </div>
       
-      <div className="mt-4" style={{ width: variant === 'landscape' ? '660px' : variant === 'square' ? '440px' : '440px' }}>
+      <div className={isMobile ? "mt-4 w-full" : "mt-4"} style={!isMobile ? { width: variant === 'landscape' ? '660px' : variant === 'square' ? '440px' : '440px' } : {}}>
         <h3 className="text-xl font-medium">{project.title}</h3>
         <p className="text-base text-gray-600 mb-3">{project.description}</p>
         <p className="text-sm text-gray-500">

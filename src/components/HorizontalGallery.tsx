@@ -388,7 +388,7 @@ He does <span className="text-black">interaction</span>, <span className="text-b
                 </div>
                 <p className="text-base text-gray-800 font-base">
                   Hello people, this is Hardik.<br />
-                  I am currently studying in <br />Srishti Manipal Institute of Art, Design and Technology, Bengaluru.
+                  I am currently Bachelor's in Human Centered Design from <br />Srishti Manipal Institute of Art, Design and Technology, Bengaluru.
                 </p>
               </div>
               

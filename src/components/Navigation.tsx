@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
@@ -7,17 +7,20 @@ interface NavigationProps {
   scrollLeft: number;
   onScrollToStart: () => void;
   onScrollToProject: (index: number) => void;
+  isMobile?: boolean;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ 
   className, 
   scrollLeft,
   onScrollToStart,
-  onScrollToProject
+  onScrollToProject,
+  isMobile = false
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
-  const isLogoVisible = scrollLeft > 1500;
-  const isCardMinimized = scrollLeft > 1500;
+  const [isCardExpanded, setIsCardExpanded] = useState(false);
+  const isLogoVisible = isMobile ? true : scrollLeft > 1500;
+  const isCardMinimized = isMobile ? !isCardExpanded : scrollLeft > 1500;
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,48 +34,74 @@ const Navigation: React.FC<NavigationProps> = ({
   const handleResumeClick = () => {
     window.open("https://drive.google.com/file/d/1mVGxx04RSGPkDTD7_lTCwMTRppocA3rC/view?usp=drive_link", "_blank", "noopener,noreferrer");
   };
+  
+  const handleCardToggle = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.stopPropagation();
+      setIsCardExpanded(!isCardExpanded);
+    }
+  };
+
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const handleClickOutside = () => {
+      if (isCardExpanded) {
+        setIsCardExpanded(false);
+      }
+    };
+    
+    document.addEventListener('click', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobile, isCardExpanded]);
 
   return (
     <div className={cn("flex items-center justify-between", className)}>
-      {/* Logo */}
-      <div className="fixed top-8 left-8 z-50">
-        <a 
-          href="/" 
-          onClick={handleLogoClick}
-          className={cn(
-            "hover:opacity-70 transition-all duration-300 block",
-            isLogoVisible 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 -translate-y-4"
-          )}
-        >
-          <img 
-            src={logo} 
-            alt="Portfolio Logo" 
-            className="h-8 w-auto"
-          />
-        </a>
-      </div>
+      {/* Logo - hidden on mobile */}
+      {!isMobile && (
+        <div className="fixed top-8 left-8 z-50">
+          <a 
+            href="/" 
+            onClick={handleLogoClick}
+            className={cn(
+              "hover:opacity-70 transition-all duration-300 block",
+              isLogoVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 -translate-y-4"
+            )}
+          >
+            <img 
+              src={logo} 
+              alt="Portfolio Logo" 
+              className="h-8 w-auto"
+            />
+          </a>
+        </div>
+      )}
       
       {/* Navigation Card */}
-      <div className="fixed top-0 right-40 z-50">
+      <div className={isMobile ? "w-full" : "fixed top-0 right-40 z-50"}>
         <div 
           className={cn(
             "bg-white rounded-b-lg transition-all duration-300 overflow-hidden",
-            isCardMinimized && !isCardHovered ? "h-[90px]" : "h-[330px]",
-            "min-w-[400px]"
+            isCardMinimized && !isCardHovered ? "h-[60px]" : "h-[330px]",
+            isMobile ? "w-full rounded-t-none" : "min-w-[400px]"
           )}
-          onMouseEnter={() => setIsCardHovered(true)}
-          onMouseLeave={() => setIsCardHovered(false)}
+          onMouseEnter={() => !isMobile && setIsCardHovered(true)}
+          onMouseLeave={() => !isMobile && setIsCardHovered(false)}
+          onClick={handleCardToggle}
         >
           {/* Minimized State */}
           <div 
             className={cn(
-              "absolute inset-x-0 top-0 p-8 transition-opacity duration-300",
+              "absolute inset-x-0 top-0 py-4 px-8 transition-opacity duration-300",
               isCardMinimized && !isCardHovered ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <div className="text-2xl font-medium">Where?</div>
+            <div className={isMobile ? "text-xl font-medium pl-4" : "text-2xl font-medium"}>Where?</div>
           </div>
 
           {/* Expanded State */}
@@ -88,13 +117,13 @@ const Navigation: React.FC<NavigationProps> = ({
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <button 
-                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
+                  className={isMobile ? "text-xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group" : "text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"}
                   onClick={handleWorksClick}
                 >
                   Works
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                 </button>
-                <span className="text-2xl">→</span>
+                <span className={isMobile ? "text-xl" : "text-2xl"}>→</span>
               </div>
               <div className="flex gap-2 mt-2">
                 <div 
@@ -123,13 +152,13 @@ const Navigation: React.FC<NavigationProps> = ({
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <button 
-                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
+                  className={isMobile ? "text-xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group" : "text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"}
                   onClick={() => {}}
                 >
                   Me
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                 </button>
-                <span className="text-2xl">→</span>
+                <span className={isMobile ? "text-xl" : "text-2xl"}>→</span>
               </div>
               <div className="flex gap-2 mt-2">
                 <a 
@@ -157,10 +186,9 @@ const Navigation: React.FC<NavigationProps> = ({
             <div>
               <div className="flex items-center justify-between">
                 <button 
-                  className="text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left"
+                  className={isMobile ? "text-xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left underline decoration-1 underline-offset-4" : "text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left underline decoration-1 underline-offset-4"}
                   onClick={handleResumeClick}
                 >Download Resume</button>
-                <span className="text-2xl">↓</span>
               </div>
             </div>
           </div>

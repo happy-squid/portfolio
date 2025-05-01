@@ -167,9 +167,12 @@
     
     /* Header styles */
     .header-container {
-      height: 60px; /* Increased height for better vertical centering */
+      height: auto; /* Changed from fixed height to auto */
+      min-height: 60px; /* Minimum height for the header */
       display: flex;
-      align-items: center;
+      flex-direction: column; /* Stack logo and nav vertically */
+      align-items: flex-start;
+      padding: 1.5rem 0; /* Reduced padding to move everything up */
     }
     
     .logo-container {
@@ -199,142 +202,94 @@
       background-color: transparent; /* Removed background color */
       border-bottom: 1.5px solid #d6d6d6; /* Added thin border at bottom */
       pointer-events: auto; /* Ensure pointer events work */
-    }
-    
-    .article-nav.sticky {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 60; /* Increased to be higher than the top header */
-      box-shadow: none; /* Removed shadow */
-      border-bottom: none; /* Remove default border */
-      padding-left: 8rem; /* Add left padding in sticky mode to match content container */
-    }
-    
-    /* Custom border for sticky nav with left-to-right transition */
-    .article-nav.sticky::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 8rem; /* Start at first button (match padding-left) */
-      width: 0; /* Start with zero width for left-to-right animation */
-      height: 1.5px;
-      background-color: #d6d6d6;
-      transition: width 0.3s ease; /* Changed back to 0.3s */
-    }
-    
-    /* When sticky is applied, animate the border to full width */
-    .article-nav.sticky.border-visible::after {
-      width: calc(100% - 12rem); /* Full width minus left and right margins */
-    }
-    
-    @media (max-width: 768px) {
-      .article-nav.sticky::after {
-        left: 1.5rem;
-      }
-      
-      .article-nav.sticky.border-visible::after {
-        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
-      }
-    }
-    
-    .article-nav.in-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 0;
-      z-index: 60; /* Increased to be higher than the top header */
-      border-bottom: none; /* Remove the full-width border */
-      pointer-events: auto; /* Ensure pointer events work */
-    }
-    
-    .article-nav.in-header .article-nav-container {
-      height: 60px; /* Match the top bar height when in header */
+      position: relative;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
-      background-color: transparent; /* Ensure transparency */
-      position: relative; /* For positioning the custom border */
-      pointer-events: auto; /* Ensure pointer events work */
+      height: 40px; /* Reduced height */
+      margin-top: -5px; /* Move up by adding negative margin */
     }
     
-    /* Create a cutout in the navigation bar for the logo */
-    .article-nav.in-header::before {
-      content: '';
-      position: absolute;
+    /* Since the nav is now permanently in the header, we can simplify these styles */
+    .article-nav.in-header {
+      position: relative;
       top: 0;
+      right: 0;
       left: 0;
-      width: 8rem; /* Width of the cutout area */
-      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin-left: 0;
+      border-top: none;
       background-color: transparent;
-      z-index: 75; /* Higher than both nav and logo */
-      pointer-events: none; /* Make this area pass through clicks */
+      z-index: 60;
     }
     
-    /* Custom border for in-header nav with left-to-right transition */
-    .article-nav.in-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 8rem; /* Start at first button (match padding-left) */
-      width: 0; /* Start with zero width for left-to-right animation */
-      height: 1.5px;
-      background-color: #d6d6d6;
-      transition: width 0.3s ease; /* Changed back to 0.3s */
-    }
-    
-    /* When in-header is applied, animate the border to full width */
-    .article-nav.in-header.border-visible::after {
-      width: calc(100% - 12rem); /* Full width minus left and right margins */
-    }
-    
-    @media (max-width: 768px) {
-      .article-nav.in-header::after {
-        left: 1.5rem;
-      }
-      
-      .article-nav.in-header.border-visible::after {
-        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
-      }
+    .article-nav-container {
+      display: flex;
+      align-items: flex-start; /* Changed from center to flex-start to move buttons up */
+      width: 100%;
+      padding-left: 9rem !important; /* Fixed padding to account for logo */
+      transition: padding-left 0.3s ease;
+      padding-top: 0; /* Remove top padding */
     }
     
     .article-nav-links {
       display: flex;
-      flex-wrap: nowrap;
+      gap: 2rem;
       overflow-x: auto;
-      justify-content: flex-start; /* Left align the navigation links */
-      width: 100%;
-      padding-left: 0; /* Remove default padding */
+      white-space: nowrap;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      padding-bottom: 0.75rem; /* Increased bottom padding to push buttons up while keeping space for the line */
+      padding-top: 0; /* Removed top padding to move buttons up */
+      margin-top: -5px; /* Added negative margin to move buttons up */
+    }
+    
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .article-nav-links::-webkit-scrollbar {
+      display: none;
     }
     
     .article-nav-link {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      margin-right: 0.5rem;
-      font-size: 0.9rem;
-      color: #d6d6d6; /* Changed to light grey */
-      border-radius: 4px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600; /* Changed to semibold by default */
-      transition: color 0.1s ease;
-    }
-    
-    /* Use a pseudo-element to prevent layout shifts when font-weight changes */
-    .article-nav-link::after {
-      display: block;
-      content: attr(data-text);
-      font-weight: 600; /* Already semibold, so no change needed */
-      height: 0;
-      overflow: hidden;
-      visibility: hidden;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #666;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.2s ease;
     }
     
     .article-nav-link:hover {
       color: #000;
-      font-weight: 600; /* Already semibold, so no change needed */
     }
+    
+    /* Remove the underline effect by deleting or commenting out the ::after pseudo-elements */
+    /* 
+    .article-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #000;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      opacity: 0;
+    }
+    
+    .article-nav-link:hover::after {
+      transform: scaleX(1);
+      opacity: 0.5;
+    }
+    
+    .article-nav-link.active::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    */
     
     .article-nav-link.active {
       color: #000;
@@ -342,14 +297,9 @@
       background-color: transparent;
     }
     
-    /* Hide scrollbar for the navigation */
-    .hide-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-    
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+    /* Update top padding for content to account for fixed header height */
+    .content-container.py-16.pt-\[250px\] {
+      padding-top: 150px !important; /* Reduced padding since nav is now in header */
     }
     
     /* Hero image styles */
@@ -649,126 +599,34 @@
           onclick="window.location.href = '/';"
         ></div>
       </div>
+      
+      <!-- Article Navigation - Now permanently in the header -->
+      <div id="articleNav" class="article-nav w-full in-header border-visible">
+        <div class="article-nav-container content-container pl-0" style="padding-left: 9rem;">
+          <div class="article-nav-links hide-scrollbar">
+            <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
+            <a href="#secondary-research" class="article-nav-link" data-text="Secondary Research">SECONDARY RESEARCH</a>
+            <a href="#primary-research" class="article-nav-link" data-text="Primary Research">PRIMARY RESEARCH</a>
+            <a href="#ideation" class="article-nav-link" data-text="Ideation">IDEATION</a>
+            <a href="#final-solution" class="article-nav-link" data-text="Final Solution">FINAL SOLUTION</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   
   <!-- Project Introduction -->
   <div class="content-container py-16 pt-[250px]">
     <div class="w-full mx-auto">
-      <div class="mb-12">
-        <p class="text-3xl text-gray-700 mb-56">
-          A research-based design intervention for<br>
-          <span class="font-semibold">Food Delivery</span> workers in India.
-        </p>
         
-        <!-- Context Card (more minimal styling) -->
-        <div class="max-w-xl mb-16">
-          <div class="grid grid-cols-3 gap-1">
-            <div>
-              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Year</h3>
-              <p class="text-sm text-gray-500">2022</p>
-            </div>
-            
-            <div>
-              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Categories</h3>
-              <div class="flex flex-wrap">
-                <span class="tag">UX Research</span>
-                <span class="tag">Service Design</span>
-                <span class="tag">Social Impact</span>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Tools</h3>
-              <div class="flex flex-wrap">
-                <span class="tag">Figma</span>
-                <span class="tag">Adobe Illustrator</span>
-                <span class="tag">After Effects</span>
-              </div>
-            </div>
-          </div>
-        </div>
+       
         
-        <!-- Hero Image (moved here) -->
-        <div class="w-full mb-12">
-          <img 
-            src="/assets/project-1/cover2.png" 
-            alt="Harmony in Motion"
-            class="hero-image w-full rounded-lg"
-            style="max-height: 80vh; object-fit: cover; object-position: center;"
-          />
-        </div>
         
-        <!-- Article Navigation -->
-        <div id="articleNav" class="article-nav w-full py-4 mb-8">
-          <div class="article-nav-container content-container pl-0">
-            <div class="article-nav-links hide-scrollbar">
-              <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
-              <a href="#secondary-research" class="article-nav-link" data-text="Secondary Research">SECONDARY RESEARCH</a>
-              <a href="#primary-research" class="article-nav-link" data-text="Primary Research">PRIMARY RESEARCH</a>
-              <a href="#ideation" class="article-nav-link" data-text="Ideation">IDEATION</a>
-              <a href="#final-solution" class="article-nav-link" data-text="Final Solution">FINAL SOLUTION</a>
-            </div>
-          </div>
-        </div>
         
-        <!-- Placeholder to prevent content jump when nav becomes sticky -->
-        <div id="navPlaceholder" class="nav-placeholder"></div>
+        <!-- Removed the original article navigation as it's now in the header -->
+        <div id="navPlaceholder" class="active" style="height: 0px;"></div>
         
-        <!-- Project Overview -->
-        <div class="prose prose-lg max-w-none">
-          <h2 id="overview" class="section-header">Project Overview</h2>
-          <p>
-            This project explores the challenges faced by food delivery workers in India and proposes 
-            design interventions to improve their working conditions. Through extensive research, including 
-            interviews, data analysis, and literature review, I identified key issues affecting delivery 
-            partners and developed solutions to address them.
-          </p>
-          
-          <div class="highlight-box">
-            <p class="font-semibold">
-              Food delivery workers in India face numerous challenges including lack of proper facilities, 
-              long working hours, and limited support systems. This project aims to create interventions 
-              that can improve their daily work experience while maintaining the efficiency of the delivery ecosystem.
-            </p>
-          </div>
-        </div>
         
-        <!-- Research Section -->
-        <h2 id="research" class="section-header">Research</h2>
-        
-        <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
-        <p class="mb-8">
-          With this question in mind, I conducted research into the experiences of food delivery workers 
-          in India, analyzing news reports, academic studies, and conducting interviews to understand 
-          the key challenges they face.
-        </p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div class="problem-card">
-            <h3>Working Conditions</h3>
-            <p>
-              Delivery workers often work 10-12 hours per day in extreme weather conditions with 
-              limited access to basic facilities like restrooms and rest areas.
-            </p>
-          </div>
-          
-          <div class="problem-card">
-            <h3>Income Instability</h3>
-            <p>
-              Workers face unpredictable earnings due to fluctuating order volumes, incentive 
-              structures, and increasing fuel costs that eat into their profits.
-            </p>
-          </div>
-          
-          <div class="problem-card">
-            <h3>Support Systems</h3>
-            <p>
-              Limited access to healthcare, insurance, and other social security benefits, 
-              despite the physically demanding and sometimes dangerous nature of their work.
-            </p>
-          </div>
-        </div>
         
         <!-- Research Findings Carousel -->
         <h3 id="findings" class="subsection-header">Research Findings</h3>
@@ -866,154 +724,21 @@
           <div class="swiper-button-prev"></div>
         </div>
         
-        <!-- Survey Results -->
-        <h3 id="survey" class="subsection-header">Survey Results</h3>
-        <p class="mb-8">
-          I conducted a survey with 50 food delivery workers to understand their needs and pain points.
-          The results highlighted key challenges including lack of rest areas, inadequate facilities,
-          and limited support during long working hours.
-        </p>
         
-        <div class="mb-16">
-          <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/survey.png" 
-              alt="Survey Results"
-              class="rounded-lg"
-              style="width: 60%;" /* Make this specific image smaller */
-            />
-          </div>
-        </div>
         
-        <!-- Mind Map -->
-        <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
-        <p class="mb-8">
-          Based on my research, I created a mind map to visualize the interconnected challenges 
-          faced by food delivery workers and identify potential areas for intervention.
-        </p>
         
-        <div class="mb-16">
-          <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/Delivery-MindMap.png" 
-              alt="Delivery Workers Mind Map"
-              class="rounded-lg"
-            />
-          </div>
-        </div>
         
-        <!-- Design Intervention -->
-        <h2 id="intervention" class="section-header">Design Intervention</h2>
-        <p class="mb-8">
-          Based on my research findings, I developed a design intervention focused on creating 
-          rest stops and support facilities for delivery workers, integrated with the existing 
-          food delivery app ecosystem.
-        </p>
         
-        <!-- App Interface -->
-        <div class="mb-16">
-          <div class="mind-map-container"> 
-            <div class="content-wrapper">
-              <h3 class="subsection-header">App Interface</h3>
-              <p>
-                The intervention includes an enhanced app interface that helps delivery workers locate 
-                nearby rest facilities, track their earnings, and access support services.
-              </p>
-            </div>
-            <img 
-              src="/assets/project-1/idea1.png" 
-              alt="App Interface Design"
-              class="rounded-lg"
-            />
-          </div>
-        </div>
         
-        <!-- Rest Stop Facilities -->
-        <div class="mb-16">
-          <div class="mind-map-container"> 
-            <div class="content-wrapper">
-              <h3 class="subsection-header">Rest Stop Facilities</h3>
-              <p>
-                The design includes dedicated rest stops for delivery workers with essential facilities 
-                like seating, restrooms, phone charging stations, and refreshments.
-              </p>
-            </div>
-            <img 
-              src="/assets/project-1/idea2.png" 
-              alt="Rest Stop Facilities Design"
-              class="rounded-lg"
-            />
-          </div>
-        </div>
         
-        <!-- Video Testimonials -->
-        <h3 id="testimonials" class="subsection-header">Video Testimonials</h3>
-        <p class="mb-8">
-          I analyzed video testimonials from delivery workers to understand their daily experiences and challenges.
-        </p>
         
-        <div class="mb-16">
-          <div class="aspect-video w-full">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/6MWDPjJFPIY" 
-              title="Food Delivery Workers in India" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-              class="rounded-lg"
-              style="aspect-ratio: 16/9;"
-            ></iframe>
-          </div>
-          <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
-        </div>
         
-        <!-- Final Solution -->
-        <h2 id="final-solution" class="section-header">Final Solution</h2>
-        <p class="mb-8">
-          After multiple iterations and user testing, I finalized the design solution for improving 
-          the working conditions of food delivery workers. The solution combines a mobile app interface 
-          with physical rest stops strategically located throughout urban areas.
-        </p>
         
-        <div class="mb-16">
-          <div class="side-by-side-container">
-            <div class="images-row">
-              <div class="image-column">
-                <img 
-                  src="/assets/project-1/sketch.png" 
-                  alt="Initial Sketches"
-                />
-                <p class="image-caption">Initial concept sketches exploring different rest stop layouts</p>
-              </div>
-              <div class="image-column">
-                <img 
-                  src="/assets/project-1/prototype.png" 
-                  alt="Final Prototype"
-                />
-                <p class="image-caption">High-fidelity prototype of the final solution</p>
-              </div>
-            </div>
-          </div>
-        </div>
         
-        <!-- Conclusion -->
-        <h2 id="conclusion" class="section-header">Conclusion</h2>
-        <p class="mb-4">
-          This project highlights the importance of considering the human aspects of the gig economy, 
-          particularly for food delivery workers who form the backbone of the rapidly growing food 
-          delivery industry in India. By creating supportive infrastructure and services, we can 
-          improve working conditions while maintaining the efficiency of the delivery ecosystem.
-        </p>
         
-        <div class="highlight-box mb-16">
-          <p class="font-semibold">
-            The design intervention aims to create a more sustainable and humane work environment 
-            for delivery workers, addressing their basic needs while recognizing their essential 
-            role in urban food delivery systems.
-          </p>
-        </div>
+       
+        
+        
       </div>
     </div>
   </div>
@@ -1179,214 +904,142 @@
       const topHeader = document.getElementById('topHeader');
       const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
       const navHeight = articleNav.offsetHeight;
-      const navOffset = articleNav.offsetTop;
       let userClickedSection = null; // Track which section the user clicked
       let scrollTimeout = null; // For tracking when scrolling stops
       const navPlaceholder = document.getElementById('navPlaceholder');
       
-      // Calculate a custom position for when the transition should happen
-      // You can adjust the offset value (currently 100px) to control when the transition occurs
-      let transitionOffset = 20; // Pixels after navOffset when transition should happen
-      let navBottomPosition = navOffset + transitionOffset; 
-      
-      // Make the navigation sticky when scrolling past it
-      window.addEventListener('scroll', function() {
-        if (window.pageYOffset >= navOffset) {
-          // Immediately add sticky class
-          articleNav.classList.add('sticky');
-          
-          // Show placeholder to prevent content jump
-          navPlaceholder.classList.add('active');
-          
-          // Add border-visible class after a small delay to trigger the animation
-          setTimeout(() => {
-            articleNav.classList.add('border-visible');
-          }, 10);
-          
-          // When scrolled past the custom transition point, move nav into header with animation
-          if (window.pageYOffset >= navBottomPosition) {
-            // Add in-header class if not already present
-            if (!articleNav.classList.contains('in-header')) {
-              // Ensure the logo is clickable by setting a higher z-index
-              document.getElementById('backToGallery').style.zIndex = "999";
-              
-              // Make sure the logo container is also at highest z-index
-              document.querySelector('.logo-container').style.zIndex = "999";
-              
-              articleNav.classList.add('in-header');
-              
-              // Get the navigation container
-              const navContainer = articleNav.querySelector('.article-nav-container');
-              
-              // No need to set initial padding since it's already at 8rem in sticky position
-              
-              // Force a reflow to ensure the initial state is rendered
-              void navContainer.offsetWidth;
-              
-              // Then set the target padding (the transition will animate this change)
-              navContainer.style.paddingLeft = '9rem';
-            }
-          } else {
-            // Remove in-header class if present
-            if (articleNav.classList.contains('in-header')) {
-              // Get the navigation container
-              const navContainer = articleNav.querySelector('.article-nav-container');
-              
-              // Animate back to initial position
-              navContainer.style.paddingLeft = '8rem';
-              
-              // Remove the in-header class after the animation completes
-              setTimeout(() => {
-                articleNav.classList.remove('in-header');
-              }, 300); // Changed back to 300ms
-            }
-          }
-          
-          // When sticky, maintain the same padding as the content container
-          if (!articleNav.classList.contains('in-header')) {
-            articleNav.style.paddingLeft = '4rem';
-            articleNav.style.paddingRight = '4rem';
-            
-            if (window.innerWidth <= 768) {
-              articleNav.style.paddingLeft = '1.5rem';
-              articleNav.style.paddingRight = '1.5rem';
-            }
-          } else {
-            articleNav.style.paddingLeft = '';
-            articleNav.style.paddingRight = '';
-          }
-        } else {
-          articleNav.classList.remove('sticky');
-          articleNav.classList.remove('in-header');
-          articleNav.classList.remove('border-visible'); // Remove border-visible class
-          
-          // Hide placeholder when nav is no longer sticky
-          navPlaceholder.classList.remove('active');
-          
-          articleNav.style.paddingLeft = '';
-          articleNav.style.paddingRight = '';
-          
-          // Reset the padding on the container
-          const navContainer = articleNav.querySelector('.article-nav-container');
-          if (navContainer) {
-            navContainer.style.paddingLeft = '1rem';
-          }
-        }
-        
-        // Only update active section if user isn't actively clicking and scrolling
-        if (!userClickedSection) {
-          updateActiveSection();
-        } else {
-          // Reset after scrolling stops
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(() => {
-            userClickedSection = null;
-          }, 1000); // Reset 1 second after scrolling stops
-        }
-      });
+      // Since the navigation is now permanently in the header, we don't need the scroll event
+      // to handle sticky positioning. We only need to update the active section.
       
       // Function to update active section based on scroll position
       function updateActiveSection() {
-        const scrollPosition = window.scrollY + navHeight + topHeaderHeight + 20;
-        
-        // Find which section is currently in view
+        // Get all sections that have IDs matching the navigation links
+        const sections = [];
         articleNavLinks.forEach(link => {
           const sectionId = link.getAttribute('href').substring(1);
           const section = document.getElementById(sectionId);
-          
           if (section) {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-              // Remove active class from all links
-              articleNavLinks.forEach(l => l.classList.remove('active'));
-              // Add active class to current link
-              link.classList.add('active');
-            }
+            sections.push(section);
           }
         });
+        
+        // Find the section that is currently in view
+        // We consider a section in view if it's at the top of the viewport or above
+        // and closer to the top than any other section
+        let currentSection = null;
+        let minDistance = Infinity;
+        
+        sections.forEach(section => {
+          // Calculate the distance from the top of the viewport
+          // We add the height of the fixed header to account for it
+          const distanceFromTop = section.getBoundingClientRect().top - topHeaderHeight - navHeight;
+          
+          // If the section is at or above the top of the viewport (accounting for the header)
+          // and it's closer to the top than the current closest section, update the current section
+          if (distanceFromTop <= 0 && distanceFromTop > -minDistance) {
+            minDistance = Math.abs(distanceFromTop);
+            currentSection = section;
+          }
+        });
+        
+        // If we found a section in view, update the active link
+        if (currentSection) {
+          const sectionId = currentSection.id;
+          articleNavLinks.forEach(link => {
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
       }
       
-      // Smooth scroll to section when clicking on navigation links
-      articleNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // Remove active class from all links
-          articleNavLinks.forEach(l => l.classList.remove('active'));
-          // Add active class to clicked link
-          this.classList.add('active');
-          
-          // Set the clicked section
-          userClickedSection = this.getAttribute('href').substring(1);
-          
-          const sectionId = this.getAttribute('href');
-          const section = document.querySelector(sectionId);
-          
-          if (section) {
-            // Calculate position to scroll to (accounting for both nav bars)
-            const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
-            
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
-            
-            // Update URL hash without jumping
-            history.pushState(null, null, sectionId);
-            
-            // Update active state
-            articleNavLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-          }
-        });
+      // Update active section on scroll
+      window.addEventListener('scroll', function() {
+        // Clear the timeout if it exists
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        
+        // Set a timeout to update the active section after scrolling stops
+        scrollTimeout = setTimeout(updateActiveSection, 100);
+        
+        // If the user hasn't clicked a section, update the active section immediately
+        if (!userClickedSection) {
+          updateActiveSection();
+        }
       });
       
       // Set initial active state based on URL hash or first section
-      const setInitialActiveState = () => {
-        const hash = window.location.hash;
-        let activeLink;
-        
-        if (hash) {
-          activeLink = document.querySelector(`.article-nav-link[href="${hash}"]`);
-        }
-        
-        if (!activeLink) {
-          activeLink = articleNavLinks[0];
-        }
-        
-        if (activeLink) {
-          activeLink.classList.add('active');
-          
-          // Scroll to the section if there's a hash in the URL
-          if (hash) {
-            const section = document.querySelector(hash);
-            if (section) {
-              const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
-              window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-              });
+      function setInitialActiveState() {
+        // Check if there's a hash in the URL
+        if (window.location.hash) {
+          const hash = window.location.hash;
+          articleNavLinks.forEach(link => {
+            if (link.getAttribute('href') === hash) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
             }
+          });
+        } else {
+          // If no hash, set the first link as active
+          if (articleNavLinks.length > 0) {
+            articleNavLinks[0].classList.add('active');
           }
         }
-      };
+      }
       
       // Set initial active state after a small delay to ensure the DOM is fully loaded
       setTimeout(setInitialActiveState, 100);
       
       // Handle window resize for responsive padding
       window.addEventListener('resize', function() {
-        if (articleNav.classList.contains('sticky')) {
-          if (window.innerWidth <= 768) {
-            articleNav.style.paddingLeft = '1.5rem';
-            articleNav.style.paddingRight = '1.5rem';
-          } else {
-            articleNav.style.paddingLeft = '4rem';
-            articleNav.style.paddingRight = '4rem';
-          }
+        // Since the navigation is now permanently in the header,
+        // we only need to adjust padding for mobile views if necessary
+        if (window.innerWidth <= 768) {
+          // Adjust for mobile if needed
         }
+      });
+      
+      // Smooth scroll to section when clicking on navigation links
+      articleNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get the target section
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            // Set this as the user clicked section
+            userClickedSection = targetId;
+            
+            // Remove active class from all links
+            articleNavLinks.forEach(link => {
+              link.classList.remove('active');
+            });
+            
+            // Add active class to the clicked link
+            this.classList.add('active');
+            
+            // Calculate scroll position
+            // Account for the fixed header height
+            const scrollPosition = targetSection.offsetTop - topHeaderHeight - 20;
+            
+            // Smooth scroll to the target section
+            window.scrollTo({
+              top: scrollPosition,
+              behavior: 'smooth'
+            });
+            
+            // After scrolling is complete, reset the user clicked section
+            setTimeout(() => {
+              userClickedSection = null;
+            }, 1000);
+          }
+        });
       });
     });
   </script>
