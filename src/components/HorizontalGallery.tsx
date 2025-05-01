@@ -295,7 +295,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
                 ref={el => projectRefs.current[actualIndex] = el}
                 className={`flex-shrink-0 ${
                   actualIndex === 2 ? 'ml-48' : 
-                  actualIndex > 1 && actualIndex !== 4 ? 'ml-96' : 
+                  actualIndex > 1 && actualIndex !== 4 ? 'ml-48' : 
                   'ml-0'
                 }`}
               >
@@ -304,6 +304,7 @@ const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({
                   variant={
                     actualIndex === 1 || actualIndex === 2 ? 'square' : 
                     actualIndex === 3 ? 'landscape' : 
+                    actualIndex === 4 || actualIndex === 5 ? 'square' :
                     'portrait'
                   }
                   className={
@@ -400,7 +401,7 @@ He does <span className="text-black">interaction</span>, <span className="text-b
               </div>
               
               {/* Third card - Contact me */}
-              <div className="bg-white p-8 rounded-md border border-gray-300 w-[500px] h-[220px] flex flex-col">
+              <div className="bg-white p-8 rounded-md border border-gray-300 w-[400px] h-[220px] flex flex-col">
                 <h3 className="text-lg font-medium text-gray-800 mb-3">Contact me</h3>
                 <div className="flex gap-2 mt-4">
                   <a 

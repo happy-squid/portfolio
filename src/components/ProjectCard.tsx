@@ -14,6 +14,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   variant = 'portrait'
 }) => {
   const handleClick = () => {
+    // For project-5, redirect to Instagram
+    if (project.id === "project-5") {
+      window.open("https://www.instagram.com/holy.pix", "_blank");
+      return;
+    }
+    
+    // For project-6, redirect to Unsplash
+    if (project.id === "project-6") {
+      window.open("https://unsplash.com/@hardikmonga", "_blank");
+      return;
+    }
+    
     // Save the current scroll position to localStorage
     const scrollContainer = document.querySelector('.horizontal-scroll');
     if (scrollContainer) {
