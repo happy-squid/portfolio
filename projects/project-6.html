@@ -6,6 +6,120 @@
   <title>Temporal Fragments - Hardik Monga</title>
   <link rel="stylesheet" href="/assets/index.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Cards Section */
+    .cards-section {
+      padding: 4rem 0;
+    }
+    
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Card Styles */
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-card {
+      width: 300px;
+      height: auto;
+    }
+    
+    .project-card {
+      width: 300px;
+      cursor: pointer;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    /* Card Sections */
+    .card-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: #e5e5e5;
+      margin: 1.5rem 0;
+    }
+    
+    /* Icon Row */
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    
+    .icon-circle {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    
+    .icon-circle:hover {
+      background-color: #e5e7eb;
+    }
+    
+    /* Project Card */
+    .project-card-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .project-card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-card-categories {
+      font-size: 0.875rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body class="min-h-screen bg-[#F1F1F0]">
   <!-- Header with back button -->
@@ -114,6 +228,76 @@
               class="w-full h-full object-cover"
             />
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="cards-section py-16 bg-[#F1F1F0]">
+    <div class="cards-container">
+      <!-- Navigation Card -->
+      <div class="card contact-card">
+        <div class="card-content">
+          <!-- Works Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title font-medium"><a href="/" class="hover:underline">Homepage</a></h2>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle">OK</div>
+              <div class="icon-circle">友</div>
+              <div class="icon-circle">♫</div>
+              <div class="icon-circle">☝</div>
+              <div class="icon-circle">?</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Me Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title font-medium"><a href="#" class="hover:underline">Me</a></h2>
+            </div>
+            <div class="icon-row">
+              <div class="icon-circle" onclick="window.open('https://www.linkedin.com/in/hardikmonga/', '_blank', 'noopener,noreferrer')">in</div>
+              <div class="icon-circle" onclick="window.open('mailto:hello@hardikmonga.com', '_blank', 'noopener,noreferrer')">✉</div>
+              <div class="icon-circle" onclick="window.open('https://twitter.com/hardikmonga_', '_blank', 'noopener,noreferrer')">𝕏</div>
+              <div class="icon-circle" onclick="window.open('https://www.instagram.com/hardikmonga_/', '_blank', 'noopener,noreferrer')">ig</div>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- Resume Section -->
+          <div class="card-section">
+            <div class="card-header">
+              <h2 class="card-title underline decoration-1 underline-offset-4 font-medium" onclick="window.open('/Hardik-Monga-Resume.pdf', '_blank', 'noopener,noreferrer')">Download Resume</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project Card 1 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-1.html'">
+        <div class="project-card-image">
+          <img src="/assets/project-1/cover2.png" alt="Delivery Partner App Intervention">
+        </div>
+        <div class="card-content">
+          <h3 class="project-card-title font-medium text-xl">Delivery Partner App Intervention</h3>
+          <p class="project-card-categories text-sm">UX Research, Service Design, Social Impact</p>
+        </div>
+      </div>
+      
+      <!-- Project Card 2 -->
+      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+        <div class="project-card-image">
+          <img src="/assets/project-2/cover-elocien.png" alt="Elocien: AI Voice Platform">
+        </div>
+        <div class="card-content">
+          <h3 class="project-card-title font-medium text-xl">Elocien: AI Voice Platform</h3>
+          <p class="project-card-categories text-sm">UX/UI Design, Product Design, Branding</p>
         </div>
       </div>
     </div>
