@@ -45,7 +45,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         case 'landscape':
           return 'h-[220px] w-full';
         case 'square':
-          return 'h-[300px] w-full';
+          return 'aspect-square w-full';
         case 'portrait':
         default:
           return 'h-[400px] w-full';

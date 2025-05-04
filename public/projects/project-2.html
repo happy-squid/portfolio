@@ -704,9 +704,10 @@
           <div class="article-nav-container content-container pl-0">
             <div class="article-nav-links hide-scrollbar">
               <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
-              <a href="#secondary-research" class="article-nav-link" data-text="Secondary Research">SECONDARY RESEARCH</a>
-              <a href="#primary-research" class="article-nav-link" data-text="Primary Research">PRIMARY RESEARCH</a>
-              <a href="#ideation" class="article-nav-link" data-text="Ideation">IDEATION</a>
+              <a href="#findings" class="article-nav-link" data-text="Competitor Analysis">COMPETITOR ANALYSIS</a>
+              <a href="#feature-analysis" class="article-nav-link" data-text="Kano Feature Analysis">FEATURE PRIORITIZATION</a>
+              <a href="#intervention" class="article-nav-link" data-text="Ideation">IDEATION</a>
+              <a href="#branding" class="article-nav-link" data-text="Branding">BRANDING</a>
               <a href="#final-solution" class="article-nav-link" data-text="Final Solution">FINAL SOLUTION</a>
             </div>
           </div>
@@ -771,7 +772,7 @@
           <div class="w-full relative" style="padding-top: 56.25%;">
             <iframe 
               style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-              src="https://embed.figma.com/board/382oUB2kVIpIQjc3JB6r4j/Elocien?node-id=0-1&embed-host=share" 
+              src="https://embed.figma.com/proto/Zy0eXJA7u5w9v5jQE63ShJ/EloUI?page-id=0%3A1&node-id=345-44&viewport=-633%2C150%2C0.2&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=94%3A146&embed-host=share" 
               allowfullscreen
             ></iframe>
           </div>
@@ -893,16 +894,12 @@
           <!-- Works Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Works</h2>
-              <span class="card-arrow">→</span>
+              <h2 class="card-title relative group cursor-pointer font-medium" onclick="window.location.href='/'">
+                Homepage
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+              </h2>
             </div>
-            <div class="icon-row">
-              <div class="icon-circle">OK</div>
-              <div class="icon-circle">友</div>
-              <div class="icon-circle">♫</div>
-              <div class="icon-circle">☝</div>
-              <div class="icon-circle">?</div>
-            </div>
+            
           </div>
           
           <div class="divider"></div>
@@ -910,13 +907,16 @@
           <!-- Me Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Me</h2>
-              <span class="card-arrow">→</span>
+              <h2 class="card-title relative group cursor-pointer font-medium">
+                Me
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+              </h2>
             </div>
             <div class="icon-row">
-              <div class="icon-circle">in</div>
-              <div class="icon-circle">✉</div>
-              <div class="icon-circle">𝕏</div>
+              <a href=" " target="_blank" rel="noopener noreferrer" class="icon-circle">in</a>
+              <a href="mailto:hardikmonga311@gmail.com" class="icon-circle">✉️</a>
+              <a href="https://x.com/HardikMonga3" target="_blank" rel="noopener noreferrer" class="icon-circle">𝕏</a>
+              <a href="https://www.instagram.com/hardikmonga_/" target="_blank" rel="noopener noreferrer" class="icon-circle">ig</a>
             </div>
           </div>
           
@@ -925,32 +925,31 @@
           <!-- Resume Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Download Resume</h2>
-              <span class="card-arrow">↓</span>
+              <h2 class="card-title underline decoration-1 underline-offset-4 font-medium" onclick="window.open('/Hardik-Monga-Resume.pdf', '_blank', 'noopener,noreferrer')">Download Resume</h2>
             </div>
           </div>
         </div>
       </div>
       
       <!-- Project Card 1 -->
-      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+      <div class="card project-card" onclick="window.location.href='/projects/project-1.html'">
         <div class="project-card-image">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Urban Perspectives">
+          <img src="/assets/project-1/cover2.png" alt="Delivery Partner App Intervention" class="rounded-md">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title">Urban Perspectives</h3>
-          <p class="project-card-year">2022</p>
+          <h3 class="project-card-title font-medium text-xl">Delivery Partner App Intervention</h3>
+          <p class="project-card-categories text-sm text-gray-500">UX Research, Service Design, Social Impact</p>
         </div>
       </div>
       
       <!-- Project Card 2 -->
       <div class="card project-card" onclick="window.location.href='/projects/project-3.html'">
         <div class="project-card-image">
-          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Chromatic Reverie">
+          <img src="/assets/project-3/cover-dominos.png" alt="Domino's Redesign" class="rounded-md">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title">Chromatic Reverie</h3>
-          <p class="project-card-year">2022</p>
+          <h3 class="project-card-title font-medium text-xl">Domino's Redesign</h3>
+          <p class="project-card-categories text-sm text-gray-500">User Research & Testing, Product Optimization</p>
         </div>
       </div>
     </div>

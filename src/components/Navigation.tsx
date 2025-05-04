@@ -32,7 +32,7 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   const handleResumeClick = () => {
-    window.open("https://drive.google.com/file/d/1mVGxx04RSGPkDTD7_lTCwMTRppocA3rC/view?usp=drive_link", "_blank", "noopener,noreferrer");
+    window.open("/Hardik-Monga-Resume.pdf", "_blank", "noopener,noreferrer");
   };
   
   const handleCardToggle = (e: React.MouseEvent) => {
@@ -123,7 +123,10 @@ const Navigation: React.FC<NavigationProps> = ({
                   Works
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                 </button>
-                <span className={isMobile ? "text-xl" : "text-2xl"}>→</span>
+                <span 
+                  className={isMobile ? "text-xl cursor-pointer" : "text-2xl cursor-pointer"}
+                  onClick={handleWorksClick}
+                >→</span>
               </div>
               <div className="flex gap-2 mt-2">
                 <div 
@@ -142,7 +145,10 @@ const Navigation: React.FC<NavigationProps> = ({
                   className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
                   onClick={() => onScrollToProject(3)}
                 >🎮</div>
-                <div className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer">?</div>
+                <div 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  onClick={() => onScrollToProject(4)}
+                >?</div>
               </div>
             </div>
             
@@ -153,12 +159,15 @@ const Navigation: React.FC<NavigationProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <button 
                   className={isMobile ? "text-xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group" : "text-2xl font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"}
-                  onClick={() => {}}
+                  onClick={() => onScrollToProject(5)}
                 >
                   Me
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                 </button>
-                <span className={isMobile ? "text-xl" : "text-2xl"}>→</span>
+                <span 
+                  className={isMobile ? "text-xl cursor-pointer" : "text-2xl cursor-pointer"}
+                  onClick={() => onScrollToProject(5)}
+                >→</span>
               </div>
               <div className="flex gap-2 mt-2">
                 <a 
@@ -177,6 +186,12 @@ const Navigation: React.FC<NavigationProps> = ({
                   rel="noopener noreferrer" 
                   className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
                 >𝕏</a>
+                <a 
+                  href="https://www.instagram.com/hardikmonga_/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                >ig</a>
               </div>
             </div>
             

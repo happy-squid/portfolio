@@ -516,6 +516,11 @@
       margin-bottom: 0.25rem;
     }
     
+    .project-card-categories {
+      font-size: 0.875rem;
+      color: #666;
+    }
+    
     .project-card-year {
       font-size: 0.875rem;
       color: #666;
@@ -752,8 +757,7 @@
           <!-- Works Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Works</h2>
-              <span class="card-arrow">→</span>
+              <h2 class="card-title font-medium"><a href="/" class="hover:underline">Homepage</a></h2>
             </div>
             <div class="icon-row">
               <div class="icon-circle">OK</div>
@@ -769,13 +773,13 @@
           <!-- Me Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Me</h2>
-              <span class="card-arrow">→</span>
+              <h2 class="card-title font-medium"><a href="#" class="hover:underline">Me</a></h2>
             </div>
             <div class="icon-row">
-              <div class="icon-circle">in</div>
-              <div class="icon-circle">✉</div>
-              <div class="icon-circle">𝕏</div>
+              <div class="icon-circle" onclick="window.open('https://www.linkedin.com/in/hardikmonga/', '_blank', 'noopener,noreferrer')">in</div>
+              <div class="icon-circle" onclick="window.open('mailto:hello@hardikmonga.com', '_blank', 'noopener,noreferrer')">✉</div>
+              <div class="icon-circle" onclick="window.open('https://twitter.com/hardikmonga_', '_blank', 'noopener,noreferrer')">𝕏</div>
+              <div class="icon-circle" onclick="window.open('https://www.instagram.com/hardikmonga_/', '_blank', 'noopener,noreferrer')">ig</div>
             </div>
           </div>
           
@@ -784,32 +788,31 @@
           <!-- Resume Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title">Download Resume</h2>
-              <span class="card-arrow">↓</span>
+              <h2 class="card-title underline decoration-1 underline-offset-4 font-medium" onclick="window.open('/Hardik-Monga-Resume.pdf', '_blank', 'noopener,noreferrer')">Download Resume</h2>
             </div>
           </div>
         </div>
       </div>
       
       <!-- Project Card 1 -->
-      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+      <div class="card project-card" onclick="window.location.href='/projects/project-1.html'">
         <div class="project-card-image">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Urban Perspectives">
+          <img src="/assets/project-1/cover2.png" alt="Delivery Partner App Intervention">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title">Urban Perspectives</h3>
-          <p class="project-card-year">2022</p>
+          <h3 class="project-card-title font-medium text-xl">Delivery Partner App Intervention</h3>
+          <p class="project-card-categories text-sm">UX Research, Service Design, Social Impact</p>
         </div>
       </div>
       
       <!-- Project Card 2 -->
-      <div class="card project-card" onclick="window.location.href='/projects/project-3.html'">
+      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
         <div class="project-card-image">
-          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Chromatic Reverie">
+          <img src="/assets/project-2/cover-elocien.png" alt="Elocien: AI Voice Platform">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title">Chromatic Reverie</h3>
-          <p class="project-card-year">2022</p>
+          <h3 class="project-card-title font-medium text-xl">Elocien: AI Voice Platform</h3>
+          <p class="project-card-categories text-sm">UX/UI Design, Product Design, Branding</p>
         </div>
       </div>
     </div>

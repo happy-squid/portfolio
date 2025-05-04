@@ -20,6 +20,7 @@ const VerticalGallery: React.FC<VerticalGalleryProps> = ({
   const videoRef3 = useRef<HTMLVideoElement>(null);
   const [videoHasPlayed3, setVideoHasPlayed3] = useState(false);
   const firstProjectRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   const scrollToTop = () => {
     window.scrollTo({
@@ -37,6 +38,15 @@ const VerticalGallery: React.FC<VerticalGalleryProps> = ({
     }
   };
 
+  const scrollToProject = (index: number) => {
+    if (projectRefs.current[index]) {
+      projectRefs.current[index]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className={cn("relative w-full pb-20 bg-[#F1F1F0]", className)}>
       {/* Header section with navigation - fixed at top */}
@@ -45,7 +55,7 @@ const VerticalGallery: React.FC<VerticalGalleryProps> = ({
           <Navigation 
             scrollLeft={0} 
             onScrollToStart={scrollToTop}
-            onScrollToProject={() => {}}
+            onScrollToProject={scrollToProject}
             isMobile={true}
           />
         </div>
@@ -112,7 +122,14 @@ const VerticalGallery: React.FC<VerticalGalleryProps> = ({
           const actualIndex = index;
           
           return (
-            <div key={project.id} className="w-full" ref={actualIndex === 0 ? firstProjectRef : null}>
+            <div key={project.id} className="w-full" ref={(ref) => {
+              if (ref) {
+                projectRefs.current[actualIndex] = ref;
+                if (actualIndex === 0) {
+                  firstProjectRef.current = ref;
+                }
+              }
+            }}>
               <ProjectCard 
                 project={project} 
                 variant={

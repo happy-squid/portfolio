@@ -45,7 +45,7 @@ export const projects: Project[] = [
     id: "project-5",
     title: "Organic Patterns",
     description: "Exploring patterns found in nature through various media.",
-    imageUrl: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/project-5/cover-branding.png",
     year: "2021",
     tags: ["Mixed Media", "Nature"]
   },
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     id: "project-6",
     title: "Temporal Fragments",
     description: "A video series examining the perception of time through visual fragments.",
-    imageUrl: "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/project-6/cover-photography.png",
     year: "2020",
     tags: ["Video", "Experimental"]
   }

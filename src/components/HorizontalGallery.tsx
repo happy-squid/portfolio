@@ -420,6 +420,12 @@ He does <span className="text-black">interaction</span>, <span className="text-b
                     rel="noopener noreferrer" 
                     className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
                   >𝕏</a>
+                  <a 
+                    href="https://www.instagram.com/hardikmonga_/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                  >ig</a>
                 </div>
                 
                 {/* Divider line */}
@@ -429,7 +435,7 @@ He does <span className="text-black">interaction</span>, <span className="text-b
                 <div className="flex items-center justify-between">
                   <button 
                     className="text-base font-medium cursor-pointer bg-transparent border-none p-0 m-0 text-left relative group"
-                    onClick={() => window.open("https://drive.google.com/file/d/1mVGxx04RSGPkDTD7_lTCwMTRppocA3rC/view?usp=drive_link", "_blank", "noopener,noreferrer")}
+                    onClick={() => window.open("/Hardik-Monga-Resume.pdf", "_blank", "noopener,noreferrer")}
                   >
                     Download Resume
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
