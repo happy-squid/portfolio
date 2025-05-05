@@ -43,18 +43,18 @@ export const projects: Project[] = [
   },
   {
     id: "project-5",
-    title: "Organic Patterns",
-    description: "Exploring patterns found in nature through various media.",
+    title: "Branding & Identity Design",
+    description: "Freelance work under the name holy.pix, crafting distinct and memorable brand identities.",
     imageUrl: "/assets/project-5/cover-branding.png",
     year: "2021",
-    tags: ["Mixed Media", "Nature"]
+    tags: ["Graphic Design", "Brand Identity Design"]
   },
   {
     id: "project-6",
-    title: "Temporal Fragments",
-    description: "A video series examining the perception of time through visual fragments.",
+    title: "Photography",
+    description: "An off duty pursuit of curious streets and faraway corners.",
     imageUrl: "/assets/project-6/cover-photography.png",
     year: "2020",
-    tags: ["Video", "Experimental"]
+    tags: ["Street", "Wildlife", "Nature"]
   }
 ];
