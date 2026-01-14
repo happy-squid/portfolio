@@ -19,6 +19,34 @@
       line-height: 1.6;
       scroll-behavior: smooth;
       background-color: white;
+      font-size: 0.9rem; /* 10% smaller than default 1rem */
+    }
+    
+    /* Constrain paragraph width with right margin, excluding grey boxes */
+    p:not(.highlight-box p) {
+      max-width: 80ch; /* Optimal reading width */
+      margin-right: auto;
+      margin-left: 0;
+    }
+    
+    /* Ensure grey box paragraphs use full width */
+    .highlight-box p {
+      max-width: none;
+      margin-right: 0;
+      margin-left: 0;
+    }
+    
+    /* Responsive font sizes for larger screens */
+    @media (min-width: 768px) {
+      body {
+        font-size: 0.95rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      body {
+        font-size: 1rem; /* Back to default on desktop */
+      }
     }
     
     .project-header {
@@ -29,16 +57,31 @@
     }
     
     .section-header {
-      font-size: 2rem;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-top: 4rem;
       margin-bottom: 1.5rem;
       scroll-margin-top: 120px; /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
+      color: #b0b0b0; /* Grey color */
+      letter-spacing: 0.03em; /* Added letter spacing */
+    }
+    
+    /* Responsive section headers for larger screens */
+    @media (min-width: 768px) {
+      .section-header {
+        font-size: 0.96rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .section-header {
+        font-size: 1.08rem;
+      }
     }
     
     .subsection-header {
-      font-size: 1.5rem;
+      font-size: 1.365rem;
       font-weight: 600;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
@@ -54,7 +97,7 @@
     }
     
     .problem-card h3 {
-      font-size: 1.25rem;
+      font-size: 1.134rem;
       font-weight: 600;
       margin-bottom: 1rem;
       font-family: 'Montserrat', sans-serif;
@@ -712,29 +755,27 @@
         
         <!-- Project Overview -->
         <div class="prose prose-lg max-w-none">
-          <h2 id="overview" class="section-header">Project Overview</h2>
+          <h2 id="overview" class="section-header">OVERVIEW</h2>
+          <h3 class="subsection-header" style="margin-top: -1rem">BETWEEN PICKUP AND DROP</h3>
           <p>
-            This project explores the challenges faced by food delivery workers in India and proposes 
-            design interventions to improve their working conditions. Through extensive research, including 
-            interviews, data analysis, and literature review, I identified key issues affecting delivery 
-            partners and developed solutions to address them.
+            Food delivery systems fail quietly, in delays, fatigue, and repeated friction that scales across millions of orders.
+This project intervenes at the delivery-flow level, not policy, focusing on navigation and rest as leverage points.
           </p>
           
         </div>
         
         <!-- Research Section -->
-        <h2 id="research" class="section-header">Research</h2>
         
-        <h3 id="challenges" class="subsection-header">What challenges do food delivery workers face?</h3>
+        <h3 id="challenges" class="subsection-header">WHERE DOES DELIVERY WORK BREAK DOWN?</h3>
         <p class="mb-8">
           With this question in mind, I conducted research into the experiences of food delivery workers 
           in India, analyzing news reports, academic studies, and conducting interviews to understand 
-          the key challenges they face.
+          the key challenges they face. The following are the areas I researched:
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div class="problem-card">
-            <h3>Working Conditions</h3>
+            <h3>🛵 Working Conditions</h3>
             <p>
               Delivery workers often work 10-12 hours per day in extreme weather conditions with 
               limited access to basic facilities like restrooms and rest areas.
@@ -742,7 +783,7 @@
           </div>
           
           <div class="problem-card">
-            <h3>Income Instability</h3>
+            <h3>💵 Income Instability</h3>
             <p>
               Workers face unpredictable earnings due to fluctuating order volumes, incentive 
               structures, and increasing fuel costs that eat into their profits.
@@ -750,7 +791,7 @@
           </div>
           
           <div class="problem-card">
-            <h3>Support Systems</h3>
+            <h3>🏥 Support Systems</h3>
             <p>
               Limited access to healthcare, insurance, and other social security benefits, 
               despite the physically demanding and sometimes dangerous nature of their work.
@@ -758,95 +799,117 @@
           </div>
         </div>
         
-        <!-- Literature Review Carousel -->
-        <h3 id="findings" class="subsection-header">Literature Review</h3>
-        <p class="mb-4">
-          My research included analysis of news articles, academic papers, and routines with delivery workers. I went through a lot of resources from news articles, T&C policy papers, research papers and youtube videos. After going through all this, I found that a lot of solutions were already there out of which many were policy oriented. They were related to delivery platform policies or govt. Law policies. Looking at the pace at which the gig economy of India is growing, I think the government will eventually have to take forward the issue of exploitation happening to delivery partners, which has already been done in the UK, while China has asked its delivery companies to give stable orders to the experienced working in the company.
-          Here are some key findings from various sources:
-        </p>
+        <!-- Literature Review -->
+        <h2 id="findings" class="section-header">LITERATURE REVIEW</h2>
+      
+        <h3 class="subsection-header" style="margin-top: -1rem">HOW THE SYSTEM CURRENTLY MANAGES DELIVERY WORK?</h3>
+        <p class="mb-4">Most formal responses to delivery work focus on platform rules, government policy, and institutional programs.</p>
         
-        <!-- Swiper Carousel -->
-        <div class="swiper mySwiper">
+        <div class="swiper mySwiper mb-16">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
-              <p class="slide-caption">Shortage of delivery partners affecting service quality(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
-              <p class="slide-caption">Surge in food delivery orders creating higher demand(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
-              <p class="slide-caption">Swiggy's fuel policy impacts delivery partner earnings(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - EVs.png" alt="Economic Times - EVs for Delivery" />
-              <p class="slide-caption">Electric vehicles proposed as sustainable delivery solution(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - ExploringOtherOptions.png" alt="Economic Times - Exploring Other Options" />
-              <p class="slide-caption">Companies exploring alternative delivery methods(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Restraunts Impacted.png" alt="Economic Times - Restaurants Impacted" />
-              <p class="slide-caption">Restaurants affected by delivery workforce challenges(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Grab.in.png" alt="Economic Times - Grab.in" />
-              <p class="slide-caption">Grab.in's approach to delivery partner management(Economic Times)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/the hindu.png" alt="The Hindu - Delivery Workers" />
-              <p class="slide-caption">Delivery workers facing challenging working conditions(The Hindu)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/the hindu 2.png" alt="The Hindu - Article 2" />
-              <p class="slide-caption">Income instability among food delivery workers(The Hindu)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/the hindu 3.png" alt="The Hindu - Article 3" />
-              <p class="slide-caption">Health and safety concerns in the delivery sector(The Hindu)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/the hindu 4.png" alt="The Hindu - Article 4" />
-              <p class="slide-caption">Lack of social security benefits for gig workers(The Hindu)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/the hindu 5.png" alt="The Hindu - Article 5" />
-              <p class="slide-caption">Delivery workers seeking better representation(The Hindu)</p>
-            </div>
-            <div class="swiper-slide">
               <img src="/assets/project-1/findings/FairworkProjectRating(qz.com).png" alt="Fairwork Project Rating" />
-              <p class="slide-caption">Fairwork Project rating of food delivery platforms(qz.com)</p>
+              <p class="slide-caption">Independent audit of delivery platform labor practices (qz.com)</p>
             </div>
             <div class="swiper-slide">
               <img src="/assets/project-1/findings/ZOMATO-termination-t&c.png" alt="Zomato Termination Terms" />
-              <p class="slide-caption">Zomato's termination policies for delivery partners</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/thenewsminute.png" alt="The News Minute - Article" />
-              <p class="slide-caption">Working hours and compensation analysis(The News Minute)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/thenewsminute2.png" alt="The News Minute - Article 2" />
-              <p class="slide-caption">Delivery workers' experiences during extreme weather(The News Minute)</p>
+              <p class="slide-caption">Platform control over delivery partner termination (Zomato T&C)</p>
             </div>
             <div class="swiper-slide">
               <img src="/assets/project-1/findings/thenewsminute(govt.law).png" alt="The News Minute - Government Law" />
-              <p class="slide-caption">Government regulations affecting gig economy workers(The News Minute)</p>
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/project-1/findings/toi-article.png" alt="Times of India Article" />
-              <p class="slide-caption">Public perception of food delivery workers(Times of India)</p>
+              <p class="slide-caption">Government regulation for gig worker protection (The News Minute)</p>
             </div>
             <div class="swiper-slide">
               <img src="/assets/project-1/findings/training provided(the wire).png" alt="Training Provided - The Wire" />
-              <p class="slide-caption">Training programs available to delivery partners(The Wire)</p>
+              <p class="slide-caption">Skill training as a substitute for labor protection (The Wire)</p>
             </div>
             <div class="swiper-slide">
               <img src="/assets/project-1/findings/defindia-pg5-about.png" alt="DEF India - About Page" />
-              <p class="slide-caption">Digital Empowerment Foundation's initiatives for gig workers(DEF India)</p>
+              <p class="slide-caption">NGO-led digital inclusion for gig workers (DEF India)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 5.png" alt="The Hindu - Article 5" />
+              <p class="slide-caption">Delivery workers seeking representation and recognition (The Hindu)</p>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <!-- Subsection 2: How scale is reshaping the delivery economy -->
+        <h3 class="subsection-header">HOW SCALE IS RESHAPING THE DELIVERY ECONOMY?</h3>
+        <p class="mb-4">Rapid growth in food delivery has increased demand, costs, and instability across the system.</p>
+        
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
+              <p class="slide-caption">Delivery partner shortages impacting service quality (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
+              <p class="slide-caption">Rapid growth in food delivery demand (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
+              <p class="slide-caption">Fuel costs shifting operating expenses to workers (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - EVs.png" alt="Economic Times - EVs for Delivery" />
+              <p class="slide-caption">Platform attempts to offset rising delivery costs (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - ExploringOtherOptions.png" alt="Economic Times - Exploring Other Options" />
+              <p class="slide-caption">Platforms experimenting with alternative delivery models (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - Restraunts Impacted.png" alt="Economic Times - Restaurants Impacted" />
+              <p class="slide-caption">Workforce instability affecting restaurant operations (Economic Times)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/economicTimes - Grab.in.png" alt="Economic Times - Grab.in" />
+              <p class="slide-caption">Alternative gig model attempting greater delivery stability (Economic Times)</p>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <!-- Subsection 3: What delivery work feels like on the ground -->
+        <h3 class="subsection-header">WHAT DELIVERY WORK FEELS LIKE ON THE GROUND?</h3>
+        <p class="mb-4">On-ground reporting shows long hours, unsafe conditions, and income uncertainty shaping everyday delivery work.</p>
+        
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/thenewsminute2.png" alt="The News Minute - Article 2" />
+              <p class="slide-caption">Delivery work under extreme weather conditions (The News Minute)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/thenewsminute.png" alt="The News Minute - Article" />
+              <p class="slide-caption">Long hours and inconsistent pay for delivery partners (The News Minute)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu.png" alt="The Hindu - Delivery Workers" />
+              <p class="slide-caption">On-ground reporting on delivery working conditions (The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 2.png" alt="The Hindu - Article 2" />
+              <p class="slide-caption">Income instability among delivery workers (The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 3.png" alt="The Hindu - Article 3" />
+              <p class="slide-caption">Health and safety risks in delivery work (The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/the hindu 4.png" alt="The Hindu - Article 4" />
+              <p class="slide-caption">Lack of social security for gig workers (The Hindu)</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/project-1/findings/toi-article.png" alt="Times of India Article" />
+              <p class="slide-caption">Public perception of food delivery workers (Times of India)</p>
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -855,10 +918,11 @@
         </div>
         
         <!-- Survey Results -->
-        <h3 id="survey" class="subsection-header">Survey Results</h3>
+        <h2 id="survey" class="section-header">SURVEY RESULTS</h2>
+        <h3 class="subsection-header" style="margin-top: -1rem">WHAT DELIVERY RECEIVERS FEEL?</h3>
+
         <p class="mb-8">
-          I conducted a survey with 32 food delivery app customers to understand their experiences. The main issues reported were difficulty in sharing accurate delivery locations and frustration with cold food, long delivery times, and expensive delivery charges. The preconcieved notions turned to be true, as a big number of the customers were not satisfied with delivery time and frictions when talking to the delivery partners.
-        </p>
+Even though missed locations happen, the largest source of frustration in the survey I conducted is expensive delivery charges, suggesting that friction inside the delivery flow shows up to users as cost, not conversation.        </p>
         
         <div class="mb-16">
           <div class="mind-map-container">
@@ -872,11 +936,9 @@
         </div>
         
         <!-- Mind Map -->
-        <h3 id="analysis" class="subsection-header">Problem Analysis</h3>
+        <h3 id="analysis" class="subsection-header">GAPS IN THE SYSTEM</h3>
         <p class="mb-8">
-          Based on my research, I created a mind map to visualize the interconnected challenges 
-          faced by food delivery workers and identify potential areas for intervention.
-        </p>
+Most of what makes delivery work hard isn’t one big problem. It’s a stack of small constraints that collide during every order.        </p>
         
         <div class="mb-16">
           <div class="mind-map-container">
@@ -887,22 +949,65 @@
             />
           </div>
         </div>
+        <p class="mb-8" style="margin-top: -2rem">
+The map shows a pattern: delivery platforms optimize routes, incentives, and availability, but not the basic conditions that make sustained work possible. Food, rest, charging, and safety are treated as personal problems, even though they directly affect delivery speed, reliability, and cost.        
+        </p>
+        
+        
+        
+        <div class="mb-16">
+      <h3 class="subsection-header">WHERE THIS CREATES LEVERAGE</h3>
+      <div class="mb-8">
+        <img 
+          src="/assets/project-1/leverage-map.png" 
+          alt="Leverage Map"
+          class="rounded-lg"
+          style="background-color: white; padding: 1rem;"
+        />
+      </div>
+<p class="mb-8">
+If navigation, rest, and charging are built into the delivery flow instead of left to individual improvisation, the system becomes faster, cheaper, and more humane at the same time.
+</p>
+        </div>
+
+        <h3 class="subsection-header">BASELINE DELIVERY FLOW</h3>
+        <p class="mb-8">
+Built from delivery partner vlogs on YouTube and street-level observation, this flow captures the real decisions and delays between pickup and drop.        </p>
+        
+        <!-- User Flow -->
+        <div class="mb-16">
+          <div class="mind-map-container">
+            <img 
+              src="/assets/project-1/user-flow.jpeg" 
+              alt="User Flow"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
         
         <!-- Design Intervention -->
-        <h2 id="intervention" class="section-header">Design Intervention</h2>
+        <h2 id="intervention" class="section-header">DESIGN INTERVENTION</h2>
+        <h3 class="subsection-header" style="margin-top: -1rem">WHAT I CHOSE TO CHANGE</h3>
+        
         <p class="mb-8">
-          Based on my research findings, I developed a design intervention focused on creating 
-          rest stops and support facilities for delivery workers, integrated with the existing 
-          food delivery app ecosystem.
-        </p>
+The system breaks in two places. At the door and between orders. That is where design steps in.        </p>
         
         <!-- App Interface -->
         <div class="mb-16">
           <div class="mind-map-container"> 
             <div class="content-wrapper">
-              <h3 class="subsection-header">AR App Interface</h3>
+              <h3 class="subsection-header">1. Last-Meter Guidance</h3>
               <p>
-                Inspired by delivery partners' vlogs, the AR app interface helps delivery workers quickly find the exact door or gate for deliveries. After reaching the customer's location, the app shows a short video—previously recorded and uploaded by another delivery partner—guiding them from the street to the correct entrance, reducing confusion, delays, and unnecessary calls.
+This feature comes from a real workaround.<br><br> A friend of mine recorded a short walk-through video of his building and shared it with delivery partners on WhatsApp when they could not find his door. <br><br>The AR interface turns that same idea into a system: short, reusable visual guides that take riders from the street to the correct entrance.              </p>
+              
+              <p class="mb-8">
+Once a rider reaches a location, the app exposes a community references layer. This is not default navigation. It only appears when the system knows that precision is needed.<br> <br>
+
+Opening it switches the camera on and anchors visual markers to the physical space. These marks do not show a route through the city. They show the last stretch. Where to turn. Which gate to use. Which stairwell leads to the right door.<br> <br>
+
+Alongside this, riders see photos left by others. Signs, shop fronts, security desks, alleyways. Each one is rated by the delivery community based on whether it actually helped someone reach the entrance.<br> <br>
+
+The interface is built around a single assumption: riders already solve this problem for each other informally. The design formalizes that behavior, making local knowledge persistent, searchable, and accountable inside the system.
               </p>
             </div>
             <img 
@@ -910,6 +1015,7 @@
               alt="App Interface Design"
               class="rounded-lg"
             />
+            
           </div>
         </div>
         
@@ -917,10 +1023,14 @@
         <div class="mb-16">
           <div class="mind-map-container"> 
             <div class="content-wrapper">
-              <h3 class="subsection-header">Rest Stop Facilities</h3>
+              <h3 class="subsection-header">2. Sustaining the Shift</h3>
               <p>
-                Inspired by global examples, the design proposes community-run rest stops for delivery workers, offering toilets, water, seating, and charging points. These recharge stations would be managed by delivery partners themselves, supporting rest and collaboration, as company or restaurant support is often lacking.
-              </p>
+Delivery partners do not fail between orders.
+The system simply gives them nowhere to exist.<br><br>
+
+Rest stops are designed as small, community-run hubs placed inside the delivery network. They provide toilets, water, seating, and charging, not as amenities, but as infrastructure.<br><br>
+
+This choice rejects restaurant and platform-owned facilities. Those create dependency and uneven access. A community-run model keeps these spaces neutral, shared, and aligned with how riders already support each other.              </p>
             </div>
             <img 
               src="/assets/project-1/idea2.png" 
@@ -931,10 +1041,9 @@
         </div>
         
         <!-- Video Testimonials -->
-        <h3 id="testimonials" class="subsection-header">Delivery Partner Routine Analysis</h3>
+        <h3 id="testimonials" class="subsection-header">DELIVERY, AS LIVED</h3>
         <p class="mb-8">
-          Through a comprehensive analysis of video testimonials and YouTube vlogs shared by delivery workers, I distilled key insights into their daily routines and challenges. The following video presents a synthesis of the three most significant patterns observed across these firsthand accounts, offering a nuanced understanding of the complexities faced by delivery partners in India.
-        </p>
+Delivery-partner footage grounding the ideas above and the final navigation concept that follows.        </p>
         
         <div class="mb-16">
           <div class="aspect-video w-full">
@@ -954,10 +1063,14 @@
         </div>
         
         <!-- Final Solution -->
-        <h2 id="final-solution" class="section-header">Final Solution</h2>
+        <h2 id="final-solution" class="section-header">FINAL SOLUTION</h2>
+        <h3 id="testimonials" class="subsection-header" style="margin-top: -1rem">STRIPPING THE AR PART AWAY</h3>
         <p class="mb-8">
-          Moving beyond policy interventions, my final solution focuses on empowering delivery agents through the app they use daily. To address frequent navigation challenges caused by map inaccuracies and unclear addresses, I designed a community-driven feature within the app where delivery partners can share photos of landmarks and step-by-step instructions to reach specific locations. This system leverages collective knowledge—allowing posts to be upvoted or downvoted for usefulness—enabling faster, more accurate deliveries and reducing frustration for both agents and customers. The solution is complemented by strategically placed physical rest stops to further support delivery workers in urban areas.
-        </p>
+I cut the original AR concept back to what I could realistically build and test. <br>
+Full spatial AR was out of reach, so I focused on the core behavior that mattered: delivery partners sharing and rating location-specific landmarks and advice.<br><br>
+
+The result is a community-driven reference layer that replaces guesswork with collective memory.<br>
+The screens below show this shift from concept to interface.        </p>
         
         <div class="mb-16">
           <div class="side-by-side-container">
@@ -967,42 +1080,57 @@
                   src="/assets/project-1/sketch.png" 
                   alt="Initial Sketches"
                 />
-                <p class="image-caption">Initial concept sketches exploring different rest stop layouts</p>
               </div>
               <div class="image-column">
                 <img 
                   src="/assets/project-1/prototype.png" 
                   alt="Final Prototype"
                 />
-                <p class="image-caption">High-fidelity prototype of the final solution</p>
               </div>
             </div>
           </div>
         </div>
         
-        <!-- Conclusion -->
-        <h2 id="conclusion" class="section-header">Key Takeaways</h2>
-        <p class="mb-4">
-          This project highlights the importance of considering the human aspects of the gig economy, 
-          particularly for food delivery workers who form the backbone of the rapidly growing food 
-          delivery industry in India. By creating supportive infrastructure and services, we can 
-          improve working conditions while maintaining the efficiency of the delivery ecosystem. The following are some major takeaways for me from this project:
+        <!-- Figma Prototype -->
+        <h3 id="figma-prototype" class="subsection-header">FIGMA PROTOTYPE</h3>
+        <p class="mb-8">
+This prototype takes the same idea and pushes it into the real delivery interface. <br><br>
+
+Instead of inventing a new mode, I worked inside the "Reached drop location" screen, where confusion is highest. I added a small Community Landmarks layer to that moment so guidance appears only when it is actually needed.<br><br>
+
+The surface shows three rotating references by default. Each card is a landmark or piece of advice ranked by other delivery partners who have already solved that location. <br>Tapping into it opens the full thread, where riders can see photos, read notes, upvote what helped, downvote what did not, and add their own references for the next person.<br><br>
+
+The decision here was to make local knowledge visible without interrupting the delivery flow.
         </p>
         
+        <div class="mb-16">
+          <div class="w-full relative" style="padding-top: 56.25%;">
+            <iframe
+              style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+              src="https://embed.figma.com/proto/ObD9xcbxwJ1p26tZNwXQJZ/zomato-delivery-app?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <h2 id="conclusion" class="section-header">KEY TAKEAWAYS</h2>
+By fixing the moments where riders get lost and customers wait, this project smooths the quiet friction that sits between a ring at the door and a meal finally arriving.        </p>
+        
         <div class="highlight-box mb-4">
-          <p class="font-semibold">
-            Deep research and open-minded exploration are crucial; unexpected insights often emerge when challenging assumptions and engaging with diverse sources.
-          </p>
+          <p >
+1. SYSTEMS DON'T FAIL LOUDLY. THEY FAIL IN SMALL, REPEATED MOMENTS<br><br>
+Most of the harm in delivery work comes from tiny breakdowns at the door and between orders. Mapping those moments mattered more than finding a single big problem.          </p>
         </div>
         <div class="highlight-box mb-4">
-          <p class="font-semibold">
-            Systematic organization and critical evaluation of ideas—through mind mapping and peer discussions—streamline the design process and enhance solution quality.
-          </p>
+          <p >
+2. DESIGN LEVERAGE LIVES INSIDE EXISTING FLOWS, NOT OUTSIDE THEM.<br><br>
+The strongest move was not adding new features, but inserting guidance into a screen riders already depend on. Power comes from choosing where to intervene.          </p>
         </div>
         <div class="highlight-box mb-4">
-          <p class="font-semibold">
-            Prioritizing implementable, high-impact solutions is essential; thoughtful selection and real-world feasibility drive meaningful change for delivery workers.
-          </p>
+          <p >
+3. NOT EVERY GOOD IDEA IS BUILDABLE, AND THAT MATTERS.<br><br>
+Stripping away full AR forced the project to become more honest. What remained was the part that actually delivered value: shared, location-specific knowledge.          </p>
         </div>
       </div>
     </div>
