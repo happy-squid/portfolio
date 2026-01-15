@@ -19,11 +19,12 @@ export const projects: Project[] = [
   },
   {
     id: "project-2",
-    title: "Elocien Homepage",
-    description: "A streamlined homepage for AI video creation",
+    title: "Vedapath Redesign",
+    description: "Navigating Hindu Scriptures in a Mobile App",
     imageUrl: "/assets/project-2/cover-tile.png",
     year: "2024",
-    tags: ["Feature Prioritization", "Visual Identity Design"]
+    tags: ["UX Research", "Mobile App Design"],
+    link: "https://medium.com/@hardikmonga311/vedapath-redesign-navigating-hindu-scriptures-in-a-mobile-app-dd1d6b01b9c3"
   },
   {
     id: "project-3",

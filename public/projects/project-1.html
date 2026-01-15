@@ -49,6 +49,138 @@
       }
     }
     
+    /* Responsive image sizing */
+    .survey-img {
+      width: 55% !important;
+    }
+    
+    .leverage-img {
+      width: 64% !important;
+    }
+    
+    @media (max-width: 768px) {
+      .survey-img {
+        width: 90% !important;
+      }
+      
+      .leverage-img {
+        width: 90% !important;
+      }
+    }
+    
+    /* Make images clickable */
+    .clickable-img {
+      cursor: pointer;
+    }
+    
+    /* Simple custom lightbox */
+    .simple-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.92);
+      cursor: pointer;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+    
+    .simple-lightbox.active {
+      display: block;
+      overflow: auto;
+    }
+    
+    .simple-lightbox.zoomed-mode {
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .lightbox-container {
+      min-width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .lightbox-container.zoomed {
+      display: inline-block;
+      padding: 0;
+    }
+    
+    .simple-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+      display: block;
+      touch-action: none;
+      margin: 0;
+    }
+    
+    .simple-lightbox img.zoomed {
+      cursor: zoom-out;
+      max-width: none !important;
+      max-height: none !important;
+      width: auto !important;
+      height: auto !important;
+      touch-action: pan-x pan-y pinch-zoom;
+      transform-origin: 0 0;
+    }
+    
+    .simple-lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    
+    .simple-lightbox-close:hover {
+      color: #ccc;
+    }
+    
+    .zoom-controls {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      gap: 10px;
+      z-index: 10000;
+    }
+    
+    .zoom-btn {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+    
+    .zoom-btn:hover {
+      background-color: white;
+    }
+    
+    .zoom-btn:active {
+      transform: scale(0.95);
+    }
+    
     .project-header {
       font-size: 3rem;
       font-weight: 700;
@@ -925,14 +1057,11 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
 Even though missed locations happen, the largest source of frustration in the survey I conducted is expensive delivery charges, suggesting that friction inside the delivery flow shows up to users as cost, not conversation.        </p>
         
         <div class="mb-16">
-          <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/survey.png" 
-              alt="Survey Results"
-              class="rounded-lg"
-              style="width: 60%;" /* Make this specific image smaller */
-            />
-          </div>
+          <img 
+            src="/assets/project-1/survey.png" 
+            alt="Survey Results"
+            class="rounded-lg survey-img" style="width: 55%; background-color: white; padding: 1rem;"
+          />
         </div>
         
         <!-- Mind Map -->
@@ -961,8 +1090,7 @@ The map shows a pattern: delivery platforms optimize routes, incentives, and ava
         <img 
           src="/assets/project-1/leverage-map.png" 
           alt="Leverage Map"
-          class="rounded-lg"
-          style="background-color: white; padding: 1rem;"
+          class="rounded-lg leverage-img" style="background-color: white; padding: 1rem; width: 64%;"
         />
       </div>
 <p class="mb-8">
@@ -1059,7 +1187,6 @@ Delivery-partner footage grounding the ideas above and the final navigation conc
               style="aspect-ratio: 16/9;"
             ></iframe>
           </div>
-          <p class="caption">Documentary about food delivery workers in India and their daily challenges (Updated)</p>
         </div>
         
         <!-- Final Solution -->
@@ -1093,6 +1220,17 @@ The screens below show this shift from concept to interface.        </p>
         
         <!-- Figma Prototype -->
         <h3 id="figma-prototype" class="subsection-header">FIGMA PROTOTYPE</h3>
+        
+        <div class="mb-8">
+          <div class="mind-map-container">
+            <img 
+              src="/assets/project-1/user-flow-2.jpeg" 
+              alt="User Flow 2"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
+        
         <p class="mb-8">
 This prototype takes the same idea and pushes it into the real delivery interface. <br><br>
 
@@ -1502,6 +1640,226 @@ Stripping away full AR forced the project to become more honest. What remained w
             articleNav.style.paddingLeft = '4rem';
             articleNav.style.paddingRight = '4rem';
           }
+        }
+      });
+    });
+  </script>
+  
+  <!-- Simple Custom Lightbox HTML -->
+  <div class="simple-lightbox" id="simpleLightbox">
+    <span class="simple-lightbox-close" id="closeLightbox">&times;</span>
+    <div class="zoom-controls" id="zoomControls" style="display: none;">
+      <button class="zoom-btn" id="zoomOut">−</button>
+      <button class="zoom-btn" id="zoomIn">+</button>
+    </div>
+    <div class="lightbox-container" id="lightboxContainer">
+      <img src="" alt="" id="lightboxImage">
+    </div>
+  </div>
+  
+  <script>
+    // Simple custom lightbox with zoom
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightbox = document.getElementById('simpleLightbox');
+      const lightboxContainer = document.getElementById('lightboxContainer');
+      const lightboxImg = document.getElementById('lightboxImage');
+      const closeBtn = document.getElementById('closeLightbox');
+      const zoomControls = document.getElementById('zoomControls');
+      const zoomInBtn = document.getElementById('zoomIn');
+      const zoomOutBtn = document.getElementById('zoomOut');
+      const images = document.querySelectorAll('img:not(.swiper-slide img)');
+      
+      // Make images clickable (but not the lightbox image itself or navigation/card images)
+      images.forEach(img => {
+        // Don't add click handler to the lightbox image, navigation images, or project card images
+        const isNavImage = img.closest('nav') || img.closest('.article-nav') || img.closest('header');
+        const isProjectCard = img.closest('.project-card') || img.closest('.project-card-image');
+        if (img !== lightboxImg && !isNavImage && !isProjectCard) {
+          img.classList.add('clickable-img');
+          img.addEventListener('click', function(e) {
+            lightbox.classList.add('active');
+            lightboxImg.src = this.src;
+            lightboxImg.alt = this.alt;
+            lightboxImg.classList.remove('zoomed');
+            lightboxContainer.classList.remove('zoomed');
+            lightboxImg.style.transform = 'scale(1)';
+            currentScale = 1;
+            zoomControls.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+          });
+        }
+      });
+      
+      // Zoom variables
+      let currentScale = 1;
+      const minScale = 1;
+      const maxScale = 1.3; // 1 + (0.1 * 3) = 1.3x max
+      const zoomStep = 0.1; // 10% increments
+      
+      // Apply zoom function
+      function applyZoom(scale, clickX = null, clickY = null) {
+        currentScale = Math.max(minScale, Math.min(scale, maxScale));
+        
+        // Set transform origin based on click position or center
+        if (clickX !== null && clickY !== null) {
+          const rect = lightboxImg.getBoundingClientRect();
+          const originX = ((clickX - rect.left) / rect.width) * 100;
+          const originY = ((clickY - rect.top) / rect.height) * 100;
+          lightboxImg.style.transformOrigin = `${originX}% ${originY}%`;
+          console.log('Transform origin set to:', originX.toFixed(1) + '%', originY.toFixed(1) + '%');
+        } else {
+          lightboxImg.style.transformOrigin = 'center center';
+          console.log('Transform origin set to: center center');
+        }
+        
+        lightboxImg.style.transform = `scale(${currentScale})`;
+        
+        // Update classes for styling
+        if (currentScale > 1.01) { // Small threshold to account for floating point
+          lightboxImg.classList.add('zoomed');
+          lightbox.classList.add('zoomed-mode');
+          lightboxContainer.classList.add('zoomed');
+        } else {
+          lightboxImg.classList.remove('zoomed');
+          lightbox.classList.remove('zoomed-mode');
+          lightboxContainer.classList.remove('zoomed');
+        }
+        
+        console.log('Zoom:', currentScale.toFixed(2) + 'x');
+      }
+      
+      // Click to zoom - handle both click and touch
+      function handleImageClick(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        console.log('Image clicked, current scale:', currentScale);
+          console.log('Classes:', lightboxImg.className);
+        
+        // If at minimum zoom (1.0 or very close), zoom in by 10%
+        if (currentScale <= 1.05) {
+          console.log('Zooming in to 1.1x');
+          applyZoom(1.1, e.clientX, e.clientY);
+        } else {
+          // Otherwise zoom out to 1x
+          console.log('Zooming out to 1x');
+          applyZoom(1);
+        }
+      }
+      
+      // Use click event for desktop
+      lightboxImg.addEventListener('click', handleImageClick);
+      
+      // Also handle touch for mobile
+      lightboxImg.addEventListener('touchend', function(e) {
+        if (e.touches.length === 0) { // Only if not pinching
+          const touch = e.changedTouches[0];
+          handleImageClick({
+            stopPropagation: () => e.stopPropagation(),
+            preventDefault: () => e.preventDefault(),
+            clientX: touch.clientX,
+            clientY: touch.clientY
+          });
+        }
+      });
+      
+      // Zoom in button
+      zoomInBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        applyZoom(currentScale + zoomStep);
+      });
+      
+      // Zoom out button
+      zoomOutBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        applyZoom(currentScale - zoomStep);
+      });
+      
+      // Pinch zoom support
+      let initialDistance = 0;
+      let initialScale = 1;
+      
+      lightboxImg.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 2) {
+          e.preventDefault();
+          const touch1 = e.touches[0];
+          const touch2 = e.touches[1];
+          initialDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+          );
+          initialScale = currentScale;
+        }
+      });
+      
+      lightboxImg.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 2) {
+          e.preventDefault();
+          const touch1 = e.touches[0];
+          const touch2 = e.touches[1];
+          const currentDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+          );
+          
+          const scale = (currentDistance / initialDistance) * initialScale;
+          applyZoom(scale);
+        }
+      });
+      
+      // Prevent back navigation when zoomed
+      lightbox.addEventListener('touchmove', function(e) {
+        if (currentScale > 1 && e.touches.length === 1) {
+          e.stopPropagation();
+        }
+      }, { passive: false });
+      
+      // Prevent wheel scroll from triggering back
+      lightbox.addEventListener('wheel', function(e) {
+        if (currentScale > 1) {
+          e.stopPropagation();
+        }
+      }, { passive: false });
+      
+      // Close on X button
+      closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        lightbox.classList.remove('active');
+        lightbox.classList.remove('zoomed-mode');
+        lightboxContainer.classList.remove('zoomed');
+        lightboxImg.classList.remove('zoomed');
+        lightboxImg.style.transform = 'scale(1)';
+        currentScale = 1;
+        zoomControls.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+      
+      // Close on background click
+      lightbox.addEventListener('click', function(e) {
+        // Close if clicking the lightbox background or container (but not the image itself)
+        if (e.target === lightbox || e.target === lightboxContainer) {
+          lightbox.classList.remove('active');
+          lightbox.classList.remove('zoomed-mode');
+          lightboxContainer.classList.remove('zoomed');
+          lightboxImg.classList.remove('zoomed');
+          lightboxImg.style.transform = 'scale(1)';
+          currentScale = 1;
+          zoomControls.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          lightbox.classList.remove('active');
+          lightbox.classList.remove('zoomed-mode');
+          lightboxContainer.classList.remove('zoomed');
+          lightboxImg.classList.remove('zoomed');
+          lightboxImg.style.transform = 'scale(1)';
+          currentScale = 1;
+          zoomControls.style.display = 'none';
+          document.body.style.overflow = 'auto';
         }
       });
     });

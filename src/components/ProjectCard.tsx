@@ -16,6 +16,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   isMobile = false
 }) => {
   const handleClick = () => {
+    // If project has an external link, open it in a new tab
+    if (project.link) {
+      window.open(project.link, "_blank");
+      return;
+    }
+    
     // For project-5, redirect to Instagram
     if (project.id === "project-5") {
       window.open("https://www.instagram.com/holy.pix", "_blank");
@@ -73,7 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       <div className={cn(
         "overflow-hidden relative border-[6px] rounded-md",
-        className.includes('second-card') ? 'border-[#8CBCD4]' : 
+        className.includes('second-card') ? 'border-[#DAA520]' : 
         className.includes('fourth-card') ? 'border-[#CFCFCF]' : 
         'border-gray-300',
         getDimensions()
