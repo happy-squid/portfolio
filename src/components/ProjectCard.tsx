@@ -16,9 +16,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   isMobile = false
 }) => {
   const handleClick = () => {
-    // If project has an external link, open it in a new tab
+    // If project has an external link, navigate in same tab
     if (project.link) {
-      window.open(project.link, "_blank");
+      window.location.href = project.link;
       return;
     }
     

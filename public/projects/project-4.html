@@ -29,21 +29,50 @@
     }
     
     .section-header {
-      font-size: 2rem;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-top: 4rem;
       margin-bottom: 1.5rem;
       scroll-margin-top: 120px; /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
+      color: #b0b0b0; /* Grey color */
+      letter-spacing: 0.03em; /* Added letter spacing */
+    }
+    
+    /* Responsive section headers for larger screens */
+    @media (min-width: 768px) {
+      .section-header {
+        font-size: 0.96rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .section-header {
+        font-size: 1.08rem;
+      }
     }
     
     .subsection-header {
-      font-size: 1.5rem;
+      font-size: 1.365rem;
       font-weight: 600;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
       scroll-margin-top: 120px; /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Constrain paragraph width with right margin, excluding grey boxes */
+    p:not(.highlight-box p) {
+      max-width: 80ch; /* Optimal reading width */
+      margin-right: auto;
+      margin-left: 0;
+    }
+    
+    /* Ensure grey box paragraphs use full width */
+    .highlight-box p {
+      max-width: none;
+      margin-right: 0;
+      margin-left: 0;
     }
     
     .problem-card {
@@ -797,13 +826,13 @@
       </div>
       
       <!-- Project Card 2 -->
-      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
+      <div class="card project-card" onclick="window.open('https://medium.com/@hardikmonga311/vedapath-redesign-navigating-hindu-scriptures-in-a-mobile-app-dd1d6b01b9c3', '_blank')">
         <div class="project-card-image">
-          <img src="/assets/project-2/cover-tile.png" alt="Elocien Homepage" class="rounded-md">
+          <img src="/assets/project-2/cover-tile.png" alt="Vedapath Redesign" class="rounded-md">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title font-medium text-xl">Elocien Homepage</h3>
-          <p class="project-card-categories text-sm text-gray-500">Feature Prioritization, Visual Identity Design</p>
+          <h3 class="project-card-title font-medium text-xl">Vedapath Redesign</h3>
+          <p class="project-card-categories text-sm text-gray-500">Navigating Hindu scriptures in a mobile app</p>
         </div>
       </div>
     </div>

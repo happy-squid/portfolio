@@ -36,11 +36,12 @@ export const projects: Project[] = [
   },
   {
     id: "project-4",
-    title: "Improving Steam",
-    description: "A user-centric systems study to improve the Steam platform experience",
-    imageUrl: "/assets/project-4/cover-steam.png",
+    title: "Elocien",
+    description: "Feature Prioritization, Visual Identity Design",
+    imageUrl: "/assets/project-2/cover-tile-elocien.png",
     year: "2024",
-    tags: ["User Research & Testing", "Product Optimization"]
+    tags: ["Feature Prioritization", "Visual Identity Design"],
+    link: "/projects/project-2.html"
   },
   {
     id: "project-5",

@@ -228,6 +228,12 @@ const VerticalGallery: React.FC<VerticalGalleryProps> = ({
                 className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
               >in</a>
               <a 
+                href="https://medium.com/@hardikmonga311" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+              >m</a>
+              <a 
                 href="mailto:hardikmonga311@gmail.com" 
                 className="w-[40px] h-[40px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
               >✉️</a>
