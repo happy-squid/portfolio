@@ -29,21 +29,54 @@
     }
     
     .section-header {
-      font-size: 2rem;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-top: 4rem;
       margin-bottom: 1.5rem;
       scroll-margin-top: 120px; /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
+      color: #b0b0b0; /* Grey color */
+      letter-spacing: 0.03em; /* Added letter spacing */
+    }
+    
+    /* Responsive section headers for larger screens */
+    @media (min-width: 768px) {
+      .section-header {
+        font-size: 0.96rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .section-header {
+        font-size: 1.08rem;
+      }
     }
     
     .subsection-header {
-      font-size: 1.5rem;
+      font-size: 1.365rem;
       font-weight: 600;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
       scroll-margin-top: 120px; /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
+    }
+    
+    .section-header + .subsection-header {
+      margin-top: -1rem;
+    }
+    
+    /* Constrain paragraph width with right margin, excluding grey boxes */
+    p:not(.highlight-box p):not(.image-caption) {
+      max-width: 80ch; /* Optimal reading width */
+      margin-right: auto;
+      margin-left: 0;
+    }
+    
+    /* Ensure grey box paragraphs use full width */
+    .highlight-box p {
+      max-width: none;
+      margin-right: 0;
+      margin-left: 0;
     }
     
     .problem-card {
@@ -68,29 +101,46 @@
       padding: 2rem 4rem; /* Add padding for the arrows */
     }
     
+    .image-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-caption {
+      margin-top: 8px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: none;
+      text-align: center;
+      font-size: 1.125rem;
+      color: #555;
+      font-family: 'Montserrat', sans-serif;
+      display: block;
+      width: 100%;
+    }
+
     .swiper-slide {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 450px; /* Increased height to accommodate caption */
+      justify-content: center;
       padding: 1rem;
     }
     
     .swiper-slide img {
-      max-width: 100%;
-      max-height: 85%; /* Reduced to make room for caption */
-      object-fit: contain; /* Maintain aspect ratio and fit within container */
+      max-width: 90%;
+      height: auto;
+      object-fit: contain;
       display: block;
-      margin-bottom: 1rem;
-    }
-    
-    .slide-caption {
-      font-size: 0.875rem;
-      color: #555;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      margin-top: 0.5rem;
     }
     
     /* Custom navigation buttons */
@@ -438,6 +488,13 @@
       margin-top: 1.5rem;
     }
     
+    .mind-map-container .image-caption {
+      width: 75%; /* Match the image width */
+      align-self: center;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    
     .content-wrapper {
       width: 75%; /* Match the image width */
       align-self: center;
@@ -696,7 +753,10 @@
           <div class="article-nav-container content-container pl-0">
             <div class="article-nav-links hide-scrollbar">
               <a href="#overview" class="article-nav-link" data-text="Overview">OVERVIEW</a>
-              <a href="#presentation" class="article-nav-link" data-text="Presentation">PRESENTATION</a>
+              <a href="#flows" class="article-nav-link" data-text="Flows">FLOWS</a>
+              <a href="#insights" class="article-nav-link" data-text="Insights">INSIGHTS</a>
+              <a href="#design" class="article-nav-link" data-text="Design">DESIGN</a>
+              <a href="#validation" class="article-nav-link" data-text="Validation">VALIDATION</a>
             </div>
           </div>
         </div>
@@ -706,30 +766,369 @@
         
         <!-- Project Overview -->
         <div class="prose prose-lg max-w-none">
-          <h2 id="overview" class="section-header">Project Overview</h2>
-          <p style="margin-bottom: 20px;">
-            The Domino’s website faced critical usability challenges, from redundant address entries to unclear customization options and an inefficient payment flow. Our objective was to streamline the experience — making it faster, more intuitive, and visually cohesive — by reducing friction at every touchpoint.
-          </p>
+          <h2 id="overview" class="section-header">OVERVIEW</h2>
+          <h3 class="subsection-header">WHERE DOMINO'S WEB ORDERING SLOWS DOWN</h3>
           
           <p style="margin-bottom: 20px;">
-            As project lead, I orchestrated the end-to-end redesign: defining goals, conducting user research, creating wireframes, and validating improvements through iterative testing. Key solutions included a menu-first landing page, transparent customization pricing, and a refined payment workflow featuring QR code integration and smarter coupon handling.
-            </p>
+Food ordering fails quietly, in small delays and repeated steps. Me and my team redesigned Domino's web flow to remove those points of friction by leading with the menu, surfacing customization costs early, and collapsing payment into a faster, clearer checkout.            </p>
             
-            <p>
-            The redesign delivered a significantly faster, clearer, and more satisfying user journey. This project sharpened my leadership, strengthened my user-centric design approach, and reinforced the value of continuous iteration. View the full case study presentation below:
-            </p>
+          <h2 id="flows" class="section-header">FLOWS</h2>
+          <h3 class="subsection-header">WHO THIS WEBSITE WAS DESIGNED FOR?</h3>
           
-          <!-- Canva Embed -->
-          <div id="presentation" style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
-           padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-           border-radius: 8px; will-change: transform;">
-            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-              src="https://www.canva.com/design/DAGlPt8zO6Q/2c_Y5Hv-AzUKqecHGvajYw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-            </iframe>
+          <p style="margin-bottom: 20px;">
+This redesign was shaped around users who arrive hungry, impatient, and goal-oriented. The profiles below reflect the behaviours that mattered most: frequent ordering, sensitivity to time, and low tolerance for unnecessary steps.           </p>
+            
+            <!-- Profile Image -->
+            <div class="mind-map-container">
+              <div class="image-block">
+                <img 
+                  src="/assets/project-3/profiles.png" 
+                  alt="Project Profile" 
+                />
+                <p class="image-caption">User Profiles</p>
+              </div>
+            </div>
+            
+            <!-- Persona Image -->
+            <div class="mind-map-container">
+              <div class="image-block">
+                <img 
+                  src="/assets/project-3/persona.png" 
+                  alt="Persona" 
+                />
+              </div>
+            </div>
+            
+            <h3 class="subsection-header">DECIDING WHAT DESERVED REDESIGN</h3>
+          
+          <p style="margin-bottom: 20px;">
+These flows reflect the decisions we made as a team about what truly mattered. Instead of mapping everything the website could do, we focused on the paths that most often broke momentum and deserved redesign.           </p>
+            
+            <!-- Flow Carousel -->
+            <div class="swiper mySwiper mb-16">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/flow1.png" alt="Flow 1" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/flow2.png" alt="Flow 2" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/flow3.png" alt="Flow 3" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/flow4.png" alt="Flow 4" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/flow5.png" alt="Flow 5" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            
+            <h2 id="insights" class="section-header">INSIGHTS</h2>
+            <h3 class="subsection-header">USING JAKOB NIELSEN'S USABILITY HEURISTICS</h3>
+          
+          <p style="margin-bottom: 20px;">
+We applied Nielsen's heuristics to evaluate each stage of the selected flows, identifying where the interface violated core usability principles, such as unclear feedback, hidden controls, and unnecessary friction. This structured approach helped prioritize fixes that would have the most impact on user experience.           </p>
+            
+            <!-- Heuristics and Elements Carousel -->
+            <div class="swiper mySwiper mb-16">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/heuristics.png" alt="Heuristics" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-block">
+                    <img src="/assets/project-3/elements.png" alt="Elements" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            
+            <!-- Figma Embed -->
+            <div class="mb-16 text-center">
+              <div class="w-full relative" style="padding-top: 56.25%;">
+                <iframe 
+                  style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                  src="https://embed.figma.com/board/gx6XiipRmucSPfVAtivR6e/Domino-s-Website-Prototypes?node-id=0-1&embed-host=share" 
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            
+            <p class="mb-8">
+Through heuristic evaluation and task analysis, three patterns consistently surfaced across ordering, customization, coupons, and payment flows.            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="problem-card">
+            <h3>🔁 Repeated inputs</h3>
+            <p>
+             Location and address are requested multiple times, creating unnecessary friction.
+            </p>
           </div>
-          <div class="text-sm text-gray-500 mb-4">
-            <a href="https://www.canva.com/design/DAGlPt8zO6Q/2c_Y5Hv-AzUKqecHGvajYw/view?utm_content=DAGlPt8zO6Q&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener"></a>
+          
+          <div class="problem-card">
+            <h3>⛳️ Key actions hidden</h3>
+            <p>
+              Customization costs, coupon effects, and payment status are hidden or unclear.
+            </p>
           </div>
+          
+          <div class="problem-card">
+            <h3>🐌 Context switching disrupts momentum</h3>
+            <p>
+             Redirects during coupons and payment fragment the experience.
+            </p>
+          </div>
+        </div>
+        
+        <h2 id="design" class="section-header">DESIGN</h2>
+        <h3 class="subsection-header">What Needed to Change</h3>
+        
+        <p style="margin-bottom: 20px;">
+These changes focus on the moments where the flow broke down most often. Instead of reworking everything, we targeted key points across the experience where small fixes could restore momentum.        </p>
+        
+        <!-- Recommendations Carousel -->
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/rec1.png" alt="Recommendation 1" />
+                <p class="image-caption">Ordering Page Recommendations</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/rec2.png" alt="Recommendation 2" />
+                <p class="image-caption">Checkout Recommendations</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/rec3.png" alt="Recommendation 3" />
+                <p class="image-caption">Payment Recommendations</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <!-- Figma Prototypes Embed -->
+        <div class="mb-16 text-center">
+          <div class="w-full relative" style="padding-top: 56.25%;">
+            <iframe 
+              style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+              src="https://embed.figma.com/board/gx6XiipRmucSPfVAtivR6e/Domino-s-Website-Prototypes?node-id=0-1&embed-host=share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        
+        <h3 class="subsection-header">Ways Forward</h3>
+        
+        <p style="margin-bottom: 20px;">
+These directions explore different ways of resolving the same friction points. At this stage, the goal was not to converge, but to test how far each idea could push clarity and speed.        </p>
+        
+        <!-- Prototype Image -->
+        <div class="mind-map-container">
+          <div class="image-block">
+            <img 
+              src="/assets/project-3/proto1.png" 
+              alt="Prototype 1" 
+            />
+            <p class="image-caption">Rough Ideation</p>
+          </div>
+        </div>
+        
+        <!-- Prototype 2 Carousel -->
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto2-1.png" alt="Prototype 2-1" />
+                <p class="image-caption">Ordering Page Changes</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto2-2.png" alt="Prototype 2-2" />
+                <p class="image-caption">Checkout Page Changes</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto2-3.png" alt="Prototype 2-3" />
+                <p class="image-caption">Payment Page Changes</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <h3 class="subsection-header">What We Built</h3>
+        
+        <p style="margin-bottom: 20px;">
+The final prototype brings together the strongest decisions across directions into a single, working flow. This was developed collaboratively, aligning on what best supported speed, clarity, and completion.        </p>
+        
+        <!-- Final Prototypes Carousel -->
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto-final.png" alt="Final Prototype" />
+                <p class="image-caption">Prototype Hardik</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto-anmol.png" alt="Anmol's Prototype" />
+                <p class="image-caption">Prototype Anmol</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/proto-deborshi.png" alt="Deborshi's Prototype" />
+                <p class="image-caption">Prototype Deborshi</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <h2 id="validation" class="section-header">VALIDATION</h2>
+        <h3 class="subsection-header">Setting Up the Test</h3>
+
+        <p style="margin-bottom: 20px;">
+These scripts define what users were asked to do, focusing on the moments most likely to expose friction in the flow.</p>
+     
+        
+        <!-- Script Carousel -->
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/script-1.png" alt="Script 1" />
+                <p class="image-caption">Intro Script</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/script-2.png" alt="Script 2" />
+                <p class="image-caption">Ordering Task</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/script-3.png" alt="Script 3" />
+                <p class="image-caption">Checkout Task</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/script-4.png" alt="Script 4" />
+                <p class="image-caption">Payment Task</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <h3 class="subsection-header">Where It Held, Where It Didn’t</h3>
+        
+        <p style="margin-bottom: 20px;">
+These sessions show how the redesigned flow behaved under real use. Some decisions reduced friction as intended, while others revealed new points of hesitation that only surfaced during testing.
+        
+        <!-- User Testing Carousel -->
+        <div class="swiper mySwiper mb-16">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/user-1.png" alt="User Test 1" />
+                <p class="image-caption">User 1 (Menu Access Issues)</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/user-2.png" alt="User Test 2" />
+                <p class="image-caption">User 2 (Customization Confusion)</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/user-3.png" alt="User Test 3" />
+                <p class="image-caption">User 3 (Payment Friction)</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/user-4.png" alt="User Test 4" />
+                <p class="image-caption">User 4 (Navigation Gaps)</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-block">
+                <img src="/assets/project-3/user-5.png" alt="User Test 5" />
+                <p class="image-caption">User 5 (Preference Patterns)</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        
+        <!-- User All Image -->
+        <div class="mind-map-container">
+          <div class="image-block">
+            <img 
+              src="/assets/project-3/user-all.png" 
+              alt="User All Results" 
+            />
+            <p class="image-caption">Overall Trends</p>
+          </div>
+        </div>
+        
+        <h3 class="subsection-header">Testing in Practice</h3>
+        
+        <p style="margin-bottom: 20px;">
+These images document the testing process, showing the prototypes being used and evaluated in real sessions.       </p>
+        
+        <!-- Evidence Image -->
+        <div class="mind-map-container">
+          <div class="image-block">
+            <img 
+              src="/assets/project-3/evidence.png" 
+              alt="Evidence" 
+            />
+            
+          </div>
+        </div>
           
         </div>
   
@@ -795,13 +1194,13 @@
       </div>
       
       <!-- Project Card 2 -->
-      <div class="card project-card" onclick="window.location.href='/projects/project-4.html'">
+      <div class="card project-card" onclick="window.location.href='/projects/project-2.html'">
         <div class="project-card-image">
-          <img src="/assets/project-4/cover-steam.png" alt="Improving Steam" class="rounded-md">
+          <img src="/assets/project-2/cover-tile-elocien.png" alt="Elocien" class="rounded-md">
         </div>
         <div class="card-content">
-          <h3 class="project-card-title font-medium text-xl">Improving Steam</h3>
-          <p class="project-card-categories text-sm text-gray-500">User Research & Testing, Product Optimization</p>
+          <h3 class="project-card-title font-medium text-xl">Elocien</h3>
+          <p class="project-card-categories text-sm text-gray-500">Feature Prioritization, Visual Identity Design</p>
         </div>
       </div>
     </div>
@@ -851,10 +1250,10 @@
             slidesPerView: 1,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
           },
           1024: {
-            slidesPerView: 2,
+            slidesPerView: 1,
           },
         },
       });
