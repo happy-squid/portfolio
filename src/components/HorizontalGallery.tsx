@@ -387,8 +387,8 @@ He does <span className="text-black">interaction</span>, <span className="text-b
                   />
                 </div>
                 <p className="text-base text-gray-800 font-base">
-                  Hello people, this is Hardik.<br />
-                  I am currently Bachelor's in Human Centered Design from <br />Srishti Manipal Institute of Art, Design and Technology, Bengaluru.
+                  BDes in Human Centered Design '26<br />
+                  Srishti Manipal Institute of Art, Design and Technology, Bengaluru.
                 </p>
               </div>
               
@@ -396,7 +396,7 @@ He does <span className="text-black">interaction</span>, <span className="text-b
               <div className="bg-white p-8 rounded-md border border-gray-300 max-w-[400px] h-[220px] flex flex-col">
                 <h3 className="text-lg font-medium text-gray-800 mb-3">Why this?</h3>
                 <p className="text-base text-gray-800">
-                  I really like making experiences visually pleasing and easy to interpret. Been practicing it in graphics and now wish to do the same in interaction design.
+                  I really like simplifying complex workflows and making things feel more intuitive. I often break down everyday interactions to understand what makes them work.
                 </p>
               </div>
               
