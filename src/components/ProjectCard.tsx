@@ -84,11 +84,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         'border-gray-300',
         getDimensions()
       )}>
-        <img 
-          src={project.imageUrl} 
-          alt={project.title}
-          className="h-full w-full object-cover"
-        />
+        {project.imageUrl.endsWith('.mp4') ? (
+          <video
+            src={project.imageUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <img 
+            src={project.imageUrl} 
+            alt={project.title}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
       
       <div className={isMobile ? "mt-4 w-full" : "mt-4"} style={!isMobile ? { width: variant === 'landscape' ? '660px' : variant === 'square' ? '440px' : '440px' } : {}}>

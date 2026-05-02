@@ -13,7 +13,7 @@ export const projects: Project[] = [
     id: "project-1",
     title: "Delivery Partner App Intervention",
     description: "A research-based design intervention for Food Delivery workers in India",
-    imageUrl: "/assets/project-1/cover2.png",
+    imageUrl: "/assets/project-1/cover2.mp4",
     year: "2022",
     tags: ["UX Research", "Service Design", "Social Impact"]
   },
