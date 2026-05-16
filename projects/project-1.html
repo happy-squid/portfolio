@@ -961,8 +961,10 @@
 
         <!-- Hero Image (moved here) -->
         <div class="w-full mb-12">
-          <video src="/assets/project-1/cover2.mp4" autoplay loop muted playsinline class="hero-image w-full rounded-lg"
-            style="max-height: 80vh; object-fit: cover; object-position: center;"></video>
+          <video autoplay loop muted playsinline preload="auto" poster="/assets/project-1/cover2.png" class="hero-image w-full rounded-lg"
+            style="max-height: 80vh; object-fit: cover; object-position: center;">
+            <source src="/assets/project-1/cover2.mp4" type="video/mp4" />
+          </video>
         </div>
 
         <!-- Article Navigation -->
