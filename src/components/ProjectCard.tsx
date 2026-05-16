@@ -86,13 +86,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       )}>
         {project.imageUrl.endsWith('.mp4') ? (
           <video
-            src={project.imageUrl}
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
+            preload="auto"
+            poster={project.imageUrl.replace('.mp4', '.png')}
             className="h-full w-full object-cover"
-          />
+          >
+            <source src={project.imageUrl} type="video/mp4" />
+          </video>
         ) : (
           <img 
             src={project.imageUrl} 
