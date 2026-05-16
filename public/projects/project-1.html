@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harmony in Motion - Hardik Monga</title>
+  <title>Zomato's Last Mile Blind Spot - Hardik Monga</title>
   <link rel="stylesheet" href="/assets/index.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Add Google Fonts for Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Add Swiper CSS for carousels -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <style>
@@ -19,60 +21,63 @@
       line-height: 1.6;
       scroll-behavior: smooth;
       background-color: white;
-      font-size: 0.9rem; /* 10% smaller than default 1rem */
+      font-size: 0.9rem;
+      /* 10% smaller than default 1rem */
     }
-    
+
     /* Constrain paragraph width with right margin, excluding grey boxes */
     p:not(.highlight-box p) {
-      max-width: 80ch; /* Optimal reading width */
+      max-width: 80ch;
+      /* Optimal reading width */
       margin-right: auto;
       margin-left: 0;
     }
-    
+
     /* Ensure grey box paragraphs use full width */
     .highlight-box p {
       max-width: none;
       margin-right: 0;
       margin-left: 0;
     }
-    
+
     /* Responsive font sizes for larger screens */
     @media (min-width: 768px) {
       body {
         font-size: 0.95rem;
       }
     }
-    
+
     @media (min-width: 1024px) {
       body {
-        font-size: 1rem; /* Back to default on desktop */
+        font-size: 1rem;
+        /* Back to default on desktop */
       }
     }
-    
+
     /* Responsive image sizing */
     .survey-img {
       width: 55% !important;
     }
-    
+
     .leverage-img {
       width: 64% !important;
     }
-    
+
     @media (max-width: 768px) {
       .survey-img {
         width: 90% !important;
       }
-      
+
       .leverage-img {
         width: 90% !important;
       }
     }
-    
+
     /* Make images clickable */
     .clickable-img {
       cursor: pointer;
     }
-    
+
     /* Simple custom lightbox */
     .simple-lightbox {
       display: none;
@@ -87,17 +92,17 @@
       overflow: auto;
       overscroll-behavior: contain;
     }
-    
+
     .simple-lightbox.active {
       display: block;
       overflow: auto;
     }
-    
+
     .simple-lightbox.zoomed-mode {
       overflow: scroll;
       -webkit-overflow-scrolling: touch;
     }
-    
+
     .lightbox-container {
       min-width: 100%;
       min-height: 100%;
@@ -106,12 +111,12 @@
       align-items: center;
       padding: 20px;
     }
-    
+
     .lightbox-container.zoomed {
       display: inline-block;
       padding: 0;
     }
-    
+
     .simple-lightbox img {
       max-width: 90vw;
       max-height: 90vh;
@@ -122,7 +127,7 @@
       touch-action: none;
       margin: 0;
     }
-    
+
     .simple-lightbox img.zoomed {
       cursor: zoom-out;
       max-width: none !important;
@@ -132,7 +137,7 @@
       touch-action: pan-x pan-y pinch-zoom;
       transform-origin: 0 0;
     }
-    
+
     .simple-lightbox-close {
       position: fixed;
       top: 20px;
@@ -143,11 +148,11 @@
       cursor: pointer;
       z-index: 10000;
     }
-    
+
     .simple-lightbox-close:hover {
       color: #ccc;
     }
-    
+
     .zoom-controls {
       position: fixed;
       bottom: 30px;
@@ -156,7 +161,7 @@
       gap: 10px;
       z-index: 10000;
     }
-    
+
     .zoom-btn {
       width: 50px;
       height: 50px;
@@ -172,94 +177,103 @@
       justify-content: center;
       transition: background-color 0.2s;
     }
-    
+
     .zoom-btn:hover {
       background-color: white;
     }
-    
+
     .zoom-btn:active {
       transform: scale(0.95);
     }
-    
+
     .project-header {
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 1rem;
       font-family: 'Montserrat', sans-serif;
     }
-    
+
     .section-header {
       font-size: 0.9rem;
       font-weight: 600;
       margin-top: 4rem;
       margin-bottom: 1.5rem;
-      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      scroll-margin-top: 120px;
+      /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
-      color: #b0b0b0; /* Grey color */
-      letter-spacing: 0.03em; /* Added letter spacing */
+      color: #b0b0b0;
+      /* Grey color */
+      letter-spacing: 0.03em;
+      /* Added letter spacing */
     }
-    
+
     /* Responsive section headers for larger screens */
     @media (min-width: 768px) {
       .section-header {
         font-size: 0.96rem;
       }
     }
-    
+
     @media (min-width: 1024px) {
       .section-header {
         font-size: 1.08rem;
       }
     }
-    
+
     .subsection-header {
       font-size: 1.365rem;
       font-weight: 600;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
-      scroll-margin-top: 120px; /* Increased to account for both nav bars */
+      scroll-margin-top: 120px;
+      /* Increased to account for both nav bars */
       font-family: 'Montserrat', sans-serif;
     }
-    
+
     .problem-card {
       background-color: #f8f8f8;
       border-radius: 12px;
       padding: 2rem;
       margin-bottom: 2rem;
     }
-    
+
     .problem-card h3 {
       font-size: 1.134rem;
       font-weight: 600;
       margin-bottom: 1rem;
       font-family: 'Montserrat', sans-serif;
     }
-    
+
     .swiper {
       width: 100%;
       margin-bottom: 1rem;
-      background-color: #f5f5f5; /* Light grey background */
+      background-color: #f5f5f5;
+      /* Light grey background */
       border-radius: 8px;
-      padding: 2rem 4rem; /* Add padding for the arrows */
+      padding: 2rem 4rem;
+      /* Add padding for the arrows */
     }
-    
+
     .swiper-slide {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 450px; /* Increased height to accommodate caption */
+      height: 450px;
+      /* Increased height to accommodate caption */
       padding: 1rem;
     }
-    
+
     .swiper-slide img {
       max-width: 100%;
-      max-height: 85%; /* Reduced to make room for caption */
-      object-fit: contain; /* Maintain aspect ratio and fit within container */
+      max-height: 85%;
+      /* Reduced to make room for caption */
+      object-fit: contain;
+      /* Maintain aspect ratio and fit within container */
       display: block;
       margin-bottom: 1rem;
     }
-    
+
     .slide-caption {
       font-size: 0.875rem;
       color: #555;
@@ -267,53 +281,59 @@
       font-family: 'Montserrat', sans-serif;
       margin-top: 0.5rem;
     }
-    
+
     /* Custom navigation buttons */
     .swiper-button-next,
     .swiper-button-prev {
       width: 50px;
       height: 50px;
-      background-color: #555; /* Darker grey for buttons */
-      border-radius: 50%; /* Circular buttons */
-      color: white; /* White arrow color */
+      background-color: #555;
+      /* Darker grey for buttons */
+      border-radius: 50%;
+      /* Circular buttons */
+      color: white;
+      /* White arrow color */
       display: flex;
       justify-content: center;
       align-items: center;
       transition: background-color 0.3s ease;
     }
-    
+
     .swiper-button-next:hover,
     .swiper-button-prev:hover {
-      background-color: #444; /* Even darker on hover */
+      background-color: #444;
+      /* Even darker on hover */
     }
-    
+
     .swiper-button-next:after,
     .swiper-button-prev:after {
-      font-size: 1.5rem; /* Smaller arrow size */
+      font-size: 1.5rem;
+      /* Smaller arrow size */
       font-weight: bold;
-      color: white; /* Ensure the arrow itself is white */
+      color: white;
+      /* Ensure the arrow itself is white */
     }
-    
+
     /* Position the buttons further away from the content */
     .swiper-button-next {
       right: 10px;
     }
-    
+
     .swiper-button-prev {
       left: 10px;
     }
-    
+
     /* Pagination styling */
     .swiper-pagination-bullet {
       background-color: #999;
       opacity: 0.5;
     }
-    
+
     .swiper-pagination-bullet-active {
       background-color: #333;
       opacity: 1;
     }
-    
+
     .caption {
       font-size: 0.9rem;
       color: #666;
@@ -321,14 +341,14 @@
       margin-top: 0.5rem;
       font-family: 'Montserrat', sans-serif;
     }
-    
+
     .highlight-box {
       background-color: #f0f0f0;
       border-left: 4px solid #333;
       padding: 1.5rem;
       margin: 2rem 0;
     }
-    
+
     .tag {
       display: inline-block;
       background-color: transparent;
@@ -339,194 +359,240 @@
       font-family: 'Montserrat', sans-serif;
       color: #6b7280;
     }
-    
+
     /* Header styles */
     .header-container {
-      height: 60px; /* Increased height for better vertical centering */
+      height: 60px;
+      /* Increased height for better vertical centering */
       display: flex;
       align-items: center;
     }
-    
+
     .logo-container {
       position: fixed;
-      top: 1rem; /* Converted from top-8 in tailwind (8 * 0.25rem = 2rem) */
-      left: 4rem; /* Converted from left-8 in tailwind (8 * 0.25rem = 2rem) */
-      z-index: 999; /* Set to highest possible z-index */
-      pointer-events: auto; /* Ensure pointer events work */
+      top: 1rem;
+      /* Converted from top-8 in tailwind (8 * 0.25rem = 2rem) */
+      left: 4rem;
+      /* Converted from left-8 in tailwind (8 * 0.25rem = 2rem) */
+      z-index: 999;
+      /* Set to highest possible z-index */
+      pointer-events: auto;
+      /* Ensure pointer events work */
     }
-    
+
     .logo-image {
-      height: 32px; /* Matches the h-8 from Navigation.tsx */
+      height: 32px;
+      /* Matches the h-8 from Navigation.tsx */
       width: auto;
     }
-    
+
     /* Ensure the logo link is always on top and clickable */
     #backToGallery {
       position: relative;
       z-index: 999;
       pointer-events: auto;
     }
-    
+
     /* Article navigation styles */
     .article-nav {
-      padding: 0; /* Removed padding to control height with container */
-      z-index: 60; /* Increased to be higher than the top header */
-      background-color: transparent; /* Removed background color */
-      border-bottom: 1.5px solid #d6d6d6; /* Added thin border at bottom */
-      pointer-events: auto; /* Ensure pointer events work */
+      padding: 0;
+      /* Removed padding to control height with container */
+      z-index: 60;
+      /* Increased to be higher than the top header */
+      background-color: transparent;
+      /* Removed background color */
+      border-bottom: 1.5px solid #d6d6d6;
+      /* Added thin border at bottom */
+      pointer-events: auto;
+      /* Ensure pointer events work */
     }
-    
+
     .article-nav.sticky {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 60; /* Increased to be higher than the top header */
-      box-shadow: none; /* Removed shadow */
-      border-bottom: none; /* Remove default border */
-      padding-left: 8rem; /* Add left padding in sticky mode to match content container */
+      z-index: 60;
+      /* Increased to be higher than the top header */
+      box-shadow: none;
+      /* Removed shadow */
+      border-bottom: none;
+      /* Remove default border */
+      padding-left: 8rem;
+      /* Add left padding in sticky mode to match content container */
     }
-    
+
     /* Custom border for sticky nav with left-to-right transition */
     .article-nav.sticky::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 8rem; /* Start at first button (match padding-left) */
-      width: 0; /* Start with zero width for left-to-right animation */
+      left: 8rem;
+      /* Start at first button (match padding-left) */
+      width: 0;
+      /* Start with zero width for left-to-right animation */
       height: 1.5px;
       background-color: #d6d6d6;
-      transition: width 0.3s ease; /* Changed back to 0.3s */
+      transition: width 0.3s ease;
+      /* Changed back to 0.3s */
     }
-    
+
     /* When sticky is applied, animate the border to full width */
     .article-nav.sticky.border-visible::after {
-      width: calc(100% - 12rem); /* Full width minus left and right margins */
+      width: calc(100% - 12rem);
+      /* Full width minus left and right margins */
     }
-    
+
     @media (max-width: 768px) {
       .article-nav.sticky::after {
         left: 1.5rem;
       }
-      
+
       .article-nav.sticky.border-visible::after {
-        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+        width: calc(100% - 3rem);
+        /* Full width minus left and right margins for mobile */
       }
     }
-    
+
     .article-nav.in-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       padding: 0;
-      z-index: 60; /* Increased to be higher than the top header */
-      border-bottom: none; /* Remove the full-width border */
-      pointer-events: auto; /* Ensure pointer events work */
+      z-index: 60;
+      /* Increased to be higher than the top header */
+      border-bottom: none;
+      /* Remove the full-width border */
+      pointer-events: auto;
+      /* Ensure pointer events work */
     }
-    
+
     .article-nav.in-header .article-nav-container {
-      height: 60px; /* Match the top bar height when in header */
+      height: 60px;
+      /* Match the top bar height when in header */
       display: flex;
       align-items: center;
-      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
-      background-color: transparent; /* Ensure transparency */
-      position: relative; /* For positioning the custom border */
-      pointer-events: auto; /* Ensure pointer events work */
+      padding-left: 8rem;
+      /* Space for logo plus margin - matches the sticky position */
+      background-color: transparent;
+      /* Ensure transparency */
+      position: relative;
+      /* For positioning the custom border */
+      pointer-events: auto;
+      /* Ensure pointer events work */
     }
-    
+
     /* Create a cutout in the navigation bar for the logo */
     .article-nav.in-header::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 8rem; /* Width of the cutout area */
+      width: 8rem;
+      /* Width of the cutout area */
       height: 100%;
       background-color: transparent;
-      z-index: 75; /* Higher than both nav and logo */
-      pointer-events: none; /* Make this area pass through clicks */
+      z-index: 75;
+      /* Higher than both nav and logo */
+      pointer-events: none;
+      /* Make this area pass through clicks */
     }
-    
+
     /* Custom border for in-header nav with left-to-right transition */
     .article-nav.in-header::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 8rem; /* Start at first button (match padding-left) */
-      width: 0; /* Start with zero width for left-to-right animation */
+      left: 8rem;
+      /* Start at first button (match padding-left) */
+      width: 0;
+      /* Start with zero width for left-to-right animation */
       height: 1.5px;
       background-color: #d6d6d6;
-      transition: width 0.3s ease; /* Changed back to 0.3s */
+      transition: width 0.3s ease;
+      /* Changed back to 0.3s */
     }
-    
+
     /* When in-header is applied, animate the border to full width */
     .article-nav.in-header.border-visible::after {
-      width: calc(100% - 12rem); /* Full width minus left and right margins */
+      width: calc(100% - 12rem);
+      /* Full width minus left and right margins */
     }
-    
+
     @media (max-width: 768px) {
       .article-nav.in-header::after {
         left: 1.5rem;
       }
-      
+
       .article-nav.in-header.border-visible::after {
-        width: calc(100% - 3rem); /* Full width minus left and right margins for mobile */
+        width: calc(100% - 3rem);
+        /* Full width minus left and right margins for mobile */
       }
     }
-    
+
     .article-nav-links {
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      justify-content: flex-start; /* Left align the navigation links */
+      justify-content: flex-start;
+      /* Left align the navigation links */
       width: 100%;
-      padding-left: 0; /* Remove default padding */
+      padding-left: 0;
+      /* Remove default padding */
     }
-    
+
     .article-nav-link {
       display: inline-block;
       padding: 0.5rem 1rem;
       margin-right: 0.5rem;
       font-size: 0.9rem;
-      color: #d6d6d6; /* Changed to light grey */
+      color: #d6d6d6;
+      /* Changed to light grey */
       border-radius: 4px;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 600; /* Changed to semibold by default */
+      font-weight: 600;
+      /* Changed to semibold by default */
       transition: color 0.1s ease;
     }
-    
+
     /* Use a pseudo-element to prevent layout shifts when font-weight changes */
     .article-nav-link::after {
       display: block;
       content: attr(data-text);
-      font-weight: 600; /* Already semibold, so no change needed */
+      font-weight: 600;
+      /* Already semibold, so no change needed */
       height: 0;
       overflow: hidden;
       visibility: hidden;
     }
-    
+
     .article-nav-link:hover {
       color: #000;
-      font-weight: 600; /* Already semibold, so no change needed */
+      font-weight: 600;
+      /* Already semibold, so no change needed */
     }
-    
+
     .article-nav-link.active {
       color: #000;
-      font-weight: 600; /* Already semibold, so no change needed */
+      font-weight: 600;
+      /* Already semibold, so no change needed */
       background-color: transparent;
     }
-    
+
     /* Hide scrollbar for the navigation */
     .hide-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
     }
-    
+
     .hide-scrollbar::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none;
+      /* Chrome, Safari, Opera */
     }
-    
+
     /* Hero image styles */
     .hero-image {
       width: 100%;
@@ -537,66 +603,90 @@
       border-radius: 8px;
       margin: 2rem 0;
     }
-    
+
     /* Apply Montserrat to all text elements */
-    p, h1, h2, h3, h4, h5, h6, span, a, div, button {
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    a,
+    div,
+    button {
       font-family: 'Montserrat', sans-serif;
     }
-    
+
     /* Content container with aligned margins */
     .content-container {
       width: 100%;
       max-width: 1600px;
       margin: 0 auto;
-      padding-left: 4rem; /* Aligns with the logo */
-      padding-right: 4rem; /* Same padding on the right */
+      padding-left: 4rem;
+      /* Aligns with the logo */
+      padding-right: 4rem;
+      /* Same padding on the right */
     }
-    
+
     @media (max-width: 768px) {
       .content-container {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
     }
-    
+
     /* Add a placeholder to prevent content jump */
     .nav-placeholder {
       display: none;
       height: 0;
-      transition: height 0.3s ease; /* Changed back to 0.3s */
+      transition: height 0.3s ease;
+      /* Changed back to 0.3s */
     }
-    
+
     /* When nav becomes sticky, show the placeholder with the same height */
     .nav-placeholder.active {
       display: block;
-      height: 40px; /* Match the original nav height */
+      height: 40px;
+      /* Match the original nav height */
     }
-    
+
     .article-nav-container {
       display: flex;
       align-items: center;
-      padding-left: 0; /* Remove default padding */
-      height: 40px; /* Reduced height while in the article */
-      transition: padding-left 0.3s ease; /* Changed back to 0.3s */
+      padding-left: 0;
+      /* Remove default padding */
+      height: 40px;
+      /* Reduced height while in the article */
+      transition: padding-left 0.3s ease;
+      /* Changed back to 0.3s */
     }
-    
+
     .article-nav.sticky .article-nav-container {
-      height: 30px; /* Adjusted height when sticky but not yet in header */
+      height: 30px;
+      /* Adjusted height when sticky but not yet in header */
     }
-    
+
     .article-nav.in-header .article-nav-container {
-      height: 60px; /* Match the top bar height when in header */
+      height: 60px;
+      /* Match the top bar height when in header */
       display: flex;
       align-items: center;
-      padding-left: 8rem; /* Space for logo plus margin - matches the sticky position */
-      background-color: transparent; /* Ensure transparency */
-      position: relative; /* For positioning the custom border */
-      pointer-events: auto; /* Ensure pointer events work */
+      padding-left: 8rem;
+      /* Space for logo plus margin - matches the sticky position */
+      background-color: transparent;
+      /* Ensure transparency */
+      position: relative;
+      /* For positioning the custom border */
+      pointer-events: auto;
+      /* Ensure pointer events work */
     }
-    
+
     /* Mind map container styling */
     .mind-map-container {
-      background-color: #f5f5f5; /* Light grey background to match carousel */
+      background-color: #f5f5f5;
+      /* Light grey background to match carousel */
       border-radius: 8px;
       padding: 2rem;
       margin-bottom: 1rem;
@@ -604,32 +694,34 @@
       flex-direction: column;
       align-items: center;
     }
-    
+
     .mind-map-container img {
-      width: 75%; /* Reduced from 100% to make the image smaller */
+      width: 75%;
+      /* Reduced from 100% to make the image smaller */
       height: auto;
       object-fit: contain;
       display: block;
       margin-top: 1.5rem;
     }
-    
+
     .content-wrapper {
-      width: 75%; /* Match the image width */
+      width: 75%;
+      /* Match the image width */
       align-self: center;
     }
-    
+
     .mind-map-container h3 {
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       text-align: left;
     }
-    
+
     .mind-map-container p {
       text-align: left;
       margin-bottom: 1.5rem;
     }
-    
+
     /* Side-by-side images container */
     .side-by-side-container {
       background-color: #f5f5f5;
@@ -640,7 +732,7 @@
       flex-direction: column;
       align-items: center;
     }
-    
+
     .images-row {
       display: flex;
       justify-content: space-between;
@@ -648,28 +740,28 @@
       margin-top: 1.5rem;
       gap: 2rem;
     }
-    
+
     .image-column {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    
+
     .image-column img {
       width: 100%;
       height: auto;
       object-fit: contain;
       border-radius: 8px;
     }
-    
+
     .image-caption {
       font-size: 0.875rem;
       color: #555;
       margin-top: 0.75rem;
       text-align: center;
     }
-    
+
     /* Cards Section */
     .cards-section {
       background-color: #f5f5f5;
@@ -687,7 +779,7 @@
       flex-direction: column;
       justify-content: flex-end;
     }
-    
+
     .cards-container {
       display: flex;
       gap: 2rem;
@@ -698,7 +790,7 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    
+
     .card {
       flex: 0 0 350px;
       background-color: white;
@@ -709,71 +801,71 @@
       backface-visibility: hidden;
       margin-bottom: 0;
     }
-    
+
     .project-card {
       cursor: pointer;
       transition: transform 0.3s ease;
       transform-origin: center;
     }
-    
+
     .project-card:hover {
       transform: scale(1.02);
     }
-    
+
     .project-card-image {
       height: 250px;
       overflow: hidden;
     }
-    
+
     .project-card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    
+
     .card-content {
       padding: 1.5rem;
     }
-    
+
     .project-card-title {
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 0.25rem;
     }
-    
+
     .project-card-year {
       font-size: 0.875rem;
       color: #666;
     }
-    
+
     /* Contact card styling */
     .contact-card {
       background-color: white;
       border-radius: 8px 8px 0 0;
     }
-    
+
     .card-section {
       margin-bottom: 1.5rem;
     }
-    
+
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.5rem;
     }
-    
+
     .card-title {
       font-size: 1.5rem;
       font-weight: 500;
     }
-    
+
     .icon-row {
       display: flex;
       gap: 0.5rem;
       margin-top: 0.5rem;
     }
-    
+
     .icon-circle {
       width: 40px;
       height: 40px;
@@ -785,53 +877,60 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    
+
     .icon-circle:hover {
       background-color: black;
       color: white;
     }
-    
+
     .divider {
       height: 1px;
       background-color: #eaeaea;
       margin: 1rem 0;
     }
+
+    .drivers-ill-img {
+      width: 90%;
+    }
+
+    @media (min-width: 768px) {
+      .drivers-ill-img {
+        width: 50%;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .drivers-ill-img {
+        width: 30%;
+      }
+    }
   </style>
 </head>
+
 <body class="min-h-screen bg-white">
   <!-- Header with back button -->
   <div class="fixed top-0 left-0 w-full z-50 bg-white" id="topHeader">
     <div class="content-container header-container">
       <div class="logo-container">
-        <a 
-          href="/"
-          class="hover:opacity-70 transition-all duration-300 block"
-          id="backToGallery"
-          style="position: relative; z-index: 999;"
-        >
-          <img 
-            src="/assets/logo.png" 
-            alt="Logo" 
-            class="logo-image"
-          />
+        <a href="/" class="hover:opacity-70 transition-all duration-300 block" id="backToGallery"
+          style="position: relative; z-index: 999;">
+          <img src="/assets/logo.png" alt="Logo" class="logo-image" />
         </a>
-        <div 
-          style="position: fixed; top: 1rem; left: 4rem; width: 32px; height: 32px; z-index: 1000; cursor: pointer;" 
-          onclick="window.location.href = '/';"
-        ></div>
+        <div style="position: fixed; top: 1rem; left: 4rem; width: 32px; height: 32px; z-index: 1000; cursor: pointer;"
+          onclick="window.location.href = '/';"></div>
       </div>
     </div>
   </div>
-  
+
   <!-- Project Introduction -->
   <div class="content-container py-16 pt-[250px]">
     <div class="w-full mx-auto">
       <div class="mb-12">
         <p class="text-3xl text-gray-700 mb-56">
-          A research-based design intervention for<br>
-          <span class="font-semibold">Food Delivery</span> workers in India.
+          <span class="font-semibold">Zomato’s Last-Mile Blind Spot:</span><br>
+          How missing door-level guidance creates delays,<br> and how shared knowledge can fix it.
         </p>
-        
+
         <!-- Context Card (more minimal styling) -->
         <div class="max-w-xl mb-16">
           <div class="grid grid-cols-3 gap-1">
@@ -839,7 +938,7 @@
               <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Year</h3>
               <p class="text-sm text-gray-500">2022</p>
             </div>
-            
+
             <div>
               <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Categories</h3>
               <div class="flex flex-wrap">
@@ -848,7 +947,7 @@
                 <span class="tag">Social Impact</span>
               </div>
             </div>
-            
+
             <div>
               <h3 class="text-sm uppercase tracking-wider font-medium mb-2">Tools</h3>
               <div class="flex flex-wrap">
@@ -859,20 +958,13 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Hero Image (moved here) -->
         <div class="w-full mb-12">
-          <video 
-            src="/assets/project-1/cover2.mp4" 
-            autoplay
-            loop
-            muted
-            playsinline
-            class="hero-image w-full rounded-lg"
-            style="max-height: 80vh; object-fit: cover; object-position: center;"
-          ></video>
+          <video src="/assets/project-1/cover2.mp4" autoplay loop muted playsinline class="hero-image w-full rounded-lg"
+            style="max-height: 80vh; object-fit: cover; object-position: center;"></video>
         </div>
-        
+
         <!-- Article Navigation -->
         <div id="articleNav" class="article-nav w-full py-4 mb-8">
           <div class="article-nav-container content-container pl-0">
@@ -884,62 +976,78 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Placeholder to prevent content jump when nav becomes sticky -->
         <div id="navPlaceholder" class="nav-placeholder"></div>
-        
+
         <!-- Project Overview -->
         <div class="prose prose-lg max-w-none">
           <h2 id="overview" class="section-header">OVERVIEW</h2>
-          <h3 class="subsection-header" style="margin-top: -1rem">BETWEEN PICKUP AND DROP</h3>
+          <h3 class="subsection-header" style="margin-top: -1rem">ARRIVAL ISN’T THE END. FINDING THE DOOR IS.</h3>
           <p>
-            Food delivery systems fail quietly, in delays, fatigue, and repeated friction that scales across millions of orders.
-This project intervenes at the delivery-flow level, not policy, focusing on navigation and rest as leverage points.
+            Nearly <a href="https://arxiv.org/pdf/2504.17697" target="_blank" rel="noopener noreferrer"
+              style="text-decoration: underline;">25%</a> of a delivery partner’s time is lost in the Last-Hundred-Meter
+            (LHM), which adds an extra <a
+              href="https://admin.mantechpublications.com/index.php/JoESIA/article/viewFile/1851/1320" target="_blank"
+              rel="noopener noreferrer" style="text-decoration: underline;">5–10
+            </a>minutes per
+            order spent just reaching the entrance.
+            <br><br>
+            This flow maps what actually happens after arrival.
           </p>
-          
+          <div class="mb-8">
+            <img src="/assets/project-1/Delivery%20Flow.jpg" alt="Delivery Flow" class="w-full rounded-lg" />
+          </div>
+
+
         </div>
-        
+
         <!-- Research Section -->
-        
-        <h3 id="challenges" class="subsection-header">WHERE DOES DELIVERY WORK BREAK DOWN?</h3>
+
+        <h3 id="challenges" class="subsection-header">ADDRESSING THE LAST-METER WAYFINDING</h3>
         <p class="mb-8">
-          With this question in mind, I conducted research into the experiences of food delivery workers 
-          in India, analyzing news reports, academic studies, and conducting interviews to understand 
-          the key challenges they face. The following are the areas I researched:
+          After reaching the pinned location, drivers often struggle to find the entrance. They rely on riders, locals,
+          or the customer, while platforms still depend on the customer, leaving the rider network underused.
+
         </p>
-        
+        <div class="mb-8">
+          <img src="/assets/project-1/drivers-ill.jpg" alt="Delivery Drivers Illustration"
+            class="rounded-lg drivers-ill-img" />
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div class="problem-card">
             <h3>🛵 Working Conditions</h3>
             <p>
-              Delivery workers often work 10-12 hours per day in extreme weather conditions with 
+              Delivery workers often work 10-12 hours per day in extreme weather conditions with
               limited access to basic facilities like restrooms and rest areas.
             </p>
           </div>
-          
+
           <div class="problem-card">
             <h3>💵 Income Instability</h3>
             <p>
-              Workers face unpredictable earnings due to fluctuating order volumes, incentive 
+              Workers face unpredictable earnings due to fluctuating order volumes, incentive
               structures, and increasing fuel costs that eat into their profits.
             </p>
           </div>
-          
+
           <div class="problem-card">
             <h3>🏥 Support Systems</h3>
             <p>
-              Limited access to healthcare, insurance, and other social security benefits, 
+              Limited access to healthcare, insurance, and other social security benefits,
               despite the physically demanding and sometimes dangerous nature of their work.
             </p>
           </div>
         </div>
-        
+
         <!-- Literature Review -->
         <h2 id="findings" class="section-header">LITERATURE REVIEW</h2>
-      
+
         <h3 class="subsection-header" style="margin-top: -1rem">HOW THE SYSTEM CURRENTLY MANAGES DELIVERY WORK?</h3>
-        <p class="mb-4">Most formal responses to delivery work focus on platform rules, government policy, and institutional programs.</p>
-        
+        <p class="mb-4">Most formal responses to delivery work focus on platform rules, government policy, and
+          institutional programs.</p>
+
         <div class="swiper mySwiper mb-16">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -951,11 +1059,13 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
               <p class="slide-caption">Platform control over delivery partner termination (Zomato T&C)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/thenewsminute(govt.law).png" alt="The News Minute - Government Law" />
+              <img src="/assets/project-1/findings/thenewsminute(govt.law).png"
+                alt="The News Minute - Government Law" />
               <p class="slide-caption">Government regulation for gig worker protection (The News Minute)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/training provided(the wire).png" alt="Training Provided - The Wire" />
+              <img src="/assets/project-1/findings/training provided(the wire).png"
+                alt="Training Provided - The Wire" />
               <p class="slide-caption">Skill training as a substitute for labor protection (The Wire)</p>
             </div>
             <div class="swiper-slide">
@@ -971,23 +1081,27 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        
+
         <!-- Subsection 2: How scale is reshaping the delivery economy -->
         <h3 class="subsection-header">HOW SCALE IS RESHAPING THE DELIVERY ECONOMY?</h3>
-        <p class="mb-4">Rapid growth in food delivery has increased demand, costs, and instability across the system.</p>
-        
+        <p class="mb-4">Rapid growth in food delivery has increased demand, costs, and instability across the system.
+        </p>
+
         <div class="swiper mySwiper mb-16">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Lack of DPs.png" alt="Economic Times - Lack of Delivery Partners" />
+              <img src="/assets/project-1/findings/economicTimes - Lack of DPs.png"
+                alt="Economic Times - Lack of Delivery Partners" />
               <p class="slide-caption">Delivery partner shortages impacting service quality (Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Increased Orders.png" alt="Economic Times - Increased Orders" />
+              <img src="/assets/project-1/findings/economicTimes - Increased Orders.png"
+                alt="Economic Times - Increased Orders" />
               <p class="slide-caption">Rapid growth in food delivery demand (Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - SwiggyFuelPolicy.png" alt="Economic Times - Swiggy Fuel Policy" />
+              <img src="/assets/project-1/findings/economicTimes - SwiggyFuelPolicy.png"
+                alt="Economic Times - Swiggy Fuel Policy" />
               <p class="slide-caption">Fuel costs shifting operating expenses to workers (Economic Times)</p>
             </div>
             <div class="swiper-slide">
@@ -995,11 +1109,13 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
               <p class="slide-caption">Platform attempts to offset rising delivery costs (Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - ExploringOtherOptions.png" alt="Economic Times - Exploring Other Options" />
+              <img src="/assets/project-1/findings/economicTimes - ExploringOtherOptions.png"
+                alt="Economic Times - Exploring Other Options" />
               <p class="slide-caption">Platforms experimenting with alternative delivery models (Economic Times)</p>
             </div>
             <div class="swiper-slide">
-              <img src="/assets/project-1/findings/economicTimes - Restraunts Impacted.png" alt="Economic Times - Restaurants Impacted" />
+              <img src="/assets/project-1/findings/economicTimes - Restraunts Impacted.png"
+                alt="Economic Times - Restaurants Impacted" />
               <p class="slide-caption">Workforce instability affecting restaurant operations (Economic Times)</p>
             </div>
             <div class="swiper-slide">
@@ -1011,11 +1127,12 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        
+
         <!-- Subsection 3: What delivery work feels like on the ground -->
         <h3 class="subsection-header">WHAT DELIVERY WORK FEELS LIKE ON THE GROUND?</h3>
-        <p class="mb-4">On-ground reporting shows long hours, unsafe conditions, and income uncertainty shaping everyday delivery work.</p>
-        
+        <p class="mb-4">On-ground reporting shows long hours, unsafe conditions, and income uncertainty shaping everyday
+          delivery work.</p>
+
         <div class="swiper mySwiper mb-16">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -1051,232 +1168,223 @@ This project intervenes at the delivery-flow level, not policy, focusing on navi
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        
+
         <!-- Survey Results -->
         <h2 id="survey" class="section-header">SURVEY RESULTS</h2>
         <h3 class="subsection-header" style="margin-top: -1rem">WHAT DELIVERY RECEIVERS FEEL?</h3>
 
         <p class="mb-8">
-Even though missed locations happen, the largest source of frustration in the survey I conducted is expensive delivery charges, suggesting that friction inside the delivery flow shows up to users as cost, not conversation.        </p>
-        
+          Even though missed locations happen, the largest source of frustration in the survey I conducted is expensive
+          delivery charges, suggesting that friction inside the delivery flow shows up to users as cost, not
+          conversation. </p>
+
         <div class="mb-16">
-          <img 
-            src="/assets/project-1/survey.png" 
-            alt="Survey Results"
-            class="rounded-lg survey-img" style="width: 55%; background-color: white; padding: 1rem;"
-          />
+          <img src="/assets/project-1/survey.png" alt="Survey Results" class="rounded-lg survey-img"
+            style="width: 55%; background-color: white; padding: 1rem;" />
         </div>
-        
+
         <!-- Mind Map -->
         <h3 id="analysis" class="subsection-header">GAPS IN THE SYSTEM</h3>
         <p class="mb-8">
-Most of what makes delivery work hard isn’t one big problem. It’s a stack of small constraints that collide during every order.        </p>
-        
+          Most of what makes delivery work hard isn’t one big problem. It’s a stack of small constraints that collide
+          during every order. </p>
+
         <div class="mb-16">
           <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/Delivery-MindMap.png" 
-              alt="Delivery Workers Mind Map"
-              class="rounded-lg"
-            />
+            <img src="/assets/project-1/Delivery-MindMap.png" alt="Delivery Workers Mind Map" class="rounded-lg" />
           </div>
         </div>
         <p class="mb-8" style="margin-top: -2rem">
-The map shows a pattern: delivery platforms optimize routes, incentives, and availability, but not the basic conditions that make sustained work possible. Food, rest, charging, and safety are treated as personal problems, even though they directly affect delivery speed, reliability, and cost.        
+          The map shows a pattern: delivery platforms optimize routes, incentives, and availability, but not the basic
+          conditions that make sustained work possible. Food, rest, charging, and safety are treated as personal
+          problems, even though they directly affect delivery speed, reliability, and cost.
         </p>
-        
-        
-        
+
+
+
         <div class="mb-16">
-      <h3 class="subsection-header">WHERE THIS CREATES LEVERAGE</h3>
-      <div class="mb-8">
-        <img 
-          src="/assets/project-1/leverage-map.png" 
-          alt="Leverage Map"
-          class="rounded-lg leverage-img" style="background-color: white; padding: 1rem; width: 64%;"
-        />
-      </div>
-<p class="mb-8">
-If navigation, rest, and charging are built into the delivery flow instead of left to individual improvisation, the system becomes faster, cheaper, and more humane at the same time.
-</p>
+          <h3 class="subsection-header">WHERE THIS CREATES LEVERAGE</h3>
+          <div class="mb-8">
+            <img src="/assets/project-1/leverage-map.png" alt="Leverage Map" class="rounded-lg leverage-img"
+              style="background-color: white; padding: 1rem; width: 64%;" />
+          </div>
+          <p class="mb-8">
+            If navigation, rest, and charging are built into the delivery flow instead of left to individual
+            improvisation, the system becomes faster, cheaper, and more humane at the same time.
+          </p>
         </div>
 
         <h3 class="subsection-header">BASELINE DELIVERY FLOW</h3>
         <p class="mb-8">
-Built from delivery partner vlogs on YouTube and street-level observation, this flow captures the real decisions and delays between pickup and drop.        </p>
-        
+          Built from delivery partner vlogs on YouTube and street-level observation, this flow captures the real
+          decisions and delays between pickup and drop. </p>
+
         <!-- User Flow -->
         <div class="mb-16">
           <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/user-flow.jpeg" 
-              alt="User Flow"
-              class="rounded-lg"
-            />
+            <img src="/assets/project-1/user-flow.jpeg" alt="User Flow" class="rounded-lg" />
           </div>
         </div>
-        
+
         <!-- Design Intervention -->
         <h2 id="intervention" class="section-header">DESIGN INTERVENTION</h2>
         <h3 class="subsection-header" style="margin-top: -1rem">WHAT I CHOSE TO CHANGE</h3>
-        
+
         <p class="mb-8">
-The system breaks in two places. At the door and between orders. That is where design steps in.        </p>
-        
+          The system breaks in two places. At the door and between orders. That is where design steps in. </p>
+
         <!-- App Interface -->
         <div class="mb-16">
-          <div class="mind-map-container"> 
+          <div class="mind-map-container">
             <div class="content-wrapper">
               <h3 class="subsection-header">1. Last-Meter Guidance</h3>
               <p>
-This feature comes from a real workaround.<br><br> A friend of mine recorded a short walk-through video of his building and shared it with delivery partners on WhatsApp when they could not find his door. <br><br>The AR interface turns that same idea into a system: short, reusable visual guides that take riders from the street to the correct entrance.              </p>
-              
+                This feature comes from a real workaround.<br><br> A friend of mine recorded a short walk-through video
+                of his building and shared it with delivery partners on WhatsApp when they could not find his door.
+                <br><br>The AR interface turns that same idea into a system: short, reusable visual guides that take
+                riders from the street to the correct entrance.
+              </p>
+
               <p class="mb-8">
-Once a rider reaches a location, the app exposes a community references layer. This is not default navigation. It only appears when the system knows that precision is needed.<br> <br>
+                Once a rider reaches a location, the app exposes a community references layer. This is not default
+                navigation. It only appears when the system knows that precision is needed.<br> <br>
 
-Opening it switches the camera on and anchors visual markers to the physical space. These marks do not show a route through the city. They show the last stretch. Where to turn. Which gate to use. Which stairwell leads to the right door.<br> <br>
+                Opening it switches the camera on and anchors visual markers to the physical space. These marks do not
+                show a route through the city. They show the last stretch. Where to turn. Which gate to use. Which
+                stairwell leads to the right door.<br> <br>
 
-Alongside this, riders see photos left by others. Signs, shop fronts, security desks, alleyways. Each one is rated by the delivery community based on whether it actually helped someone reach the entrance.<br> <br>
+                Alongside this, riders see photos left by others. Signs, shop fronts, security desks, alleyways. Each
+                one is rated by the delivery community based on whether it actually helped someone reach the
+                entrance.<br> <br>
 
-The interface is built around a single assumption: riders already solve this problem for each other informally. The design formalizes that behavior, making local knowledge persistent, searchable, and accountable inside the system.
+                The interface is built around a single assumption: riders already solve this problem for each other
+                informally. The design formalizes that behavior, making local knowledge persistent, searchable, and
+                accountable inside the system.
               </p>
             </div>
-            <img 
-              src="/assets/project-1/idea1.png" 
-              alt="App Interface Design"
-              class="rounded-lg"
-            />
-            
+            <img src="/assets/project-1/idea1.png" alt="App Interface Design" class="rounded-lg" />
+
           </div>
         </div>
-        
+
         <!-- Rest Stop Facilities -->
         <div class="mb-16">
-          <div class="mind-map-container"> 
+          <div class="mind-map-container">
             <div class="content-wrapper">
               <h3 class="subsection-header">2. Sustaining the Shift</h3>
               <p>
-Delivery partners do not fail between orders.
-The system simply gives them nowhere to exist.<br><br>
+                Delivery partners do not fail between orders.
+                The system simply gives them nowhere to exist.<br><br>
 
-Rest stops are designed as small, community-run hubs placed inside the delivery network. They provide toilets, water, seating, and charging, not as amenities, but as infrastructure.<br><br>
+                Rest stops are designed as small, community-run hubs placed inside the delivery network. They provide
+                toilets, water, seating, and charging, not as amenities, but as infrastructure.<br><br>
 
-This choice rejects restaurant and platform-owned facilities. Those create dependency and uneven access. A community-run model keeps these spaces neutral, shared, and aligned with how riders already support each other.              </p>
+                This choice rejects restaurant and platform-owned facilities. Those create dependency and uneven access.
+                A community-run model keeps these spaces neutral, shared, and aligned with how riders already support
+                each other. </p>
             </div>
-            <img 
-              src="/assets/project-1/idea2.png" 
-              alt="Rest Stop Facilities Design"
-              class="rounded-lg"
-            />
+            <img src="/assets/project-1/idea2.png" alt="Rest Stop Facilities Design" class="rounded-lg" />
           </div>
         </div>
-        
+
         <!-- Video Testimonials -->
         <h3 id="testimonials" class="subsection-header">DELIVERY, AS LIVED</h3>
         <p class="mb-8">
-Delivery-partner footage grounding the ideas above and the final navigation concept that follows.        </p>
-        
+          Delivery-partner footage grounding the ideas above and the final navigation concept that follows. </p>
+
         <div class="mb-16">
           <div class="aspect-video w-full">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/6MWDPjJFPIY" 
-              title="Food Delivery Workers in India" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-              class="rounded-lg"
-              style="aspect-ratio: 16/9;"
-            ></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6MWDPjJFPIY"
+              title="Food Delivery Workers in India" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen class="rounded-lg" style="aspect-ratio: 16/9;"></iframe>
           </div>
         </div>
-        
+
         <!-- Final Solution -->
         <h2 id="final-solution" class="section-header">FINAL SOLUTION</h2>
         <h3 id="testimonials" class="subsection-header" style="margin-top: -1rem">STRIPPING THE AR PART AWAY</h3>
         <p class="mb-8">
-I cut the original AR concept back to what I could realistically build and test. <br>
-Full spatial AR was out of reach, so I focused on the core behavior that mattered: delivery partners sharing and rating location-specific landmarks and advice.<br><br>
+          I cut the original AR concept back to what I could realistically build and test. <br>
+          Full spatial AR was out of reach, so I focused on the core behavior that mattered: delivery partners sharing
+          and rating location-specific landmarks and advice.<br><br>
 
-The result is a community-driven reference layer that replaces guesswork with collective memory.<br>
-The screens below show this shift from concept to interface.        </p>
-        
+          The result is a community-driven reference layer that replaces guesswork with collective memory.<br>
+          The screens below show this shift from concept to interface. </p>
+
         <div class="mb-16">
           <div class="side-by-side-container">
             <div class="images-row">
               <div class="image-column">
-                <img 
-                  src="/assets/project-1/sketch.png" 
-                  alt="Initial Sketches"
-                />
+                <img src="/assets/project-1/sketch.png" alt="Initial Sketches" />
               </div>
               <div class="image-column">
-                <img 
-                  src="/assets/project-1/prototype.png" 
-                  alt="Final Prototype"
-                />
+                <img src="/assets/project-1/prototype.png" alt="Final Prototype" />
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Figma Prototype -->
         <h3 id="figma-prototype" class="subsection-header">FIGMA PROTOTYPE</h3>
-        
+
         <div class="mb-8">
           <div class="mind-map-container">
-            <img 
-              src="/assets/project-1/user-flow-2.jpeg" 
-              alt="User Flow 2"
-              class="rounded-lg"
-            />
+            <img src="/assets/project-1/user-flow-2.jpeg" alt="User Flow 2" class="rounded-lg" />
           </div>
         </div>
-        
+
         <p class="mb-8">
-This prototype takes the same idea and pushes it into the real delivery interface. <br><br>
+          This prototype takes the same idea and pushes it into the real delivery interface. <br><br>
 
-Instead of inventing a new mode, I worked inside the "Reached drop location" screen, where confusion is highest. I added a small Community Landmarks layer to that moment so guidance appears only when it is actually needed.<br><br>
+          Instead of inventing a new mode, I worked inside the "Reached drop location" screen, where confusion is
+          highest. I added a small Community Landmarks layer to that moment so guidance appears only when it is actually
+          needed.<br><br>
 
-The surface shows three rotating references by default. Each card is a landmark or piece of advice ranked by other delivery partners who have already solved that location. <br>Tapping into it opens the full thread, where riders can see photos, read notes, upvote what helped, downvote what did not, and add their own references for the next person.<br><br>
+          The surface shows three rotating references by default. Each card is a landmark or piece of advice ranked by
+          other delivery partners who have already solved that location. <br>Tapping into it opens the full thread,
+          where riders can see photos, read notes, upvote what helped, downvote what did not, and add their own
+          references for the next person.<br><br>
 
-The decision here was to make local knowledge visible without interrupting the delivery flow.
+          The decision here was to make local knowledge visible without interrupting the delivery flow.
         </p>
-        
+
         <div class="mb-16">
           <div class="w-full relative" style="padding-top: 56.25%;">
             <iframe
               style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
               src="https://embed.figma.com/proto/ObD9xcbxwJ1p26tZNwXQJZ/zomato-delivery-app?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share"
-              allowfullscreen
-            ></iframe>
+              allowfullscreen></iframe>
           </div>
         </div>
-        
+
         <!-- Conclusion -->
         <h2 id="conclusion" class="section-header">KEY TAKEAWAYS</h2>
-By fixing the moments where riders get lost and customers wait, this project smooths the quiet friction that sits between a ring at the door and a meal finally arriving.        </p>
-        
+        By fixing the moments where riders get lost and customers wait, this project smooths the quiet friction that
+        sits between a ring at the door and a meal finally arriving. </p>
+
         <div class="highlight-box mb-4">
-          <p >
-1. SYSTEMS DON'T FAIL LOUDLY. THEY FAIL IN SMALL, REPEATED MOMENTS<br><br>
-Most of the harm in delivery work comes from tiny breakdowns at the door and between orders. Mapping those moments mattered more than finding a single big problem.          </p>
+          <p>
+            1. SYSTEMS DON'T FAIL LOUDLY. THEY FAIL IN SMALL, REPEATED MOMENTS<br><br>
+            Most of the harm in delivery work comes from tiny breakdowns at the door and between orders. Mapping those
+            moments mattered more than finding a single big problem. </p>
         </div>
         <div class="highlight-box mb-4">
-          <p >
-2. DESIGN LEVERAGE LIVES INSIDE EXISTING FLOWS, NOT OUTSIDE THEM.<br><br>
-The strongest move was not adding new features, but inserting guidance into a screen riders already depend on. Power comes from choosing where to intervene.          </p>
+          <p>
+            2. DESIGN LEVERAGE LIVES INSIDE EXISTING FLOWS, NOT OUTSIDE THEM.<br><br>
+            The strongest move was not adding new features, but inserting guidance into a screen riders already depend
+            on. Power comes from choosing where to intervene. </p>
         </div>
         <div class="highlight-box mb-4">
-          <p >
-3. NOT EVERY GOOD IDEA IS BUILDABLE, AND THAT MATTERS.<br><br>
-Stripping away full AR forced the project to become more honest. What remained was the part that actually delivered value: shared, location-specific knowledge.          </p>
+          <p>
+            3. NOT EVERY GOOD IDEA IS BUILDABLE, AND THAT MATTERS.<br><br>
+            Stripping away full AR forced the project to become more honest. What remained was the part that actually
+            delivered value: shared, location-specific knowledge. </p>
         </div>
       </div>
     </div>
   </div>
-  
+
   <!-- Cards Section with Grey Background -->
   <div class="cards-section">
     <div class="cards-container">
@@ -1288,43 +1396,49 @@ Stripping away full AR forced the project to become more honest. What remained w
             <div class="card-header">
               <h2 class="card-title relative group cursor-pointer font-medium" onclick="window.location.href='/'">
                 Homepage
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
               </h2>
             </div>
-            
+
           </div>
-          
+
           <div class="divider"></div>
-          
+
           <!-- Me Section -->
           <div class="card-section">
             <div class="card-header">
               <h2 class="card-title relative group cursor-pointer font-medium">
                 Me
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
               </h2>
             </div>
             <div class="icon-row">
-              <a href="https://www.linkedin.com/in/hardik-monga/" target="_blank" rel="noopener noreferrer" class="icon-circle">in</a>
+              <a href="https://www.linkedin.com/in/hardik-monga/" target="_blank" rel="noopener noreferrer"
+                class="icon-circle">in</a>
               <a href="mailto:hardikmonga311@gmail.com" class="icon-circle">✉️</a>
               <a href="https://x.com/HardikMonga3" target="_blank" rel="noopener noreferrer" class="icon-circle">𝕏</a>
-              <a href="https://www.instagram.com/hardikmonga_/" target="_blank" rel="noopener noreferrer" class="icon-circle">ig</a>
+              <a href="https://www.instagram.com/hardikmonga_/" target="_blank" rel="noopener noreferrer"
+                class="icon-circle">ig</a>
             </div>
           </div>
-          
+
           <div class="divider"></div>
-          
+
           <!-- Resume Section -->
           <div class="card-section">
             <div class="card-header">
-              <h2 class="card-title underline decoration-1 underline-offset-4 font-medium" onclick="window.open('/Hardik-Monga-Resume.pdf', '_blank', 'noopener,noreferrer')">Download Resume</h2>
+              <h2 class="card-title underline decoration-1 underline-offset-4 font-medium"
+                onclick="window.open('/Hardik-Monga-Resume.pdf', '_blank', 'noopener,noreferrer')">Download Resume</h2>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Project Card 1 -->
-      <div class="card project-card" onclick="window.open('https://medium.com/@hardikmonga311/vedapath-redesign-navigating-hindu-scriptures-in-a-mobile-app-dd1d6b01b9c3', '_blank')">
+      <div class="card project-card"
+        onclick="window.open('https://medium.com/@hardikmonga311/vedapath-redesign-navigating-hindu-scriptures-in-a-mobile-app-dd1d6b01b9c3', '_blank')">
         <div class="project-card-image">
           <img src="/assets/project-2/cover-tile.png" alt="Vedapath Redesign" class="rounded-md">
         </div>
@@ -1333,7 +1447,7 @@ Stripping away full AR forced the project to become more honest. What remained w
           <p class="project-card-categories text-sm text-gray-500">Navigating Hindu scriptures in a mobile app</p>
         </div>
       </div>
-      
+
       <!-- Project Card 2 -->
       <div class="card project-card" onclick="window.location.href='/projects/project-3.html'">
         <div class="project-card-image">
@@ -1346,15 +1460,15 @@ Stripping away full AR forced the project to become more honest. What remained w
       </div>
     </div>
   </div>
-  
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Make sure the logo is always clickable
       const logoLink = document.getElementById('backToGallery');
       logoLink.style.zIndex = "999";
-      
+
       // Create an invisible overlay for the logo that will always be on top
       const logoOverlay = document.createElement('div');
       logoOverlay.style.position = 'fixed';
@@ -1364,15 +1478,15 @@ Stripping away full AR forced the project to become more honest. What remained w
       logoOverlay.style.height = '32px';
       logoOverlay.style.zIndex = '1000';
       logoOverlay.style.cursor = 'pointer';
-      
+
       // Make the overlay clickable and redirect to home
-      logoOverlay.addEventListener('click', function() {
+      logoOverlay.addEventListener('click', function () {
         window.location.href = '/';
       });
-      
+
       // Add the overlay to the body
       document.body.appendChild(logoOverlay);
-      
+
       // Initialize Swiper
       const swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
@@ -1398,7 +1512,7 @@ Stripping away full AR forced the project to become more honest. What remained w
           },
         },
       });
-      
+
       const appSwiper = new Swiper(".appSwiper", {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -1423,13 +1537,13 @@ Stripping away full AR forced the project to become more honest. What remained w
           },
         },
       });
-      
+
       // Back button functionality
-      document.getElementById('backToGallery').addEventListener('click', function(e) {
+      document.getElementById('backToGallery').addEventListener('click', function (e) {
         e.preventDefault();
         window.location.href = '/';
       });
-      
+
       // Article navigation functionality
       const articleNav = document.getElementById('articleNav');
       const articleNavLinks = document.querySelectorAll('.article-nav-link');
@@ -1440,46 +1554,46 @@ Stripping away full AR forced the project to become more honest. What remained w
       let userClickedSection = null; // Track which section the user clicked
       let scrollTimeout = null; // For tracking when scrolling stops
       const navPlaceholder = document.getElementById('navPlaceholder');
-      
+
       // Calculate a custom position for when the transition should happen
       // You can adjust the offset value (currently 100px) to control when the transition occurs
       let transitionOffset = 20; // Pixels after navOffset when transition should happen
-      let navBottomPosition = navOffset + transitionOffset; 
-      
+      let navBottomPosition = navOffset + transitionOffset;
+
       // Make the navigation sticky when scrolling past it
-      window.addEventListener('scroll', function() {
+      window.addEventListener('scroll', function () {
         if (window.pageYOffset >= navOffset) {
           // Immediately add sticky class
           articleNav.classList.add('sticky');
-          
+
           // Show placeholder to prevent content jump
           navPlaceholder.classList.add('active');
-          
+
           // Add border-visible class after a small delay to trigger the animation
           setTimeout(() => {
             articleNav.classList.add('border-visible');
           }, 10);
-          
+
           // When scrolled past the custom transition point, move nav into header with animation
           if (window.pageYOffset >= navBottomPosition) {
             // Add in-header class if not already present
             if (!articleNav.classList.contains('in-header')) {
               // Ensure the logo is clickable by setting a higher z-index
               document.getElementById('backToGallery').style.zIndex = "999";
-              
+
               // Make sure the logo container is also at highest z-index
               document.querySelector('.logo-container').style.zIndex = "999";
-              
+
               articleNav.classList.add('in-header');
-              
+
               // Get the navigation container
               const navContainer = articleNav.querySelector('.article-nav-container');
-              
+
               // No need to set initial padding since it's already at 8rem in sticky position
-              
+
               // Force a reflow to ensure the initial state is rendered
               void navContainer.offsetWidth;
-              
+
               // Then set the target padding (the transition will animate this change)
               navContainer.style.paddingLeft = '9rem';
             }
@@ -1488,22 +1602,22 @@ Stripping away full AR forced the project to become more honest. What remained w
             if (articleNav.classList.contains('in-header')) {
               // Get the navigation container
               const navContainer = articleNav.querySelector('.article-nav-container');
-              
+
               // Animate back to initial position
               navContainer.style.paddingLeft = '8rem';
-              
+
               // Remove the in-header class after the animation completes
               setTimeout(() => {
                 articleNav.classList.remove('in-header');
               }, 300); // Changed back to 300ms
             }
           }
-          
+
           // When sticky, maintain the same padding as the content container
           if (!articleNav.classList.contains('in-header')) {
             articleNav.style.paddingLeft = '4rem';
             articleNav.style.paddingRight = '4rem';
-            
+
             if (window.innerWidth <= 768) {
               articleNav.style.paddingLeft = '1.5rem';
               articleNav.style.paddingRight = '1.5rem';
@@ -1516,20 +1630,20 @@ Stripping away full AR forced the project to become more honest. What remained w
           articleNav.classList.remove('sticky');
           articleNav.classList.remove('in-header');
           articleNav.classList.remove('border-visible'); // Remove border-visible class
-          
+
           // Hide placeholder when nav is no longer sticky
           navPlaceholder.classList.remove('active');
-          
+
           articleNav.style.paddingLeft = '';
           articleNav.style.paddingRight = '';
-          
+
           // Reset the padding on the container
           const navContainer = articleNav.querySelector('.article-nav-container');
           if (navContainer) {
             navContainer.style.paddingLeft = '1rem';
           }
         }
-        
+
         // Only update active section if user isn't actively clicking and scrolling
         if (!userClickedSection) {
           updateActiveSection();
@@ -1541,20 +1655,20 @@ Stripping away full AR forced the project to become more honest. What remained w
           }, 1000); // Reset 1 second after scrolling stops
         }
       });
-      
+
       // Function to update active section based on scroll position
       function updateActiveSection() {
         const scrollPosition = window.scrollY + navHeight + topHeaderHeight + 20;
-        
+
         // Find which section is currently in view
         articleNavLinks.forEach(link => {
           const sectionId = link.getAttribute('href').substring(1);
           const section = document.getElementById(sectionId);
-          
+
           if (section) {
             const sectionTop = section.offsetTop;
             const sectionBottom = sectionTop + section.offsetHeight;
-            
+
             if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
               // Remove active class from all links
               articleNavLinks.forEach(l => l.classList.remove('active'));
@@ -1564,58 +1678,58 @@ Stripping away full AR forced the project to become more honest. What remained w
           }
         });
       }
-      
+
       // Smooth scroll to section when clicking on navigation links
       articleNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           e.preventDefault();
-          
+
           // Remove active class from all links
           articleNavLinks.forEach(l => l.classList.remove('active'));
           // Add active class to clicked link
           this.classList.add('active');
-          
+
           // Set the clicked section
           userClickedSection = this.getAttribute('href').substring(1);
-          
+
           const sectionId = this.getAttribute('href');
           const section = document.querySelector(sectionId);
-          
+
           if (section) {
             // Calculate position to scroll to (accounting for both nav bars)
             const offsetTop = section.offsetTop - (navHeight + topHeaderHeight);
-            
+
             window.scrollTo({
               top: offsetTop,
               behavior: 'smooth'
             });
-            
+
             // Update URL hash without jumping
             history.pushState(null, null, sectionId);
-            
+
             // Update active state
             articleNavLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
           }
         });
       });
-      
+
       // Set initial active state based on URL hash or first section
       const setInitialActiveState = () => {
         const hash = window.location.hash;
         let activeLink;
-        
+
         if (hash) {
           activeLink = document.querySelector(`.article-nav-link[href="${hash}"]`);
         }
-        
+
         if (!activeLink) {
           activeLink = articleNavLinks[0];
         }
-        
+
         if (activeLink) {
           activeLink.classList.add('active');
-          
+
           // Scroll to the section if there's a hash in the URL
           if (hash) {
             const section = document.querySelector(hash);
@@ -1629,12 +1743,12 @@ Stripping away full AR forced the project to become more honest. What remained w
           }
         }
       };
-      
+
       // Set initial active state after a small delay to ensure the DOM is fully loaded
       setTimeout(setInitialActiveState, 100);
-      
+
       // Handle window resize for responsive padding
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', function () {
         if (articleNav.classList.contains('sticky')) {
           if (window.innerWidth <= 768) {
             articleNav.style.paddingLeft = '1.5rem';
@@ -1647,7 +1761,7 @@ Stripping away full AR forced the project to become more honest. What remained w
       });
     });
   </script>
-  
+
   <!-- Simple Custom Lightbox HTML -->
   <div class="simple-lightbox" id="simpleLightbox">
     <span class="simple-lightbox-close" id="closeLightbox">&times;</span>
@@ -1659,10 +1773,10 @@ Stripping away full AR forced the project to become more honest. What remained w
       <img src="" alt="" id="lightboxImage">
     </div>
   </div>
-  
+
   <script>
     // Simple custom lightbox with zoom
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const lightbox = document.getElementById('simpleLightbox');
       const lightboxContainer = document.getElementById('lightboxContainer');
       const lightboxImg = document.getElementById('lightboxImage');
@@ -1671,7 +1785,7 @@ Stripping away full AR forced the project to become more honest. What remained w
       const zoomInBtn = document.getElementById('zoomIn');
       const zoomOutBtn = document.getElementById('zoomOut');
       const images = document.querySelectorAll('img:not(.swiper-slide img)');
-      
+
       // Make images clickable (but not the lightbox image itself or navigation/card images)
       images.forEach(img => {
         // Don't add click handler to the lightbox image, navigation images, or project card images
@@ -1679,7 +1793,7 @@ Stripping away full AR forced the project to become more honest. What remained w
         const isProjectCard = img.closest('.project-card') || img.closest('.project-card-image');
         if (img !== lightboxImg && !isNavImage && !isProjectCard) {
           img.classList.add('clickable-img');
-          img.addEventListener('click', function(e) {
+          img.addEventListener('click', function (e) {
             lightbox.classList.add('active');
             lightboxImg.src = this.src;
             lightboxImg.alt = this.alt;
@@ -1692,17 +1806,17 @@ Stripping away full AR forced the project to become more honest. What remained w
           });
         }
       });
-      
+
       // Zoom variables
       let currentScale = 1;
       const minScale = 1;
       const maxScale = 1.3; // 1 + (0.1 * 3) = 1.3x max
       const zoomStep = 0.1; // 10% increments
-      
+
       // Apply zoom function
       function applyZoom(scale, clickX = null, clickY = null) {
         currentScale = Math.max(minScale, Math.min(scale, maxScale));
-        
+
         // Set transform origin based on click position or center
         if (clickX !== null && clickY !== null) {
           const rect = lightboxImg.getBoundingClientRect();
@@ -1714,9 +1828,9 @@ Stripping away full AR forced the project to become more honest. What remained w
           lightboxImg.style.transformOrigin = 'center center';
           console.log('Transform origin set to: center center');
         }
-        
+
         lightboxImg.style.transform = `scale(${currentScale})`;
-        
+
         // Update classes for styling
         if (currentScale > 1.01) { // Small threshold to account for floating point
           lightboxImg.classList.add('zoomed');
@@ -1727,18 +1841,18 @@ Stripping away full AR forced the project to become more honest. What remained w
           lightbox.classList.remove('zoomed-mode');
           lightboxContainer.classList.remove('zoomed');
         }
-        
+
         console.log('Zoom:', currentScale.toFixed(2) + 'x');
       }
-      
+
       // Click to zoom - handle both click and touch
       function handleImageClick(e) {
         e.stopPropagation();
         e.preventDefault();
-        
+
         console.log('Image clicked, current scale:', currentScale);
-          console.log('Classes:', lightboxImg.className);
-        
+        console.log('Classes:', lightboxImg.className);
+
         // If at minimum zoom (1.0 or very close), zoom in by 10%
         if (currentScale <= 1.05) {
           console.log('Zooming in to 1.1x');
@@ -1749,12 +1863,12 @@ Stripping away full AR forced the project to become more honest. What remained w
           applyZoom(1);
         }
       }
-      
+
       // Use click event for desktop
       lightboxImg.addEventListener('click', handleImageClick);
-      
+
       // Also handle touch for mobile
-      lightboxImg.addEventListener('touchend', function(e) {
+      lightboxImg.addEventListener('touchend', function (e) {
         if (e.touches.length === 0) { // Only if not pinching
           const touch = e.changedTouches[0];
           handleImageClick({
@@ -1765,24 +1879,24 @@ Stripping away full AR forced the project to become more honest. What remained w
           });
         }
       });
-      
+
       // Zoom in button
-      zoomInBtn.addEventListener('click', function(e) {
+      zoomInBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         applyZoom(currentScale + zoomStep);
       });
-      
+
       // Zoom out button
-      zoomOutBtn.addEventListener('click', function(e) {
+      zoomOutBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         applyZoom(currentScale - zoomStep);
       });
-      
+
       // Pinch zoom support
       let initialDistance = 0;
       let initialScale = 1;
-      
-      lightboxImg.addEventListener('touchstart', function(e) {
+
+      lightboxImg.addEventListener('touchstart', function (e) {
         if (e.touches.length === 2) {
           e.preventDefault();
           const touch1 = e.touches[0];
@@ -1794,8 +1908,8 @@ Stripping away full AR forced the project to become more honest. What remained w
           initialScale = currentScale;
         }
       });
-      
-      lightboxImg.addEventListener('touchmove', function(e) {
+
+      lightboxImg.addEventListener('touchmove', function (e) {
         if (e.touches.length === 2) {
           e.preventDefault();
           const touch1 = e.touches[0];
@@ -1804,28 +1918,28 @@ Stripping away full AR forced the project to become more honest. What remained w
             touch2.clientX - touch1.clientX,
             touch2.clientY - touch1.clientY
           );
-          
+
           const scale = (currentDistance / initialDistance) * initialScale;
           applyZoom(scale);
         }
       });
-      
+
       // Prevent back navigation when zoomed
-      lightbox.addEventListener('touchmove', function(e) {
+      lightbox.addEventListener('touchmove', function (e) {
         if (currentScale > 1 && e.touches.length === 1) {
           e.stopPropagation();
         }
       }, { passive: false });
-      
+
       // Prevent wheel scroll from triggering back
-      lightbox.addEventListener('wheel', function(e) {
+      lightbox.addEventListener('wheel', function (e) {
         if (currentScale > 1) {
           e.stopPropagation();
         }
       }, { passive: false });
-      
+
       // Close on X button
-      closeBtn.addEventListener('click', function(e) {
+      closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         lightbox.classList.remove('active');
         lightbox.classList.remove('zoomed-mode');
@@ -1836,9 +1950,9 @@ Stripping away full AR forced the project to become more honest. What remained w
         zoomControls.style.display = 'none';
         document.body.style.overflow = 'auto';
       });
-      
+
       // Close on background click
-      lightbox.addEventListener('click', function(e) {
+      lightbox.addEventListener('click', function (e) {
         // Close if clicking the lightbox background or container (but not the image itself)
         if (e.target === lightbox || e.target === lightboxContainer) {
           lightbox.classList.remove('active');
@@ -1851,9 +1965,9 @@ Stripping away full AR forced the project to become more honest. What remained w
           document.body.style.overflow = 'auto';
         }
       });
-      
+
       // Close on Escape key
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
           lightbox.classList.remove('active');
           lightbox.classList.remove('zoomed-mode');
@@ -1868,4 +1982,5 @@ Stripping away full AR forced the project to become more honest. What remained w
     });
   </script>
 </body>
+
 </html>
