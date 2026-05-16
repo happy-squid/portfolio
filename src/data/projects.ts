@@ -11,8 +11,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "Delivery Partner App Intervention",
-    description: "A research-based design intervention for Food Delivery workers in India",
+    title: "Zomato's Last-Mile Blind Spot",
+    description: "How missing door-level guidance creates delays, and how shared knowledge can fix it.",
     imageUrl: "/assets/project-1/cover2.mp4",
     year: "2022",
     tags: ["UX Research", "Service Design", "Social Impact"]
