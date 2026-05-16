@@ -92,7 +92,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             defaultMuted
             playsInline
             preload="auto"
-            poster={project.imageUrl.replace('.mp4', '.png')}
             className="h-full w-full object-cover"
           >
             <source src={project.imageUrl} type="video/mp4" />
